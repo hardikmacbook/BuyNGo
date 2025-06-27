@@ -3,10 +3,10 @@ import { ShoppingCart, User, Menu, X } from 'lucide-react';
 
 // Mock Logo component
 const Logo = ({ isScrolled }) => (
-  <div className={`text-2xl font-bold transition-all duration-700 ${
+  <div className={`text-2xl font-bold transition-all duration-700 cursor-pointer ${
     isScrolled ? 'text-white' : 'text-slate-800'
   }`}>
-    LOGO
+    <p>LOGO</p>
   </div>
 );
 
