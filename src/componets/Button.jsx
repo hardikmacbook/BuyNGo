@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({ label = "Button", onClick }) => {
+const Button = ({ label = "Button" }) => {
   return (
     <StyledWrapper>
-      <button onClick={onClick}>
+      <button>
         {label}
         <div className="star-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path className="fil0" d="M392.05 0c-20.9 210.08-184.06 378.41-392.05 407.78 207.96 29.37 371.12 197.68 392.05 407.74 20.93-210.06 184.09-378.37 392.05-407.74C579.12 378.41 415.94 210.08 392.05 0z" /></svg>
@@ -44,7 +44,7 @@ const StyledWrapper = styled.div`
     cursor: pointer;
   }
 
-  .fil0 { fill: #fffdef; }
+  .fil0 { fill: #000; }
 
   .star-1, .star-2, .star-3, .star-4, .star-5, .star-6 {
     position: absolute;
@@ -62,7 +62,7 @@ const StyledWrapper = styled.div`
 
   button:hover {
     background: transparent;
-    color: #fec195;
+    color: #000;
     box-shadow: 0 0 25px #fec1958c;
   }
 

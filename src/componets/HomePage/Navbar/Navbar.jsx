@@ -3,7 +3,7 @@ import { ShoppingCart, User, Menu, X, Zap, Brain } from 'lucide-react';
 import Logo from './Logo';
 import Navlinks from './Navlinks';
 import Cart from './Cart';
-import Login from './Login';
+import Button from '../../Button';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,7 +51,7 @@ const Navbar = () => {
                 
              <Cart/>
 
-             <Login/>
+             <Button label="Login"/>
 
               {/* Mobile Menu Button */}
               <button
