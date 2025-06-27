@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, User, Menu, X, Zap, Brain } from 'lucide-react';
 import Logo from './Logo';
 import Navlinks from './Navlinks';
+import Cart from './Cart';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,20 +44,11 @@ const Navbar = () => {
         <nav className={`px-6 sm:px-8 lg:px-10 py-2 transition-all duration-700`}>
           <div className="flex items-center justify-between">
             <Logo/>
-            
+
             <Navlinks/>
             <div className="flex items-center space-x-4">
                 
-              {/* Cart Icon */}
-              <button className="relative p-3 rounded-xl bg-white/50 hover:bg-white/70 transition-all duration-300 group border border-white/40 hover:border-white/60 shadow-sm hover:shadow-cyan-200/50 backdrop-blur-md">
-                <ShoppingCart className="w-5 h-5 text-slate-600 group-hover:scale-110 transition-transform duration-300" />
-                {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center text-xs text-white font-bold animate-pulse">
-                    {cartCount}
-                  </span>
-                )}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              </button>
+             <Cart/>
 
               {/* Login Button */}
               <button className="relative px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/40 transition-all duration-300 group overflow-hidden hover:scale-105">
