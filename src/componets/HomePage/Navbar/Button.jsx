@@ -32,7 +32,7 @@ const Button = ({ label = "Button" }) => {
 const StyledWrapper = styled.div`
   button {
     position: relative;
-    padding: 12px 35px;
+    padding: 4px 25px;
     background: #fec195;
     font-size: 17px;
     font-weight: 500;
