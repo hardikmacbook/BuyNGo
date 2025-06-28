@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../src/componets/HomePage/Navbar/Navbar'
+import Header from '../src/componets/HomePage/Navbar/Header'
 import MediaSlider from '../src/componets/HomePage/Slider/MediaSlider'
 
 const Home = () => {
   return (
     <>
-    <Navbar/>
+    <Header/>
     <MediaSlider/>
     </>
   )
