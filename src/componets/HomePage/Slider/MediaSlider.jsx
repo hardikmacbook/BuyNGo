@@ -121,7 +121,8 @@ const MediaSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-[50vh] sm:h-screen overflow-hidden bg-black">
+    <>
+      <div className="relative w-full h-[50vh] sm:h-screen overflow-hidden bg-black">
       {/* Main Media Container */}
       <div className="relative w-full h-full">
         {/* Media Display */}
@@ -156,7 +157,7 @@ const MediaSlider = () => {
         {/* Text Overlay for Images Only */}
         {!isVideo && (
           <div className="absolute inset-0 flex items-end justify-start p-3 sm:p-6 lg:p-12">
-            <div className="max-w-3xl space-y-3 sm:space-y-6 animate-fade-in pb-12 sm:pb-20 pl-2 sm:pl-15">
+            <div className="max-w-3xl space-y-3 sm:space-y-6 animate-fade-in pb-20 sm:pb-60 lg:pb-10 sm:p-10 pl-15 sm:pl-15">
               {/* Category Badge */}
               <div className="inline-flex items-center px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
                 <span className="text-white text-xs sm:text-sm font-medium">
@@ -308,7 +309,8 @@ const MediaSlider = () => {
         </div>
       </div>
     </div>
-  );
+    </>
+);
 };
 
 export default MediaSlider;
