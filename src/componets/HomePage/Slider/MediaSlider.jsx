@@ -121,7 +121,7 @@ const MediaSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+    <div className="relative w-full h-[50vh] sm:h-screen overflow-hidden bg-black">
       {/* Main Media Container */}
       <div className="relative w-full h-full">
         {/* Media Display */}
@@ -155,44 +155,44 @@ const MediaSlider = () => {
 
         {/* Text Overlay for Images Only */}
         {!isVideo && (
-          <div className="absolute inset-0 flex items-end justify-start p-6 sm:p-8 lg:p-12">
-            <div className="max-w-3xl space-y-6 animate-fade-in pb-20 pl-15">
+          <div className="absolute inset-0 flex items-end justify-start p-3 sm:p-6 lg:p-12">
+            <div className="max-w-3xl space-y-3 sm:space-y-6 animate-fade-in pb-12 sm:pb-20 pl-2 sm:pl-15">
               {/* Category Badge */}
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
-                <span className="text-white text-sm font-medium">
+              <div className="inline-flex items-center px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
+                <span className="text-white text-xs sm:text-sm font-medium">
                   {currentItem.category}
                 </span>
                 {currentItem.duration && (
                   <>
-                    <div className="w-1 h-1 bg-white/60 rounded-full mx-3"></div>
-                    <span className="text-white/80 text-sm">{currentItem.duration}</span>
+                    <div className="w-1 h-1 bg-white/60 rounded-full mx-2 sm:mx-3"></div>
+                    <span className="text-white/80 text-xs sm:text-sm">{currentItem.duration}</span>
                   </>
                 )}
               </div>
               
               {/* Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
+              <h1 className="text-2xl sm:text-4xl lg:text-7xl font-bold text-white leading-tight">
                 {currentItem.title}
               </h1>
               
               {/* Description */}
-              <p className="text-white/90 text-lg sm:text-xl leading-relaxed max-w-2xl">
+              <p className="text-white/90 text-sm sm:text-lg lg:text-xl leading-relaxed max-w-2xl">
                 {currentItem.description}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-4">
-                <button className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-semibold transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-2xl">
-                  <Play className="w-5 h-5" />
+              <div className="flex flex-wrap gap-2 sm:gap-4 pt-2 sm:pt-4">
+                <button className="group relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-8 py-2 sm:py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-2xl">
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5" />
                   Read Article
                 </button>
                 
-                <button className="inline-flex items-center gap-3 px-6 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white/80 font-medium transition-all duration-300 hover:bg-white/10 hover:text-white hover:scale-105 active:scale-95 shadow-xl">
-                  <Heart className="w-5 h-5" />
+                <button className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white/80 font-medium transition-all duration-300 hover:bg-white/10 hover:text-white hover:scale-105 active:scale-95 shadow-xl">
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 
-                <button className="inline-flex items-center gap-3 px-6 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white/80 font-medium transition-all duration-300 hover:bg-white/10 hover:text-white hover:scale-105 active:scale-95 shadow-xl">
-                  <Share2 className="w-5 h-5" />
+                <button className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white/80 font-medium transition-all duration-300 hover:bg-white/10 hover:text-white hover:scale-105 active:scale-95 shadow-xl">
+                  <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>
@@ -211,36 +211,36 @@ const MediaSlider = () => {
             <div className={`transition-all duration-300 ${showControls ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
               <button
                 onClick={togglePlay}
-                className="p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
+                className="p-4 sm:p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
               >
-                {isPlaying ? <Pause className="w-12 h-12" /> : <Play className="w-12 h-12 ml-1" />}
+                {isPlaying ? <Pause className="w-8 h-8 sm:w-12 sm:h-12" /> : <Play className="w-8 h-8 sm:w-12 sm:h-12 ml-1" />}
               </button>
             </div>
           </div>
         )}
 
         {/* Top Controls Bar */}
-        <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
+        <div className="absolute top-3 sm:top-6 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between">
           {/* Category Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-3"></div>
-            <span className="text-white text-sm font-medium">
+          <div className="inline-flex items-center px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
+            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2 sm:mr-3"></div>
+            <span className="text-white text-xs sm:text-sm font-medium">
               {currentItem.category}
             </span>
           </div>
 
           {/* Video Controls */}
           {isVideo && (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={toggleMute}
-                className="p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-xl"
+                className="p-2 sm:p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-xl"
               >
-                {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                {isMuted ? <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" /> : <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />}
               </button>
               
-              <button className="p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-xl">
-                <Maximize2 className="w-5 h-5" />
+              <button className="p-2 sm:p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-xl">
+                <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           )}
@@ -249,30 +249,30 @@ const MediaSlider = () => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-6 top-1/2 -translate-y-1/2 p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         
         <button
           onClick={nextSlide}
-          className="absolute right-6 top-1/2 -translate-y-1/2 p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
         {/* Bottom Controls */}
-        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+        <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between">
           {/* Slide Indicators */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {mediaItems.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => goToSlide(index)}
                 className={`relative overflow-hidden rounded-full transition-all duration-500 ${
                   index === currentSlide
-                    ? 'w-16 h-3 bg-white shadow-lg shadow-white/50'
-                    : 'w-3 h-3 bg-white/40 hover:bg-white/60'
+                    ? 'w-12 sm:w-16 h-2 sm:h-3 bg-white shadow-lg shadow-white/50'
+                    : 'w-2 sm:w-3 h-2 sm:h-3 bg-white/40 hover:bg-white/60'
                 }`}
               >
                 {index === currentSlide && (
@@ -285,10 +285,10 @@ const MediaSlider = () => {
           </div>
 
           {/* Right Controls */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {/* Slide Counter */}
-            <div className="px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-xl">
-              <span className="text-white text-sm font-medium">
+            <div className="px-2 sm:px-4 py-1 sm:py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-xl">
+              <span className="text-white text-xs sm:text-sm font-medium">
                 {String(currentSlide + 1).padStart(2, '0')} / {String(mediaItems.length).padStart(2, '0')}
               </span>
             </div>
@@ -296,7 +296,7 @@ const MediaSlider = () => {
             {/* Auto-play Toggle */}
             <button
               onClick={() => setIsAutoPlay(!isAutoPlay)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-xl shadow-xl ${
+              className={`px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 backdrop-blur-xl shadow-xl ${
                 isAutoPlay
                   ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
                   : 'bg-white/10 text-white/80 border border-white/20 hover:bg-white/20'
