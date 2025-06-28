@@ -1,8 +1,14 @@
 import React from 'react'
+import HelmetExport from 'react-helmet'
 
 const About = () => {
   return (
-    <div className='p-28'>lorem1000</div>
+    <div className='p-28'>
+      <HelmetExport>
+        <title>About Us</title>
+      </HelmetExport>
+      lorem1000
+    </div>
   )
 }
 
