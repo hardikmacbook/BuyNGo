@@ -156,7 +156,7 @@ const MediaSlider = () => {
         {/* Text Overlay for Images Only */}
         {!isVideo && (
           <div className="absolute inset-0 flex items-end justify-start p-6 sm:p-8 lg:p-12">
-            <div className="max-w-3xl space-y-6 animate-fade-in">
+            <div className="max-w-3xl space-y-6 animate-fade-in pb-20 pl-15">
               {/* Category Badge */}
               <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
                 <span className="text-white text-sm font-medium">
