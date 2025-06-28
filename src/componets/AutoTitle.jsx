@@ -6,7 +6,7 @@ const AutoTitle = (Component) => {
     useEffect(() => {
       const name = Component.name;
       const formatted = name.replace(/([A-Z])/g, ' $1').trim(); // Optional formatting
-      document.title = `${formatted} | My Website`;
+      document.title = `${formatted} - Lavish`;
     }, []);
 
     return <Component {...props} />;
