@@ -1,63 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ShoppingCart, User, Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
-// Logo
-const Logo = ({ isScrolled }) => (
-  <Link to="/">
-    <div className={`text-2xl font-bold transition-all duration-700 cursor-pointer ${
-      isScrolled ? 'text-white' : 'text-slate-800'
-    }`}>
-      <p>LOGO</p>
-    </div>
-  </Link>
-);
+import Logo from './Logo';
 
 // Navlinks
-const Navlinks = ({ isScrolled }) => {
+const Navlinks = () => {
   const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Products', path: '/products' },
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
-];
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
+    <>
     <div className="hidden lg:flex items-center space-x-8">
       {navItems.map(({ name, path }) => (
-  <Link
-    key={name}
-    to={path}
-    className={`text-base font-medium transition-all duration-700 hover:scale-105 ${
-      isScrolled
-        ? 'text-white hover:text-cyan-300'
-        : 'text-slate-700 hover:text-slate-900'
-    }`}
-  >
-    {name}
-  </Link>
-))}
+        <a
+          key={name}
+          href={path}
+          className="text-base font-medium transition-all hover:scale-105 text-black hover:text-white"
+        >
+          {name}
+        </a>
+      ))}
     </div>
+    </>
   );
 };
 
 // Cart
-const Cart = ({ isScrolled }) => {
+const Cart = () => {
   const [cartCount] = useState(3);
 
   return (
-    <button className={`relative p-3 rounded-xl transition-all duration-700 border backdrop-blur-md ${
-      isScrolled
-        ? 'bg-white/10 hover:bg-white/20 border-white/40 text-white'
-        : 'bg-white/50 hover:bg-white/70 border-white/40 text-slate-600'
-    }`}>
+    <button className="relative p-3 rounded-xl transition-all duration-700 border backdrop-blur-md bg-white/50 hover:bg-white/70 border-white/40 text-slate-600">
       <ShoppingCart className="w-5 h-5" />
       {cartCount > 0 && (
-        <span className={`absolute -top-2 -right-2 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center transition-all duration-700 ${
-          isScrolled
-            ? 'bg-cyan-400 text-black'
-            : 'bg-red-500 text-white'
-        }`}>
+        <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center transition-all duration-700 bg-red-500 text-white">
           {cartCount}
         </span>
       )}
@@ -66,13 +45,9 @@ const Cart = ({ isScrolled }) => {
 };
 
 // Button
-const Button = ({ label, width, height, isScrolled }) => (
+const Button = ({ label, width, height }) => (
   <button
-    className={`px-4 py-2 rounded-xl font-medium transition-all duration-700 border backdrop-blur-md ${
-      isScrolled
-        ? 'bg-white/10 hover:bg-white/20 border-white/40 text-white hover:text-cyan-300'
-        : 'bg-white/50 hover:bg-white/70 border-white/40 text-slate-700 hover:text-slate-900'
-    }`}
+    className="px-4 py-2 rounded-xl font-medium transition-all duration-700 border backdrop-blur-md bg-white/50 hover:bg-white/70 border-white/40 text-slate-700 hover:text-slate-900"
     style={{ width, height }}
   >
     {label}
@@ -80,16 +55,7 @@ const Button = ({ label, width, height, isScrolled }) => (
 );
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = ['Home', 'Products', 'About', 'Contact'];
 
@@ -97,45 +63,34 @@ const Navbar = () => {
     <>
       {/* Header */}
       <header
-        className={`fixed top-4 left-0 right-0 z-50 mx-auto transition-all duration-700 ease-out sm:max-w-[800px] ${
-          isScrolled
-            ? 'backdrop-blur bg-black/70 shadow-2xl shadow-cyan-500/40'
-            : 'backdrop-blur-lg bg-white/30'
-        }`}
+        className="fixed top-4 left-0 right-0 z-50 mx-auto transition-all duration-700 ease-out sm:max-w-[800px] backdrop-blur-lg bg-white/30"
         style={{
-          borderRadius: '24px',
-          border: isScrolled
-            ? '1px solid rgba(255, 255, 255, 0.4)'
-            : '1px solid rgba(6, 182, 212, 0.2)',
-          boxShadow: isScrolled
-            ? '0 30px 60px rgba(6, 182, 212, 0.3), 0 12px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
-            : '0 8px 32px rgba(6, 182, 212, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+          borderRadius: '30px',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          boxShadow: '0 8px 32px rgba(255, 255, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
         }}
       >
         <nav className="px-6 sm:px-8 lg:px-10 py-3 transition-all duration-700">
           <div className="flex items-center justify-between">
-            <Logo isScrolled={isScrolled} />
-            <Navlinks isScrolled={isScrolled} />
+            { /* --- Logo ----*/}
+            <Logo />
+            { /* --- NavLinks ----*/}
+            <Navlinks />
+            { /* --- RightSide Part ----*/}
             <div className="flex items-center space-x-5">
-              <Cart isScrolled={isScrolled} />
-              <Button label="Login" width="80px" height="50px" isScrolled={isScrolled} />
+            { /* --- Cart ----*/}
+              <Cart />
+            { /* --- Login ----*/}
+              <Button label="Login" width="80px" height="50px" />
               {/* Mobile Toggle */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`lg:hidden p-3 rounded-xl transition-all duration-700 border backdrop-blur-md ${
-                  isScrolled
-                    ? 'bg-white/10 hover:bg-white/20 border-white/40'
-                    : 'bg-white/50 hover:bg-white/70 border-white/40'
-                }`}
+                className="lg:hidden p-3 rounded-xl transition-all duration-700 border backdrop-blur-md bg-white/50 hover:bg-white/70 border-white/40"
               >
                 {isMobileMenuOpen ? (
-                  <X className={`w-5 h-5 transition-all duration-700 ${
-                    isScrolled ? 'text-white' : 'text-slate-600'
-                  }`} />
+                  <X className="w-5 h-5 transition-all duration-700 text-white" />
                 ) : (
-                  <Menu className={`w-5 h-5 transition-all duration-700 ${
-                    isScrolled ? 'text-white' : 'text-slate-600'
-                  }`} />
+                  <Menu className="w-5 h-5 transition-all duration-700 text-slate-600" />
                 )}
               </button>
             </div>
@@ -145,18 +100,12 @@ const Navbar = () => {
           <div className={`lg:hidden overflow-hidden transition-all duration-300 ${
             isMobileMenuOpen ? 'max-h-64 opacity-100 mt-6' : 'max-h-0 opacity-0'
           }`}>
-            <div className={`space-y-2 py-4 px-2 border-t transition-all duration-700 ${
-              isScrolled ? 'border-white/40' : 'border-white/40'
-            }`}>
+            <div className="space-y-2 py-4 px-2 border-t border-white/40">
               {navItems.map((item) => (
                 <a
                   key={item}
                   href="#"
-                  className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-700 ${
-                    isScrolled
-                      ? 'text-white hover:text-cyan-300 hover:bg-white/10'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-white/40'
-                  }`}
+                  className="block px-4 py-3 text-base font-medium rounded-lg transition-all duration-700 text-slate-700 hover:text-slate-900 hover:bg-white/40"
                 >
                   {item}
                 </a>
@@ -165,7 +114,7 @@ const Navbar = () => {
           </div>
         </nav>
       </header>
-      </>
+    </>
   );
 };
 
