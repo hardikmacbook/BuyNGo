@@ -11,7 +11,7 @@ const App = () => {
   // Wrap each component
   const HomeWithTitle = AutoTitle(Home);
   const AboutWithTitle = AutoTitle(About);
-  const ProductWithTitle = AutoTitle(Product);
+  const ProductWithTitle = AutoTitle(Product);  
   const ContactWithTitle = AutoTitle(Contact);
   const ErrorWithTitle = AutoTitle(Error);
 
