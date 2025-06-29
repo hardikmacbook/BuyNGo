@@ -126,7 +126,7 @@ const CompanyValues = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 cursor-pointer">
-            <span>Join Our Success Story</span>
+            <span>Read our Success Story</span>
             <TrendingUp className="w-5 h-5" />
           </div>
         </div>
