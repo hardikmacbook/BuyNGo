@@ -229,7 +229,7 @@ const MediaSlider = () => {
               {currentItem.category}
             </span>
           </div>
-
+            
           {/* Video Controls */}
           {isVideo && (
             <div className="flex items-center gap-2 sm:gap-3">
