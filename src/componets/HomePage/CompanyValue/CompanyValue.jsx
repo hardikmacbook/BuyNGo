@@ -80,10 +80,10 @@ const CompanyValues = () => {
               <div
                 key={metric.id}
                 className="group relative overflow-hidden rounded-2xl bg-gray-900/50 backdrop-blur-sm border border-gray-800 p-8 hover:border-gray-600 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
-                style={{
-                  animationDelay: metric.delay,
-                  animation: `slideInUp 0.8s ease-out forwards ${metric.delay}`
-                }}
+                // style={{
+                //   animationDelay: metric.delay,
+                //   animation: `slideInUp 0.8s ease-out forwards ${metric.delay}`
+                // }}
               >
                 {/* Animated Background Gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${metric.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
