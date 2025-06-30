@@ -1,61 +1,76 @@
 import React, { useEffect, useRef } from 'react';
-import { Package, Users, Calendar, Award, Target, TrendingUp, Rocket, Shield } from 'lucide-react';
+import { Zap, Globe, Rocket, Crown, Diamond, Star } from 'lucide-react';
 
 const CompanyValues = () => {
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
-  const gsapRef = useRef(null);
-  const ScrollTriggerRef = useRef(null);
 
   const cardData = [
     {
       id: 1,
-      icon: Package,
-      title: '100+ Products',
-      description: 'Innovative solutions delivered to transform your business',
-      gradient: 'from-blue-500 to-cyan-400',
+      icon: Zap,
+      number: '01',
+      title: 'Lightning Fast',
+      subtitle: 'Performance',
+      description: 'Experience blazing speed with our cutting-edge optimization technology',
+      gradient: 'from-yellow-400 via-orange-500 to-red-500',
+      glow: 'shadow-yellow-500/50',
     },
     {
       id: 2,
-      icon: Users,
-      title: '1000+ Customers',
-      description: 'Trusted by businesses worldwide across all industries',
-      gradient: 'from-purple-500 to-pink-400',
+      icon: Globe,
+      number: '02',
+      title: 'Global Reach',
+      subtitle: 'Worldwide Impact',
+      description: 'Connect with millions across 150+ countries and territories',
+      gradient: 'from-blue-400 via-purple-500 to-pink-500',
+      glow: 'shadow-blue-500/50',
     },
     {
       id: 3,
-      icon: Calendar,
-      title: '5+ Years',
-      description: 'Of dedicated experience and continuous innovation',
-      gradient: 'from-green-500 to-emerald-400',
+      icon: Rocket,
+      number: '03',
+      title: 'Next Level',
+      subtitle: 'Innovation',
+      description: 'Revolutionary features that push the boundaries of possibility',
+      gradient: 'from-green-400 via-teal-500 to-blue-500',
+      glow: 'shadow-green-500/50',
     },
     {
       id: 4,
-      icon: Award,
-      title: '50+ Awards',
-      description: 'Recognition for excellence and outstanding achievements',
-      gradient: 'from-orange-500 to-yellow-400',
+      icon: Crown,
+      number: '04',
+      title: 'Premium Quality',
+      subtitle: 'Excellence',
+      description: 'Uncompromising quality that sets the gold standard in the industry',
+      gradient: 'from-purple-400 via-pink-500 to-red-500',
+      glow: 'shadow-purple-500/50',
     },
     {
       id: 5,
-      icon: Target,
-      title: '99% Success Rate',
-      description: 'Consistent quality delivery and client satisfaction',
-      gradient: 'from-red-500 to-pink-400',
+      icon: Diamond,
+      number: '05',
+      title: 'Exclusive Access',
+      subtitle: 'VIP Treatment',
+      description: 'Unlock premium features and personalized experiences',
+      gradient: 'from-cyan-400 via-blue-500 to-purple-500',
+      glow: 'shadow-cyan-500/50',
     },
     {
       id: 6,
-      icon: Rocket,
-      title: 'Innovation First',
-      description: 'Leading the industry with cutting-edge technology',
-      gradient: 'from-pink-500 to-rose-400',
+      icon: Star,
+      number: '06',
+      title: 'Award Winning',
+      subtitle: 'Recognition',
+      description: 'Celebrated by industry leaders and trusted by millions worldwide',
+      gradient: 'from-orange-400 via-red-500 to-pink-500',
+      glow: 'shadow-orange-500/50',
     }
   ];
 
   useEffect(() => {
     const loadGSAP = async () => {
       try {
-        // Load GSAP from CDN
         const gsapScript = document.createElement('script');
         gsapScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
         document.head.appendChild(gsapScript);
@@ -64,7 +79,6 @@ const CompanyValues = () => {
           gsapScript.onload = resolve;
         });
 
-        // Load ScrollTrigger
         const scrollTriggerScript = document.createElement('script');
         scrollTriggerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
         document.head.appendChild(scrollTriggerScript);
@@ -73,29 +87,22 @@ const CompanyValues = () => {
           scrollTriggerScript.onload = resolve;
         });
 
-        // Access GSAP from window object
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
         
-        gsapRef.current = gsap;
-        ScrollTriggerRef.current = ScrollTrigger;
-
         gsap.registerPlugin(ScrollTrigger);
-
-        // Set up the scroll-pin animation
         setupScrollPinAnimation(gsap, ScrollTrigger);
 
       } catch (error) {
-        console.error('Failed to load GSAP:', error);
+        console.error('GSAP loading failed:', error);
       }
     };
 
     loadGSAP();
 
     return () => {
-      // Cleanup
-      if (ScrollTriggerRef.current) {
-        ScrollTriggerRef.current.getAll().forEach(trigger => trigger.kill());
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       }
     };
   }, []);
@@ -106,177 +113,156 @@ const CompanyValues = () => {
 
     if (!container || cards.length === 0) return;
 
-    // Set initial state for all cards
+    // Initial state
     gsap.set(cards, {
       opacity: 0,
-      y: 100,
-      scale: 0.8,
-      rotation: 5
+      y: 200,
+      scale: 0.7,
+      rotationX: 45,
+      rotationY: 25,
+      z: -500
     });
 
-    // Create a timeline for the entire animation sequence
-    const tl = gsap.timeline({
+    // Main timeline with pinning
+    const mainTl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         start: 'top top',
-        end: `+=${cards.length * 100}vh`, // Extend scroll distance
-        scrub: 1, // Smooth scroll-sync
-        pin: true, // Pin the container
+        end: `+=${cards.length * 120}vh`,
+        scrub: 1,
+        pin: true,
         pinSpacing: true,
         anticipatePin: 1,
         onUpdate: (self) => {
           const progress = self.progress;
-          const currentCardIndex = Math.floor(progress * cards.length);
+          const totalCards = cards.length;
           
-          // Animate cards based on scroll progress
           cards.forEach((card, index) => {
-            const cardProgress = Math.max(0, Math.min(1, (progress * cards.length) - index));
+            const cardStart = index / totalCards;
+            const cardEnd = (index + 1) / totalCards;
+            const cardProgress = Math.max(0, Math.min(1, (progress - cardStart) / (cardEnd - cardStart)));
             
-            if (cardProgress > 0) {
+            if (progress >= cardStart && progress <= cardEnd + 0.1) {
+              // Card is active
               gsap.set(card, {
-                opacity: Math.min(1, cardProgress * 2),
-                y: 100 * (1 - cardProgress),
-                scale: 0.8 + (0.2 * cardProgress),
-                rotation: 5 * (1 - cardProgress),
-                zIndex: cards.length - index
+                opacity: Math.min(1, cardProgress * 3),
+                y: 200 * (1 - cardProgress),
+                scale: 0.7 + (0.3 * cardProgress),
+                rotationX: 45 * (1 - cardProgress),
+                rotationY: 25 * (1 - cardProgress),
+                z: -500 * (1 - cardProgress),
+                zIndex: 100 + index
+              });
+            } else if (progress > cardEnd + 0.1) {
+              // Card should fade out
+              const fadeProgress = Math.min(1, (progress - cardEnd - 0.1) * 5);
+              gsap.set(card, {
+                opacity: 1 - fadeProgress,
+                scale: 1 - (fadeProgress * 0.2),
+                y: -100 * fadeProgress,
+                zIndex: 50 + index
               });
             }
           });
         }
       }
     });
-
-    // Add stagger animation for smooth card transitions
-    cards.forEach((card, index) => {
-      const startProgress = index / cards.length;
-      const endProgress = (index + 1) / cards.length;
-      
-      tl.to(card, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        rotation: 0,
-        duration: 0.3,
-        ease: "power2.out"
-      }, startProgress)
-      .to(card, {
-        opacity: 0.3,
-        scale: 0.95,
-        duration: 0.2,
-        ease: "power2.in"
-      }, endProgress - 0.1);
-    });
-
-    // Keep the last card visible
-    tl.to(cards[cards.length - 1], {
-      opacity: 1,
-      scale: 1,
-      duration: 0.1
-    }, 0.9);
   };
 
   return (
-    <div className="bg-gray-900">
-      {/* Intro Section */}
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <div className="text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Scroll <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Pinned</span> Cards
-          </h1>
-          <p className="text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto mb-8">
-            Experience smooth scroll-pinned animations with GSAP ScrollTrigger
-          </p>
-          <div className="animate-bounce">
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="bg-black min-h-[800vh] relative overflow-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20"></div>
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]"></div>
+      
+      {/* Floating orbs */}
+      <div className="fixed top-1/4 left-1/4 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="fixed top-3/4 right-1/4 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      <div className="fixed top-1/2 left-3/4 w-24 h-24 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
 
-      {/* Pinned Cards Container */}
-      <div ref={containerRef} className="relative min-h-screen flex items-center justify-center px-4">
-        <div className="relative w-full max-w-2xl">
+      <div ref={containerRef} className="relative min-h-screen flex items-center justify-center px-4 perspective-1000">
+        <div className="relative w-full max-w-4xl">
           {cardData.map((card, index) => {
             const IconComponent = card.icon;
             return (
               <div
                 key={card.id}
                 ref={el => cardsRef.current[index] = el}
-                className="absolute inset-0 w-full"
-                style={{ zIndex: cardData.length - index }}
+                className="absolute inset-0 w-full transform-gpu"
+                style={{ 
+                  zIndex: cardData.length - index,
+                  transformStyle: 'preserve-3d'
+                }}
               >
-                <div className={`relative overflow-hidden rounded-3xl bg-gray-800/90 backdrop-blur-sm border border-gray-700 p-8 md:p-12 shadow-2xl`}>
-                  {/* Animated Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-10`}></div>
+                <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900/90 via-gray-800/90 to-gray-900/90 backdrop-blur-xl border border-gray-700/50 p-12 shadow-2xl ${card.glow} hover:shadow-3xl transition-all duration-700`}>
                   
-                  {/* Floating Particles */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute top-8 right-8 w-2 h-2 bg-white/20 rounded-full animate-ping"></div>
-                    <div className="absolute bottom-12 left-12 w-1 h-1 bg-white/30 rounded-full animate-pulse"></div>
-                    <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-white/15 rounded-full animate-bounce"></div>
+                  {/* Glowing background gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-5 rounded-3xl`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-10 rounded-3xl blur-xl`}></div>
+                  
+                  {/* Animated border */}
+                  <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${card.gradient} p-[1px] opacity-30`}>
+                    <div className="w-full h-full rounded-3xl bg-gray-900"></div>
                   </div>
-
+                  
+                  {/* Content */}
                   <div className="relative z-10 text-center">
-                    {/* Icon */}
-                    <div className={`inline-flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br ${card.gradient} shadow-lg mb-6`}>
-                      <IconComponent className="w-12 h-12 text-white" />
+                    
+                    {/* Number badge */}
+                    <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                      <span className="text-white/80 font-bold text-lg">{card.number}</span>
+                    </div>
+                    
+                    {/* Icon with glow effect */}
+                    <div className="relative mb-8">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-3xl blur-2xl opacity-30 scale-110`}></div>
+                      <div className={`relative inline-flex items-center justify-center p-6 rounded-3xl bg-gradient-to-br ${card.gradient} shadow-2xl transform hover:scale-110 transition-transform duration-300`}>
+                        <IconComponent className="w-16 h-16 text-white drop-shadow-lg" />
+                      </div>
                     </div>
 
-                    {/* Content */}
-                    <div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    {/* Title */}
+                    <div className="mb-6">
+                      <h2 className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tight">
                         {card.title}
+                      </h2>
+                      <h3 className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${card.gradient} bg-clip-text text-transparent`}>
+                        {card.subtitle}
                       </h3>
-                      <p className="text-gray-300 text-lg leading-relaxed max-w-lg mx-auto">
-                        {card.description}
-                      </p>
                     </div>
 
-                    {/* Card Number */}
-                    <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                      <span className="text-white/60 text-sm font-bold">{index + 1}</span>
-                    </div>
+                    {/* Description */}
+                    <p className="text-gray-300 text-xl leading-relaxed max-w-2xl mx-auto font-light">
+                      {card.description}
+                    </p>
+
+                    {/* Decorative elements */}
+                    <div className="absolute top-8 left-8 w-2 h-2 bg-white/30 rounded-full animate-ping"></div>
+                    <div className="absolute bottom-8 right-8 w-1 h-1 bg-white/40 rounded-full animate-pulse"></div>
+                    <div className="absolute top-1/3 left-12 w-1.5 h-1.5 bg-white/20 rounded-full animate-bounce"></div>
                   </div>
 
-                  {/* Bottom Accent */}
-                  <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${card.gradient} w-full`}></div>
+                  {/* Bottom glow line */}
+                  <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${card.gradient} w-full rounded-b-3xl`}></div>
+                  
+                  {/* Side glow effects */}
+                  <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${card.gradient} rounded-l-3xl opacity-50`}></div>
+                  <div className={`absolute top-0 right-0 w-1 h-full bg-gradient-to-b ${card.gradient} rounded-r-3xl opacity-50`}></div>
                 </div>
               </div>
             );
           })}
         </div>
-
-        {/* Progress Indicator */}
-        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50">
-          <div className="flex flex-col space-y-3">
-            {cardData.map((_, index) => (
-              <div
-                key={index}
-                className="w-2 h-8 bg-white/20 rounded-full overflow-hidden"
-              >
-                <div className="w-full h-0 bg-gradient-to-t from-blue-400 to-purple-400 rounded-full transition-all duration-300"></div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
-      {/* Outro Section */}
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <div className="text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Animation <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Complete</span>
-          </h2>
-          <p className="text-gray-400 text-xl mb-8 max-w-2xl mx-auto">
-            You've experienced the power of GSAP ScrollTrigger scroll-pinning
-          </p>
-          <button className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105">
-            <span>Scroll to Top</span>
-            <TrendingUp className="w-5 h-5" />
-          </button>
-        </div>
-      </div>
+      <style jsx>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .transform-gpu {
+          transform: translate3d(0, 0, 0);
+        }
+      `}</style>
     </div>
   );
 };
