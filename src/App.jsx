@@ -4,9 +4,9 @@ import About from '../pages/About';
 import Product from '../pages/Product';
 import Contact from '../pages/Contact';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './componets/HomePage/Navbar/Header';
 import AutoTitle from './componets/AutoTitle';
 import Error from '../pages/Error';
+import Navbar from './componets/HomePage/Navbar/Header';
 const App = () => {
   // Wrap each component
   const HomeWithTitle = AutoTitle(Home);
@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar/>
       <Routes>
         <Route path="/" element={<HomeWithTitle />} />
         <Route path="/about" element={<AboutWithTitle />} />
