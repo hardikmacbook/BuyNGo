@@ -1,266 +1,164 @@
-import React, { useEffect, useRef } from 'react';
-import { Zap, Globe, Rocket, Crown, Diamond, Star } from 'lucide-react';
+import React from 'react';
+import { Package, Users, Calendar, Award, Target, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const CompanyValues = () => {
-  const containerRef = useRef(null);
-  const cardsRef = useRef([]);
-
-  const cardData = [
+  const metrics = [
     {
       id: 1,
-      icon: Zap,
-      number: '01',
-      title: 'Lightning Fast',
-      subtitle: 'Performance',
-      description: 'Experience blazing speed with our cutting-edge optimization technology',
-      gradient: 'from-yellow-400 via-orange-500 to-red-500',
-      glow: 'shadow-yellow-500/50',
+      icon: Package,
+      value: '100+',
+      label: 'Products',
+      description: 'Innovative solutions delivered',
+      gradient: 'from-blue-500 to-cyan-400',
+      delay: '0s'
     },
     {
       id: 2,
-      icon: Globe,
-      number: '02',
-      title: 'Global Reach',
-      subtitle: 'Worldwide Impact',
-      description: 'Connect with millions across 150+ countries and territories',
-      gradient: 'from-blue-400 via-purple-500 to-pink-500',
-      glow: 'shadow-blue-500/50',
+      icon: Users,
+      value: '1000+',
+      label: 'Customers',
+      description: 'Trusted by businesses worldwide',
+      gradient: 'from-purple-500 to-pink-400',
+      delay: '0.2s'
     },
     {
       id: 3,
-      icon: Rocket,
-      number: '03',
-      title: 'Next Level',
-      subtitle: 'Innovation',
-      description: 'Revolutionary features that push the boundaries of possibility',
-      gradient: 'from-green-400 via-teal-500 to-blue-500',
-      glow: 'shadow-green-500/50',
+      icon: Calendar,
+      value: '1+',
+      label: 'Years',
+      description: 'Of dedicated experience',
+      gradient: 'from-green-500 to-emerald-400',
+      delay: '0.4s'
     },
     {
       id: 4,
-      icon: Crown,
-      number: '04',
-      title: 'Premium Quality',
-      subtitle: 'Excellence',
-      description: 'Uncompromising quality that sets the gold standard in the industry',
-      gradient: 'from-purple-400 via-pink-500 to-red-500',
-      glow: 'shadow-purple-500/50',
+      icon: Award,
+      value: '50+',
+      label: 'Awards',
+      description: 'Recognition for excellence',
+      gradient: 'from-orange-500 to-yellow-400',
+      delay: '0.6s'
     },
     {
       id: 5,
-      icon: Diamond,
-      number: '05',
-      title: 'Exclusive Access',
-      subtitle: 'VIP Treatment',
-      description: 'Unlock premium features and personalized experiences',
-      gradient: 'from-cyan-400 via-blue-500 to-purple-500',
-      glow: 'shadow-cyan-500/50',
+      icon: Target,
+      value: '99%',
+      label: 'Success Rate',
+      description: 'Consistent quality delivery',
+      gradient: 'from-red-500 to-pink-400',
+      delay: '0.8s'
     },
     {
       id: 6,
-      icon: Star,
-      number: '06',
-      title: 'Award Winning',
-      subtitle: 'Recognition',
-      description: 'Celebrated by industry leaders and trusted by millions worldwide',
-      gradient: 'from-orange-400 via-red-500 to-pink-500',
-      glow: 'shadow-orange-500/50',
-    }
+      icon: TrendingUp,
+      value: '24/7',
+      label: 'Support',
+      description: 'Always here for you',
+      gradient: 'from-indigo-500 to-purple-400',
+      delay: '1s'
+    },
   ];
 
-  useEffect(() => {
-    const loadGSAP = async () => {
-      try {
-        const gsapScript = document.createElement('script');
-        gsapScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-        document.head.appendChild(gsapScript);
-
-        await new Promise((resolve) => {
-          gsapScript.onload = resolve;
-        });
-
-        const scrollTriggerScript = document.createElement('script');
-        scrollTriggerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
-        document.head.appendChild(scrollTriggerScript);
-
-        await new Promise((resolve) => {
-          scrollTriggerScript.onload = resolve;
-        });
-
-        const gsap = window.gsap;
-        const ScrollTrigger = window.ScrollTrigger;
-        
-        gsap.registerPlugin(ScrollTrigger);
-        setupScrollPinAnimation(gsap, ScrollTrigger);
-
-      } catch (error) {
-        console.error('GSAP loading failed:', error);
-      }
-    };
-
-    loadGSAP();
-
-    return () => {
-      if (window.ScrollTrigger) {
-        window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      }
-    };
-  }, []);
-
-  const setupScrollPinAnimation = (gsap, ScrollTrigger) => {
-    const container = containerRef.current;
-    const cards = cardsRef.current.filter(Boolean);
-
-    if (!container || cards.length === 0) return;
-
-    // Initial state
-    gsap.set(cards, {
-      opacity: 0,
-      y: 200,
-      scale: 0.7,
-      rotationX: 45,
-      rotationY: 25,
-      z: -500
-    });
-
-    // Main timeline with pinning
-    const mainTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: 'top top',
-        end: `+=${cards.length * 120}vh`,
-        scrub: 1,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const totalCards = cards.length;
-          
-          cards.forEach((card, index) => {
-            const cardStart = index / totalCards;
-            const cardEnd = (index + 1) / totalCards;
-            const cardProgress = Math.max(0, Math.min(1, (progress - cardStart) / (cardEnd - cardStart)));
-            
-            if (progress >= cardStart && progress <= cardEnd + 0.1) {
-              // Card is active
-              gsap.set(card, {
-                opacity: Math.min(1, cardProgress * 3),
-                y: 200 * (1 - cardProgress),
-                scale: 0.7 + (0.3 * cardProgress),
-                rotationX: 45 * (1 - cardProgress),
-                rotationY: 25 * (1 - cardProgress),
-                z: -500 * (1 - cardProgress),
-                zIndex: 100 + index
-              });
-            } else if (progress > cardEnd + 0.1) {
-              // Card should fade out
-              const fadeProgress = Math.min(1, (progress - cardEnd - 0.1) * 5);
-              gsap.set(card, {
-                opacity: 1 - fadeProgress,
-                scale: 1 - (fadeProgress * 0.2),
-                y: -100 * fadeProgress,
-                zIndex: 50 + index
-              });
-            }
-          });
-        }
-      }
-    });
-  };
-
   return (
-    <div className="bg-black min-h-[800vh] relative overflow-hidden">
-      {/* Animated background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20"></div>
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]"></div>
-      
-      {/* Floating orbs */}
-      <div className="fixed top-1/4 left-1/4 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="fixed top-3/4 right-1/4 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      <div className="fixed top-1/2 left-3/4 w-24 h-24 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+    <div className="min-h-screen py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            Our <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Success</span>
+          </h2>
+          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+            Numbers that speak louder than words. Our journey of excellence and innovation.
+          </p>
+        </div>
 
-      <div ref={containerRef} className="relative min-h-screen flex items-center justify-center px-4 perspective-1000">
-        <div className="relative w-full max-w-4xl">
-          {cardData.map((card, index) => {
-            const IconComponent = card.icon;
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {metrics.map((metric) => {
+            const IconComponent = metric.icon;
             return (
               <div
-                key={card.id}
-                ref={el => cardsRef.current[index] = el}
-                className="absolute inset-0 w-full transform-gpu"
-                style={{ 
-                  zIndex: cardData.length - index,
-                  transformStyle: 'preserve-3d'
-                }}
+                key={metric.id}
+                className="group relative overflow-hidden rounded-2xl bg-gray-900/50 backdrop-blur-sm border border-gray-800 p-8 hover:border-gray-600 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
+                // style={{
+                //   animationDelay: metric.delay,
+                //   animation: `slideInUp 0.8s ease-out forwards ${metric.delay}`
+                // }}
               >
-                <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900/90 via-gray-800/90 to-gray-900/90 backdrop-blur-xl border border-gray-700/50 p-12 shadow-2xl ${card.glow} hover:shadow-3xl transition-all duration-700`}>
-                  
-                  {/* Glowing background gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-5 rounded-3xl`}></div>
-                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-10 rounded-3xl blur-xl`}></div>
-                  
-                  {/* Animated border */}
-                  <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${card.gradient} p-[1px] opacity-30`}>
-                    <div className="w-full h-full rounded-3xl bg-gray-900"></div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="relative z-10 text-center">
-                    
-                    {/* Number badge */}
-                    <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                      <span className="text-white/80 font-bold text-lg">{card.number}</span>
-                    </div>
-                    
-                    {/* Icon with glow effect */}
-                    <div className="relative mb-8">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-3xl blur-2xl opacity-30 scale-110`}></div>
-                      <div className={`relative inline-flex items-center justify-center p-6 rounded-3xl bg-gradient-to-br ${card.gradient} shadow-2xl transform hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="w-16 h-16 text-white drop-shadow-lg" />
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <div className="mb-6">
-                      <h2 className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tight">
-                        {card.title}
-                      </h2>
-                      <h3 className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${card.gradient} bg-clip-text text-transparent`}>
-                        {card.subtitle}
-                      </h3>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-300 text-xl leading-relaxed max-w-2xl mx-auto font-light">
-                      {card.description}
-                    </p>
-
-                    {/* Decorative elements */}
-                    <div className="absolute top-8 left-8 w-2 h-2 bg-white/30 rounded-full animate-ping"></div>
-                    <div className="absolute bottom-8 right-8 w-1 h-1 bg-white/40 rounded-full animate-pulse"></div>
-                    <div className="absolute top-1/3 left-12 w-1.5 h-1.5 bg-white/20 rounded-full animate-bounce"></div>
-                  </div>
-
-                  {/* Bottom glow line */}
-                  <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${card.gradient} w-full rounded-b-3xl`}></div>
-                  
-                  {/* Side glow effects */}
-                  <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${card.gradient} rounded-l-3xl opacity-50`}></div>
-                  <div className={`absolute top-0 right-0 w-1 h-full bg-gradient-to-b ${card.gradient} rounded-r-3xl opacity-50`}></div>
+                {/* Animated Background Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${metric.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                
+                {/* Floating Particles Effect */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute top-4 right-4 w-2 h-2 bg-white/20 rounded-full animate-ping"></div>
+                  <div className="absolute bottom-8 left-8 w-1 h-1 bg-white/30 rounded-full animate-pulse"></div>
                 </div>
+
+                {/* Icon */}
+                <div className={`relative z-10 mb-6 p-3 rounded-xl bg-gradient-to-br ${metric.gradient} w-fit group-hover:scale-110 transition-transform duration-300`}>
+                  <IconComponent className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Value */}
+                <div className="relative z-10 mb-2">
+                  <h3 className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${metric.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300 inline-block`}>
+                    {metric.value}
+                  </h3>
+                </div>
+
+                {/* Label */}
+                <h4 className="text-xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-300">
+                  {metric.label}
+                </h4>
+
+                {/* Description */}
+                <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                  {metric.description}
+                </p>
+
+                {/* Hover Effect Line */}
+                <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${metric.gradient} w-0 group-hover:w-full transition-all duration-500`}></div>
               </div>
             );
           })}
         </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+         <Link to="/about">
+           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 cursor-pointer">
+            <span>Read our Success Story</span>
+            <TrendingUp className="w-5 h-5" />
+          </div>
+         </Link>
+        </div>
       </div>
 
+      {/* Custom CSS for animations */}
       <style jsx>{`
-        .perspective-1000 {
-          perspective: 1000px;
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-        .transform-gpu {
-          transform: translate3d(0, 0, 0);
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        
+        .group:hover .floating {
+          animation: float 2s ease-in-out infinite;
         }
       `}</style>
     </div>
