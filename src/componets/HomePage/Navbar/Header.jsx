@@ -14,7 +14,7 @@ const NAV_ITEMS = [
 
 // Cart Button
 const Cart = () => {
-  const [cartCount] = useState(3);
+  const [cartCount] = useState(1);
   return (
     <button className="relative p-3 rounded-xl border bg-white/50 backdrop-blur-md hover:bg-white/70 text-slate-600">
       <ShoppingCart className="w-5 h-5" />
