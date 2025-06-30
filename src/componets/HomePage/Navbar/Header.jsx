@@ -3,13 +3,13 @@ import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
-// ✅ This is the ONLY place where you need to add/remove links
+// ✅ One array for both Desktop and Mobile
 const NAV_ITEMS = [
   { name: 'Home', path: '/' },
   { name: 'Products', path: '/products' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
-  { name: 'Blog', path: '/blog' }, // ← Add here and it works in both menus
+  { name: 'Blog', path: '/blog' },
 ];
 
 // Cart Button
@@ -68,12 +68,10 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right Side Buttons */}
+          {/* Right Side */}
           <div className="flex items-center space-x-5">
             <Cart />
             <Button label="Login" width="80px" height="50px" />
-
-            {/* Mobile Toggle */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className="lg:hidden p-3 rounded-xl border bg-white/50 backdrop-blur-md hover:bg-white/70"
@@ -87,10 +85,10 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* ✅ Mobile Menu with full height */}
         <div
-          className={`lg:hidden transition-all duration-300 overflow-hidden ${
-            isMobileOpen ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0'
+          className={`lg:hidden overflow-hidden transition-all duration-500 ${
+            isMobileOpen ? 'max-h-screen opacity-100 mt-4' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="space-y-2 py-4 px-2 border-t border-white/40">
@@ -98,7 +96,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                onClick={() => setIsMobileOpen(false)} // close menu on link click
+                onClick={() => setIsMobileOpen(false)} // closes mobile menu after click
                 className="block px-4 py-3 text-base font-medium rounded-lg transition text-slate-700 hover:text-slate-900 hover:bg-white/40"
               >
                 {name}
