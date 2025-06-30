@@ -3,38 +3,20 @@ import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
-// ✅ Single source of nav items
-const navItems = [
+// ✅ This is the ONLY place where you need to add/remove links
+const NAV_ITEMS = [
   { name: 'Home', path: '/' },
   { name: 'Products', path: '/products' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
-  { name: 'Contact', path: '/contact' },
-
-  // You only add here — works for both mobile & desktop
+  { name: 'Blog', path: '/blog' }, // ← Add here and it works in both menus
 ];
 
-// Desktop Links Component
-const Navlinks = ({ items }) => (
-  <div className="hidden lg:flex items-center space-x-8">
-    {items.map(({ name, path }) => (
-      <Link
-        key={name}
-        to={path}
-        className="text-base font-medium transition-all hover:scale-105 text-black hover:text-white"
-      >
-        {name}
-      </Link>
-    ))}
-  </div>
-);
-
-// Cart Component
+// Cart Button
 const Cart = () => {
   const [cartCount] = useState(3);
-
   return (
-    <button className="relative p-3 rounded-xl transition-all duration-700 border backdrop-blur-md bg-white/50 hover:bg-white/70 border-white/40 text-slate-600">
+    <button className="relative p-3 rounded-xl border bg-white/50 backdrop-blur-md hover:bg-white/70 text-slate-600">
       <ShoppingCart className="w-5 h-5" />
       {cartCount > 0 && (
         <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center bg-red-500 text-white">
@@ -45,10 +27,10 @@ const Cart = () => {
   );
 };
 
-// Button Component
+// Reusable Button
 const Button = ({ label, width, height }) => (
   <button
-    className="px-4 py-2 rounded-xl font-medium transition-all duration-700 border backdrop-blur-md bg-white/50 hover:bg-white/70 border-white/40 text-slate-700 hover:text-slate-900"
+    className="px-4 py-2 rounded-xl font-medium border bg-white/50 backdrop-blur-md hover:bg-white/70 text-slate-700 hover:text-slate-900"
     style={{ width, height }}
   >
     {label}
@@ -57,11 +39,11 @@ const Button = ({ label, width, height }) => (
 
 // Navbar Component
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
     <header
-      className="fixed top-4 left-0 right-0 z-50 mx-auto sm:max-w-[800px] backdrop-blur-lg bg-white/30 transition-all duration-700 ease-out"
+      className="fixed top-4 left-0 right-0 z-50 mx-auto sm:max-w-[800px] bg-white/30 backdrop-blur-lg transition-all duration-700"
       style={{
         borderRadius: '30px',
         border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -73,20 +55,30 @@ const Navbar = () => {
           {/* Logo */}
           <Logo />
 
-          {/* Desktop Nav */}
-          <Navlinks items={navItems} />
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {NAV_ITEMS.map(({ name, path }) => (
+              <Link
+                key={name}
+                to={path}
+                className="text-base font-medium transition hover:scale-105 text-black hover:text-white"
+              >
+                {name}
+              </Link>
+            ))}
+          </div>
 
-          {/* Right Controls */}
+          {/* Right Side Buttons */}
           <div className="flex items-center space-x-5">
             <Cart />
             <Button label="Login" width="80px" height="50px" />
 
             {/* Mobile Toggle */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-3 rounded-xl transition-all duration-700 border backdrop-blur-md bg-white/50 hover:bg-white/70 border-white/40"
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="lg:hidden p-3 rounded-xl border bg-white/50 backdrop-blur-md hover:bg-white/70"
             >
-              {isMobileMenuOpen ? (
+              {isMobileOpen ? (
                 <X className="w-5 h-5 text-white" />
               ) : (
                 <Menu className="w-5 h-5 text-slate-600" />
@@ -97,17 +89,17 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? 'max-h-64 opacity-100 mt-6' : 'max-h-0 opacity-0'
+          className={`lg:hidden transition-all duration-300 overflow-hidden ${
+            isMobileOpen ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="space-y-2 py-4 px-2 border-t border-white/40">
-            {navItems.map(({ name, path }) => (
+            {NAV_ITEMS.map(({ name, path }) => (
               <Link
                 key={name}
                 to={path}
-                onClick={() => setIsMobileMenuOpen(false)} // optional: close on click
-                className="block px-4 py-3 text-base font-medium rounded-lg transition-all duration-700 text-slate-700 hover:text-slate-900 hover:bg-white/40"
+                onClick={() => setIsMobileOpen(false)} // close menu on link click
+                className="block px-4 py-3 text-base font-medium rounded-lg transition text-slate-700 hover:text-slate-900 hover:bg-white/40"
               >
                 {name}
               </Link>
