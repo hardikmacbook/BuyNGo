@@ -18,7 +18,6 @@ const MediaSlider = () => {
         description: "Explore the intricate connections and pathways that form the backbone of artificial intelligence systems.",
         url: "https://i.imghippo.com/files/PNQ8586WDw.jpg",
         category: "AI Technology",
-        duration: "5 min read"
       },
     {
       id: 2,
@@ -35,7 +34,6 @@ const MediaSlider = () => {
       description: "Witness the convergence of quantum mechanics and artificial intelligence creating unprecedented computational possibilities.",
       url: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&h=1080&fit=crop&q=80",
       category: "Quantum AI",
-      duration: "8 min read"
     },
     {
       id: 4,
@@ -52,7 +50,6 @@ const MediaSlider = () => {
       description: "Transform complex datasets into stunning visual narratives that reveal hidden patterns and insights.",
       url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=1080&fit=crop&q=80",
       category: "Data Science",
-      duration: "6 min read"
     },
     {
       id: 6,
