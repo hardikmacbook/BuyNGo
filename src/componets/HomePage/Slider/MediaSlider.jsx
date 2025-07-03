@@ -16,7 +16,7 @@ const MediaSlider = () => {
         type: 'image',
         title: "Neural Network Architecture",
         description: "Explore the intricate connections and pathways that form the backbone of artificial intelligence systems.",
-        url: "https://ibb.co/cPPFJB5",
+        url: "https://i.imghippo.com/files/PNQ8586WDw.jpg",
         category: "AI Technology",
         duration: "5 min read"
       },
