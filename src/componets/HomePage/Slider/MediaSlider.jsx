@@ -11,15 +11,15 @@ const MediaSlider = () => {
 
   // Mixed media data - images and videos
   const mediaItems = [
-    {
-      id: 1,
-      type: 'image',
-      title: "Neural Network Architecture",
-      description: "Explore the intricate connections and pathways that form the backbone of artificial intelligence systems.",
-      url: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&h=1080&fit=crop&q=80",
-      category: "AI Technology",
-      duration: "5 min read"
-    },
+      {
+        id: 1,
+        type: 'image',
+        title: "Neural Network Architecture",
+        description: "Explore the intricate connections and pathways that form the backbone of artificial intelligence systems.",
+        url: "https://ibb.co/cPPFJB5",
+        category: "AI Technology",
+        duration: "5 min read"
+      },
     {
       id: 2,
       type: 'video',

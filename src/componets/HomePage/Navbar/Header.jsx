@@ -3,7 +3,6 @@ import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
-// ✅ One array for both Desktop and Mobile
 const NAV_ITEMS = [
   { name: 'Home', path: '/' },
   { name: 'Products', path: '/products' },
@@ -12,7 +11,6 @@ const NAV_ITEMS = [
   { name: 'Blog', path: '/blog' },
 ];
 
-// Cart Button
 const Cart = () => {
   const [cartCount] = useState(1);
   return (
@@ -27,7 +25,7 @@ const Cart = () => {
   );
 };
 
-// Reusable Button
+
 const Button = ({ label, width, height }) => (
   <button
     className="px-4 py-2 rounded-xl font-medium border bg-white/50 backdrop-blur-md hover:bg-white/70 text-slate-700 hover:text-slate-900"
@@ -37,7 +35,6 @@ const Button = ({ label, width, height }) => (
   </button>
 );
 
-// Navbar Component
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -85,7 +82,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* ✅ Mobile Menu with full height */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-500 ${
             isMobileOpen ? 'max-h-screen opacity-100 mt-4' : 'max-h-0 opacity-0'
@@ -96,7 +92,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                onClick={() => setIsMobileOpen(false)} // closes mobile menu after click
+                onClick={() => setIsMobileOpen(false)}
                 className="block px-4 py-3 text-base font-medium rounded-lg transition text-slate-700 hover:text-slate-900 hover:bg-white/40"
               >
                 {name}
