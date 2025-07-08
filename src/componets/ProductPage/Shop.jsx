@@ -295,42 +295,8 @@ const EcommerceShop = () => {
 
   const HomePage = () => (
     <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-purple-400">ShopX</h1>
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setCurrentView('shop')}
-                className="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg transition-colors"
-              >
-                View All Products
-              </button>
-              <div className="flex items-center gap-2">
-                <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs">{favorites.size}</span>
-                <Heart size={20} />
-                <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs">{cart.size}</span>
-                <ShoppingCart size={20} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-900 to-blue-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-5xl font-bold mb-4">Discover Amazing Products</h2>
-          <p className="text-xl text-gray-300 mb-8">Shop from our curated collection of premium items</p>
-          <button
-            onClick={() => setCurrentView('shop')}
-            className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Start Shopping
-          </button>
-        </div>
-      </section>
 
       {/* Featured Products */}
       <section className="max-w-7xl mx-auto px-4 py-16">

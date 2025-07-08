@@ -119,7 +119,8 @@ const MediaSlider = () => {
 
   return (
     <>
-      <div className="relative w-full h-[50vh] sm:h-screen overflow-hidden bg-black">
+      {/* ⚠️ IMPORTANT: z-index को 40 या उससे कम रखें (header z-50 है) */}
+      <div className="relative w-full h-[50vh] sm:h-screen overflow-hidden bg-black z-40">
       {/* Main Media Container */}
       <div className="relative w-full h-full">
         {/* Media Display */}
@@ -154,7 +155,8 @@ const MediaSlider = () => {
         {/* Text Overlay for Images Only */}
         {!isVideo && (
           <div className="absolute inset-0 flex items-end justify-start p-6 sm:p-6 lg:p-12">
-            <div className="max-w-3xl space-y-3 sm:space-y-6 animate-fade-in pb-20 sm:pb-80 lg:pb-10 sm:p-10 pl-10 sm:pl-15">
+            {/* ⚠️ IMPORTANT: Top padding add करें ताकि text header के नीचे दिखे */}
+            <div className="max-w-3xl space-y-3 sm:space-y-6 animate-fade-in pb-20 sm:pb-80 lg:pb-10 pt-24 sm:pt-32 lg:pt-40 sm:p-10 pl-10 sm:pl-15">
               {/* Category Badge */}
               <div className="inline-flex items-center px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
                 <span className="text-white text-xs sm:text-sm font-medium">
@@ -217,8 +219,8 @@ const MediaSlider = () => {
           </div>
         )}
 
-        {/* Top Controls Bar */}
-        <div className="absolute top-3 sm:top-6 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between">
+        {/* Top Controls Bar - Header के नीचे position करें */}
+        <div className="absolute top-20 sm:top-24 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between z-30">
           {/* Category Badge */}
           <div className="inline-flex items-center px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2 sm:mr-3"></div>
@@ -247,20 +249,20 @@ const MediaSlider = () => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl z-30"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         
         <button
           onClick={nextSlide}
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl z-30"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
         {/* Bottom Controls */}
-        <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between">
+        <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between z-30">
           {/* Slide Indicators */}
           <div className="flex items-center gap-1 sm:gap-2">
             {mediaItems.map((item, index) => (
