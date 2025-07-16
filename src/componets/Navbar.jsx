@@ -35,14 +35,15 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
             {NAV_ITEMS.map(({ name, path }) => (
-              <Link
-                key={name}
-                to={path}
-                className="text-base font-medium transition hover:scale-105 text-black hover:text-[#8b2727]"
-              >
-                {name}
-              </Link>
-            ))}
+    <Link
+      key={name}
+      to={path}
+      className="text-base font-medium text-black relative group transition-colors duration-300 hover:text-[#8b2727]"
+    >
+      {name}
+      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#8b2727] transition-all duration-300 group-hover:w-full"></span>
+    </Link>
+  ))}
 
             {/*-------- cart menu ---------*/}
                  <div className="flex items-center align-center gap-2 text-red-900 cursor-pointer relative group">
