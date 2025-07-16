@@ -1,5 +1,5 @@
 {
-  "name": "lavish",
+  "name": "avinya",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,26 +10,31 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^5.32.2",
-    "@tailwindcss/vite": "^4.1.11",
+    "@clerk/clerk-react": "^5.31.8",
+    "@formspree/react": "^3.0.0",
+    "@tailwindcss/vite": "^4.1.8",
+    "axios": "^1.9.0",
+    "gsap": "^3.13.0",
     "locomotive-scroll": "^4.1.4",
-    "lucide-react": "^0.523.0",
+    "lucide-react": "^0.511.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-helmet": "^6.1.0",
-    "react-router-dom": "^7.6.3",
-    "styled-components": "^6.1.19",
-    "tailwindcss": "^4.1.11"
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.6.1",
+    "react-swiper": "^0.1.5",
+    "styled-components": "^6.1.18",
+    "swiper": "^11.2.8",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.29.0",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.5.2",
-    "eslint": "^9.29.0",
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.2.0",
-    "vite": "^7.0.0"
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.5"
   }
 }

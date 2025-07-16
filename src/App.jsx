@@ -1,32 +1,56 @@
-import React from 'react';
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Product from '../pages/Product';
-import Contact from '../pages/Contact';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AutoTitle from './componets/AutoTitle';
-import Error from '../pages/Error';
-import Navbar from './componets/HomePage/Navbar/Header';
-const App = () => {
-  // Wrap each component
-  const HomeWithTitle = AutoTitle(Home);
-  const AboutWithTitle = AutoTitle(About);
-  const ProductWithTitle = AutoTitle(Product);  
-  const ContactWithTitle = AutoTitle(Contact);
-  const ErrorWithTitle = AutoTitle(Error);
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Error from "./pages/Error";
+import Cart from "./pages/Cart";
+import Navbar from "./componets/Navbar";
+import ProductDetails from "./pages/ProductDetail";
+import Shop from "./pages/Shop";
+import Footer from "./componets/Footer";
+import ScrollToTop from "./componets/ScrollToTop";
+import { CartProvider } from "./context/CartContext";
+
+function App() {
+  return (
+    <CartProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <MainLayout />
+      </BrowserRouter>
+    </CartProvider>
+  );
+}
+
+function MainLayout() {
+  const location = useLocation();
+
+  // Define the routes where Footer should NOT be shown
+  const hideFooterRoutes = ["/"];
+
+  // Check if current path matches any known route
+  const knownRoutes = ["/", "/about", "/shop", "/contact",];
+  const isKnownRoute = knownRoutes.some(route =>
+    location.pathname === route || location.pathname.startsWith("/shop/")
+  );
 
   return (
-    <BrowserRouter>
-      <Navbar/>
+    <>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<HomeWithTitle />} />
-        <Route path="/about" element={<AboutWithTitle />} />
-        <Route path="/products" element={<ProductWithTitle />} />
-        <Route path="/contact" element={<ContactWithTitle />} />
-        <Route path="*" element={<ErrorWithTitle />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:title" element={<ProductDetails />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<Error />} />
       </Routes>
-    </BrowserRouter>
+
+      {/* Show footer only if it's not in hide list AND is a known route */}
+      {!hideFooterRoutes.includes(location.pathname) && isKnownRoute && <Footer />}
+    </>
   );
-};
+}
 
 export default App;

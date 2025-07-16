@@ -1,0 +1,1016 @@
+// time line backup code started 
+
+
+
+import React from 'react';
+import { Rocket, ArrowRight, Calendar, Star, TrendingUp } from 'lucide-react';
+
+const milestones = [
+  {
+    year: '2019',
+    title: 'Company Foundation',
+    description: 'We started our journey with a vision to revolutionize the industry. Our founding team came together with decades of combined experience and shared passion for innovation.',
+    stats: '5 Founders',
+    icon: Star
+  },
+  {
+    year: '2020',
+    title: 'First Major Breakthrough',
+    description: 'Despite global challenges, we achieved our first major milestone by successfully launching our flagship product and gaining initial market traction.',
+    stats: '1K Users',
+    icon: Rocket
+  },
+  {
+    year: '2021',
+    title: 'Global Expansion', 
+    description: 'We expanded our operations internationally, establishing offices in three new countries and growing our team to serve a global customer base.',
+    stats: '50K Users',
+    icon: TrendingUp
+  },
+  {
+    year: '2022',
+    title: 'Innovation Award',
+    description: 'Our commitment to innovation was recognized with the Industry Excellence Award while establishing strategic partnerships with leading companies.',
+    stats: '100K Users',
+    icon: Star
+  },
+  {
+    year: '2023',
+    title: 'Market Leadership',
+    description: 'We achieved market leadership position and our platform now serves users globally with incredible growth and industry recognition.',
+    stats: '1M Users',
+    icon: Calendar
+  },
+];
+
+const TimeLine = () => {
+  return (
+    <div className="w-full min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      {/* Container with proper responsive padding */}
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24">
+        
+        {/* Header - Fully Responsive */}
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 mb-4 sm:mb-6 tracking-tight leading-tight">
+            Our Journey
+          </h1>
+          <div className="w-16 sm:w-20 md:w-24 h-1 bg-gray-900 mx-auto mb-4 sm:mb-6"></div>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-4">
+            The milestones that defined our path to success
+          </p>
+        </div>
+
+        {/* Timeline Container */}
+        <div className="relative max-w-6xl mx-auto">
+          
+          {/* Timeline line - Responsive positioning */}
+          <div className="absolute left-4 sm:left-6 md:left-8 lg:left-1/2 lg:transform lg:-translate-x-0.5 w-0.5 sm:w-1 h-full bg-gradient-to-b from-gray-300 via-gray-500 to-gray-700 rounded-full"></div>
+
+          {milestones.map((milestone, idx) => {
+            const isLeft = idx % 2 === 0;
+            const IconComponent = milestone.icon;
+            
+            return (
+              <div key={milestone.year} className="relative mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24">
+                
+                {/* Timeline dot - Responsive positioning */}
+                <div className="absolute left-2.5 sm:left-4.5 md:left-6.5 lg:left-1/2 lg:transform lg:-translate-x-1/2 z-10">
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-gray-900 rounded-full border-2 sm:border-3 md:border-4 border-white shadow-lg">
+                    <div className="absolute inset-0 bg-gray-900 rounded-full animate-ping opacity-20"></div>
+                  </div>
+                </div>
+
+                {/* Content Container - PERFECT RESPONSIVE */}
+                <div className="w-full">
+                  
+                  {/* Mobile & Small Tablet (< 1024px) - Single Column */}
+                  <div className="lg:hidden ml-8 sm:ml-12 md:ml-16 pr-2 sm:pr-4">
+                    
+                    {/* Year badge */}
+                    <div className="mb-4 sm:mb-6">
+                      <span className="inline-block bg-gray-900 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg font-bold">
+                        {milestone.year}
+                      </span>
+                    </div>
+
+                    {/* Card */}
+                    <div className="w-full bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                      
+                      {/* Card header */}
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 sm:mb-6">
+                        <div className="flex-1 mb-4 sm:mb-0">
+                          <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                            <div className="bg-gray-100 px-2 sm:px-3 py-1 rounded-full text-gray-700 font-semibold text-xs sm:text-sm">
+                              {milestone.stats}
+                            </div>
+                          </div>
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
+                            {milestone.title}
+                          </h3>
+                        </div>
+                        <div className="bg-gray-50 p-2 sm:p-3 rounded-lg sm:rounded-xl group-hover:bg-gray-100 transition-colors self-start sm:ml-4">
+                          <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-600" />
+                        </div>
+                      </div>
+                      
+                      {/* Accent line */}
+                      <div className="w-12 sm:w-16 h-0.5 sm:h-1 bg-gray-900 rounded-full mb-4 sm:mb-6 group-hover:w-16 sm:group-hover:w-24 transition-all duration-300"></div>
+                      
+                      {/* Description */}
+                      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">
+                        {milestone.description}
+                      </p>
+                      
+                      {/* Action */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center text-gray-900 font-semibold hover:text-gray-700 transition-colors cursor-pointer group text-sm sm:text-base">
+                          <span>Learn More</span>
+                          <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                        <div className="text-gray-400 text-xs sm:text-sm">
+                          {idx + 1} of {milestones.length}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop (>= 1024px) - Two Column */}
+                  <div className="hidden lg:block">
+                    <div className={`
+                      w-full lg:w-1/2 xl:w-5/12
+                      ${isLeft 
+                        ? 'lg:mr-auto lg:pr-8 xl:pr-12 2xl:pr-16' 
+                        : 'lg:ml-auto lg:pl-8 xl:pl-12 2xl:pl-16'
+                      }
+                    `}>
+                      
+                      {/* Year badge */}
+                      <div className={`mb-6 xl:mb-8 ${isLeft ? 'lg:text-right' : 'lg:text-left'}`}>
+                        <span className="inline-block bg-gray-900 text-white px-6 xl:px-8 py-3 xl:py-4 rounded-xl xl:rounded-2xl text-lg xl:text-xl font-bold">
+                          {milestone.year}
+                        </span>
+                      </div>
+
+                      {/* Card */}
+                      <div className="w-full bg-white rounded-2xl xl:rounded-3xl p-8 xl:p-10 2xl:p-12 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        
+                        {/* Card header */}
+                        <div className="flex items-start justify-between mb-6 xl:mb-8">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-6">
+                              <div className="bg-gray-100 px-3 xl:px-4 py-1 xl:py-2 rounded-full text-gray-700 font-semibold text-sm xl:text-base">
+                                {milestone.stats}
+                              </div>
+                            </div>
+                            <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-gray-900 mb-4 xl:mb-6 leading-tight">
+                              {milestone.title}
+                            </h3>
+                          </div>
+                          <div className="bg-gray-50 p-3 xl:p-4 rounded-xl xl:rounded-2xl group-hover:bg-gray-100 transition-colors ml-4 xl:ml-6">
+                            <IconComponent className="w-6 h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 text-gray-600" />
+                          </div>
+                        </div>
+                        
+                        {/* Accent line */}
+                        <div className="w-16 xl:w-20 h-1 bg-gray-900 rounded-full mb-6 xl:mb-8 group-hover:w-24 xl:group-hover:w-32 transition-all duration-300"></div>
+                        
+                        {/* Description */}
+                        <p className="text-gray-600 text-lg xl:text-xl 2xl:text-2xl leading-relaxed mb-6 xl:mb-8">
+                          {milestone.description}
+                        </p>
+                        
+                        {/* Action */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center text-gray-900 font-semibold hover:text-gray-700 transition-colors cursor-pointer group text-lg xl:text-xl">
+                            <span>Learn More</span>
+                            <ArrowRight className="w-4 h-4 xl:w-5 xl:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                          <div className="text-gray-400 text-sm xl:text-base">
+                            {idx + 1} of {milestones.length}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* CTA - Fully Responsive */}
+        <div className="text-center mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32">
+          <div className="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto bg-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 text-white">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8">
+              Ready to Write the Next Chapter?
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 lg:mb-10 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto">
+              Join thousands of companies who trust us to power their growth
+            </p>
+            <button className="group inline-flex items-center gap-2 sm:gap-3 lg:gap-4 bg-white text-gray-900 font-bold py-3 sm:py-4 lg:py-5 px-6 sm:px-8 lg:px-12 rounded-xl sm:rounded-2xl hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base md:text-lg lg:text-xl">
+              <Rocket className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform duration-300" />
+              <span>Start Your Journey</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TimeLine;
+
+
+
+
+// time line backup code ended 
+
+
+
+
+
+
+
+
+
+
+
+import React, { useEffect, useState } from "react";
+import { Search, Filter, Grid, List, ChevronDown, Star, ShoppingCart, Home, ChevronRight, X } from "lucide-react";
+
+const Shop = () => {
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [priceRange, setPriceRange] = useState([0, 2000]);
+  const [sortBy, setSortBy] = useState("default");
+  const [viewMode, setViewMode] = useState("grid");
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(12);
+  const [categories, setCategories] = useState([]);
+
+  // Mock cart function since we don't have the context
+  const handleAddToCart = (e, product) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Added to cart:', product);
+  };
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/products?limit=100")
+      .then(response => response.json())
+      .then(data => {
+        setData(data.products);
+        setFilteredData(data.products);
+        
+        const uniqueCategories = [...new Set(data.products.map(product => product.category))];
+        setCategories(uniqueCategories);
+        
+        const maxPrice = Math.max(...data.products.map(product => product.price));
+        setPriceRange([0, Math.ceil(maxPrice)]);
+        
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  // Filter and sort products
+  useEffect(() => {
+    let filtered = data.filter(product => {
+      const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
+      const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
+      
+      return matchesSearch && matchesCategory && matchesPrice;
+    });
+
+    // Sort products
+    if (sortBy === "price-low") {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (sortBy === "price-high") {
+      filtered.sort((a, b) => b.price - a.price);
+    } else if (sortBy === "rating") {
+      filtered.sort((a, b) => b.rating - a.rating);
+    } else if (sortBy === "name") {
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    setFilteredData(filtered);
+    setCurrentPage(1);
+  }, [data, searchTerm, selectedCategory, priceRange, sortBy]);
+
+  const createSlug = (title) => {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  };
+
+  // Pagination
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredData.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(filteredData.length / productsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setSelectedCategory("all");
+    setPriceRange([0, Math.max(...data.map(product => product.price))]);
+    setSortBy("default");
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2]">
+        <div className="text-center">
+          <div className="text-xl text-[#8b2727] font-medium">Loading amazing products...</div>
+        </div>
+      </div>
+    );
+  }
+
+  const SidebarFilters = ({ isMobile = false }) => (
+    <div className={`${isMobile ? 'h-full overflow-y-auto' : ''}`}>
+      <div className="bg-white rounded-2xl shadow-lg p-6 border border-[#d2af6f]/20 h-fit sticky top-6">
+        {isMobile && (
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-semibold text-[#8b2727]">Filters</h2>
+            <button
+              onClick={() => setShowMobileFilters(false)}
+              className="p-2 hover:bg-[#f8f3e9] rounded-full transition-colors"
+            >
+              <X className="w-5 h-5 text-[#8b2727]" />
+            </button>
+          </div>
+        )}
+
+        <div className="space-y-6">
+          {/* Search */}
+          <div>
+            <label className="block text-sm font-medium text-[#8b2727] mb-2">Search Products</label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8b2727] focus:border-transparent"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Category Filter */}
+          <div>
+            <label className="block text-sm font-medium text-[#8b2727] mb-2">Category</label>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8b2727] focus:border-transparent"
+            >
+              <option value="all">All Categories</option>
+              {categories.map(category => (
+                <option key={category} value={category}>
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Price Range */}
+          <div>
+            <label className="block text-sm font-medium text-[#8b2727] mb-2">
+              Price Range: ${priceRange[0]} - ${priceRange[1]}
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="number"
+                placeholder="Min"
+                value={priceRange[0]}
+                onChange={(e) => setPriceRange([parseInt(e.target.value) || 0, priceRange[1]])}
+                className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8b2727] focus:border-transparent"
+              />
+              <input
+                type="number"
+                placeholder="Max"
+                value={priceRange[1]}
+                onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value) || 2000])}
+                className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8b2727] focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          {/* Sort By */}
+          <div>
+            <label className="block text-sm font-medium text-[#8b2727] mb-2">Sort By</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8b2727] focus:border-transparent"
+            >
+              <option value="default">Default</option>
+              <option value="name">Name (A-Z)</option>
+              <option value="price-low">Price (Low to High)</option>
+              <option value="price-high">Price (High to Low)</option>
+              <option value="rating">Rating (High to Low)</option>
+            </select>
+          </div>
+
+          {/* Clear Filters */}
+          <div className="pt-4 border-t border-[#d2af6f]/20">
+            <button
+              onClick={clearFilters}
+              className="w-full text-white p-3 rounded-xl hover:text-black hover:bg-[#d2af6f] font-medium bg-[#8b2727] cursor-pointer transition-colors"
+            >
+              Clear All Filters
+            </button>
+            <div className="text-center mt-3">
+              <span className="text-[#8b2727] font-medium">
+                {filteredData.length} products found
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2]">
+      {/* Breadcrumb */}
+      <div className="bg-white shadow-sm border-b border-[#d2af6f]/30">
+        <div className="container mx-auto max-w-7xl px-4 py-3">
+          <nav className="flex items-center space-x-2 text-sm text-gray-600">
+            <a href="/" className="flex items-center hover:text-[#8b2727] transition-colors">
+              <Home className="w-4 h-4 mr-1" />
+              Home
+            </a>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-[#8b2727] font-medium">Shop</span>
+          </nav>
+        </div>
+      </div>
+
+      <div className="container mx-auto max-w-7xl px-4 py-8">
+        <div className="flex gap-8">
+          {/* Desktop Sidebar */}
+          <div className="hidden lg:block w-80 flex-shrink-0">
+            <SidebarFilters />
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1 min-w-0">
+            {/* Mobile Header */}
+            <div className="bg-white rounded-2xl shadow-lg p-4 mb-6 border border-[#d2af6f]/20 lg:hidden">
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => setShowMobileFilters(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-[#8b2727] text-white rounded-xl hover:bg-[#d2af6f] transition-colors hover:text-black cursor-pointer"
+                >
+                  <Filter className="w-5 h-5" />
+                  Filters
+                </button>
+                
+                <div className="flex border border-gray-200 rounded-xl overflow-hidden">
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`p-3 ${viewMode === "grid" ? 'bg-[#8b2727] text-white' : 'bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer'} transition-colors`}
+                  >
+                    <Grid className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`p-3 ${viewMode === "list" ? 'bg-[#8b2727] text-white' : 'bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer'} transition-colors`}
+                  >
+                    <List className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Header */}
+            <div className="hidden lg:flex items-center justify-between mb-6">
+              <div className="flex items-center gap-4">
+                <h1 className="text-2xl font-bold text-[#8b2727]">Our Products</h1>
+                <span className="text-[#8b2727] font-medium">({filteredData.length} items)</span>
+              </div>
+              
+              <div className="flex border border-gray-200 rounded-xl overflow-hidden">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`p-3 ${viewMode === "grid" ? 'bg-[#8b2727] text-white' : 'bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer'} transition-colors`}
+                >
+                  <Grid className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`p-3 ${viewMode === "list" ? 'bg-[#8b2727] text-white' : 'bg-gray-50 text-gray-600 hover:bg-gray-100 cursor-pointer'} transition-colors`}
+                >
+                  <List className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Products Grid/List */}
+            <div className={`${viewMode === 'grid' 
+              ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6' 
+              : 'space-y-4'
+            } mb-8`}>
+              {currentProducts.map((product) => (
+                <div 
+                  key={product.id}
+                  className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#d2af6f]/20 hover:border-[#8b2727] ${viewMode === 'list' ? 'flex p-4' : 'p-6'}`}
+                >
+                  {/* Clickable Image */}
+                  <a 
+                    href={`/shop/${createSlug(product.title)}`}
+                    className={`${viewMode === 'list' ? 'w-48 h-32 flex-shrink-0 mr-6' : 'w-full h-48 mb-4'} bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2] rounded-xl flex items-center justify-center overflow-hidden group`}
+                  >
+                    <img
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      src={product.images[0]}
+                      alt={product.title}
+                    />
+                  </a>
+                  
+                  {/* Non-clickable Product Info */}
+                  <div className={`${viewMode === 'list' ? 'flex-1' : ''}`}>
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-semibold text-gray-800 leading-tight">
+                        {product.title.length > (viewMode === 'list' ? 50 : 25) 
+                          ? product.title.slice(0, viewMode === 'list' ? 50 : 25) + "..." 
+                          : product.title}
+                      </h3>
+                      <div className="flex items-center bg-[#f8f3e9] px-2 py-1 rounded-full">
+                        <Star className="w-4 h-4 text-[#8b2727] fill-current" />
+                        <span className="text-sm text-gray-700 ml-1 font-medium">{product.rating}</span>
+                      </div>
+                    </div>
+                    
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                      {product.description.length > (viewMode === 'list' ? 120 : 80) 
+                        ? product.description.slice(0, viewMode === 'list' ? 120 : 80) + "..." 
+                        : product.description}
+                    </p>
+                    
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-2xl font-bold text-[#8b2727]">
+                        ${product.price}
+                      </span>
+                      <span className="text-xs text-[#8b2727] bg-[#f8f3e9] px-3 py-1 rounded-full font-medium">
+                        {product.category}
+                      </span>
+                    </div>
+                  
+                    <button 
+                      onClick={(e) => handleAddToCart(e, product)}
+                      className="w-full bg-gradient-to-r from-[#8b2727] to-[#a83333] hover:from-[#6a1d1d] hover:to-[#8b2727] text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg cursor-pointer"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center space-x-2">
+                <button
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-[#d2af6f] border border-[#d2af6f]/30 rounded-lg hover:bg-[#8b2727] disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer hover:text-white"
+                >
+                  Previous
+                </button>
+                
+                {[...Array(Math.min(totalPages, 5))].map((_, index) => {
+                  const pageNumber = currentPage <= 3 ? index + 1 : currentPage - 2 + index;
+                  if (pageNumber > totalPages) return null;
+                  
+                  return (
+                    <button
+                      key={pageNumber}
+                      onClick={() => paginate(pageNumber)}
+                      className={`px-4 py-2 border rounded-lg transition-colors ${currentPage === pageNumber
+                          ? 'bg-[#8b2727] text-white border-[#8b2727]'
+                          : 'bg-white border-[#d2af6f]/30 hover:bg-[#8b2727] hover:text-white cursor-pointer'
+                      }`}
+                    >
+                      {pageNumber}
+                    </button>
+                  );
+                })}
+                
+                <button
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-[#d2af6f] border border-[#d2af6f]/30 rounded-lg hover:bg-[#8b2727] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                >
+                  Next
+                </button>
+              </div>
+            )}
+
+            {/* No Results */}
+            {filteredData.length === 0 && (
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="text-2xl font-semibold text-[#8b2727] mb-2">No products found</h3>
+                <p className="text-gray-600 mb-4">Try adjusting your search or filter criteria</p>
+                <button
+                  onClick={clearFilters}
+                  className="bg-[#8b2727] text-white px-6 py-3 rounded-xl hover:bg-[#6a1d1d] transition-colors"
+                >
+                  Clear Filters
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Filters Modal */}
+      {showMobileFilters && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden">
+          <div className="fixed right-0 top-0 h-full w-80 bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2] shadow-xl overflow-y-auto">
+            <div className="p-4">
+              <SidebarFilters isMobile={true} />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Shop;
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import { Phone, Mail, MapPin, Clock, Send, Zap, Building2, Users, Shield, Award } from 'lucide-react';
+
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    company: '',
+    service: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeOffice, setActiveOffice] = useState(0);
+
+  const offices = [
+    {
+      name: "Vapi Office",
+      phone: "+91 87993 60195",
+      email: "avinyaelectricals@gmail.com",
+      address: "C-106, 1st Floor, City Center, Silvassa - Vapi Rd, Bhadakmora, Phase 1, GIDC, Vapi, Gujarat 396195",
+      mapUrl: "https://maps.app.goo.gl/MDosEmQbCgSExxmQA",
+      embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3740.583480187053!2d72.92287887534829!3d20.358818681128056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0cf76e189a241%3A0xa033c44944bd0706!2sAvinya%20Electricals!5e0!3m2!1sen!2sin!4v1751862032833!5m2!1sen!2sin",
+      hours: "Mon - Sat: 9 AM to 6:30 PM"
+    },
+    {
+      name: "Surat Office",
+      phone: "+91 80005 29452",
+      email: "sales.avinyaelectricals@gmail.com",
+      address: "1st Floor,118, Avdhut Nagar, Chikuvadi, Raman Nagar, Katargam, Surat, Gujarat 395004",
+      mapUrl: "https://maps.app.goo.gl/wNUcrz5rTTNaf8YYA",
+      embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.285405345006!2d72.8225313757201!3d21.220528180477167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41fe46592ed7b741%3A0x7e424164b3d18ec1!2sAVINYA%20ELECTRICALS%20-%20SURAT!5e0!3m2!1sen!2sin!4v1751866128614!5m2!1sen!2sin",
+      hours: "Mon - Sat: 9 AM to 6:30 PM"
+    }
+  ];
+
+  const services = [
+    "Electrical Installation",
+    "Industrial Wiring",
+    "Power Systems",
+    "Lighting Solutions",
+    "Maintenance & Repair",
+    "Emergency Services",
+    "Consultation",
+    "Other"
+  ];
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    setTimeout(() => {
+      alert('Thank you for your message! We will get back to you soon.');
+      setFormData({ fullName: '', email: '', phone: '', company: '', service: '', message: '' });
+      setIsSubmitting(false);
+    }, 1500);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-600/5 to-slate-900/10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
+          <div className="text-center">
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-4 sm:mb-6 tracking-tight">
+              Contact us
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Trust Indicators */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24 pt-10">
+        
+
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
+          
+          {/* Contact Form */}
+          <div className="lg:col-span-7">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50">
+              <div className="bg-gradient-to-r from-slate-50 to-white px-6 sm:px-8 py-6 sm:py-8 border-b border-slate-200/50">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Send Message</h2>
+                <p className="text-slate-600 text-base sm:text-lg">Tell us about your electrical project requirements</p>
+              </div>
+              
+              <div className="p-6 sm:p-8">
+                <div className="space-y-6 sm:space-y-8">
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="group">
+                      <label htmlFor="fullName" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    
+                    <div className="group">
+                      <label htmlFor="email" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none"
+                        placeholder="your@email.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="group">
+                      <label htmlFor="phone" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none"
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                    
+                    <div className="group">
+                      <label htmlFor="company" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
+                        Company
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        className="w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none"
+                        placeholder="Your company name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="group">
+                    <label htmlFor="service" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
+                      Service Required
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      className="w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg text-slate-700 group-hover:border-slate-300 outline-none"
+                    >
+                      <option value="">Select a service</option>
+                      {services.map((service, index) => (
+                        <option key={index} value={service}>{service}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="group">
+                    <label htmlFor="message" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
+                      Project Details *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={5}
+                      className="w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 resize-none group-hover:border-slate-300 outline-none"
+                      placeholder="Describe your electrical project requirements, timeline, and any specific needs..."
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#8b2727] text-white py-4 sm:py-5 px-6 sm:px-8 rounded-2xl hover:from-slate-800 hover:to-slate-600 focus:ring-4 focus:ring-slate-300 transition-all duration-300 flex items-center justify-center space-x-3 font-bold text-base sm:text-lg shadow-2xl disabled:opacity-50 group transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer hover:bg-[#d2af6f] hover:text-black"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        <span>Send Message</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Office Information */}
+          <div className="lg:col-span-5 space-y-6 sm:space-y-8">
+            
+            {/* Office Selector */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/50">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8">Our Offices</h3>
+              
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
+                {offices.map((office, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveOffice(index)}
+                    className={`flex-1 py-3 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base transition-all duration-300 ${
+                      activeOffice === index
+                        ? 'bg-slate-900 text-white shadow-lg'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    {office.name}
+                  </button>
+                ))}
+              </div>
+              
+              <div className="space-y-6 sm:space-y-8">
+                <div className="flex items-start space-x-4 sm:space-x-6 group">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-slate-200 transition-colors duration-300">
+                      <Phone className="w-6 h-6 text-slate-700" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 mb-2 text-base sm:text-lg">Phone</h4>
+                    <p className="text-sm sm:text-base text-slate-600 mb-2">Call us directly</p>
+                    <a 
+                      href={`tel:${offices[activeOffice].phone}`}
+                      className="text-lg sm:text-xl font-bold text-slate-900 hover:text-slate-700 transition-colors"
+                    >
+                      {offices[activeOffice].phone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4 sm:space-x-6 group">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-slate-200 transition-colors duration-300">
+                      <Mail className="w-6 h-6 text-slate-700" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 mb-2 text-base sm:text-lg">Email</h4>
+                    <p className="text-sm sm:text-base text-slate-600 mb-2">Quick response guaranteed</p>
+                    <a 
+                      href={`mailto:${offices[activeOffice].email}`}
+                      className="text-lg sm:text-xl font-bold text-slate-900 hover:text-slate-700 transition-colors break-all"
+                    >
+                      {offices[activeOffice].email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4 sm:space-x-6 group">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-slate-200 transition-colors duration-300">
+                      <MapPin className="w-6 h-6 text-slate-700" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 mb-2 text-base sm:text-lg">Address</h4>
+                    <p className="text-sm sm:text-base text-slate-600 mb-2">Visit our location</p>
+                    <p className="text-sm sm:text-base text-slate-900 font-medium leading-relaxed">
+                      {offices[activeOffice].address}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4 sm:space-x-6 group">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-slate-200 transition-colors duration-300">
+                      <Clock className="w-6 h-6 text-slate-700" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 mb-2 text-base sm:text-lg">Business Hours</h4>
+                    <p className="text-sm sm:text-base text-slate-600 mb-2">When we're available</p>
+                    <div className="space-y-1">
+                      <p className="text-sm sm:text-base text-slate-900 font-medium">{offices[activeOffice].hours}</p>
+                      <p className="text-sm sm:text-base text-slate-600">Sunday: Closed</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Map */}
+            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50">
+              <div className="p-6 sm:p-8 bg-gradient-to-r from-slate-50 to-white border-b border-slate-200/50">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">{offices[activeOffice].name}</h3>
+                <p className="text-sm sm:text-base text-slate-600">Find us on the map</p>
+              </div>
+              <div className="relative">
+                <iframe 
+                  src={offices[activeOffice].embedUrl}
+                  width="100%"
+                  height="280"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`${offices[activeOffice].name} Location`}
+                  className="transition-all duration-500"
+                />
+              </div>
+              <div className="p-6 sm:p-8 bg-gradient-to-r from-slate-50 to-white">
+                <a
+                  href={offices[activeOffice].mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-slate-900 hover:text-slate-700 transition-colors font-bold group"
+                >
+                  <MapPin className="w-5 h-5 mr-3 group-hover:translate-x-1 transition-transform duration-300" />
+                  Open in Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
