@@ -8,7 +8,7 @@ import { FaLuggageCart } from 'react-icons/fa';
 
 const NAV_ITEMS = [
   { name: 'Home', path: '/' },
-  { name: 'Products', path: '/shop' },
+  { name: 'Shop', path: '/shop' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
   { name: 'Blog', path: '/blog' },
