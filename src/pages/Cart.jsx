@@ -12,7 +12,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-page bg-gray-50 min-h-screen py-10">
+    <div className="pt-28 cart-page bg-gray-50 min-h-screen py-10">
       <div className="container mx-auto max-w-[1200px] w-full px-4">
         {/* Breadcrumb */}
         <div className="flex items-center text-sm text-gray-500 mb-6">
