@@ -1,6 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Maximize2, Heart, Share2 } from 'lucide-react';
-import ad from "../assets/images/avinya-hero.mp4"
+import React, { useState, useEffect, useRef } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize2,
+  Heart,
+  Share2,
+  Eye,
+  Clock,
+  MoreHorizontal,
+  MessageCircle,
+  Instagram,
+  Copy,
+  X,
+  RotateCcw,
+} from "lucide-react";
+import ad1 from "../assets/images/ad1.mp4"
 
 const BeautifulSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -8,91 +26,99 @@ const BeautifulSlider = () => {
   const [isMuted, setIsMuted] = useState(true);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [showControls, setShowControls] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef(null);
+  const progressRef = useRef(null);
+  const containerRef = useRef(null);
 
-  // Mixed media data - images and videos
   const mediaItems = [
-      {
-        id: 1,
-      type: 'banner',
-      title: "Summer Sale - Up to 70% Off",
-      description: "Discover amazing deals on electronics, fashion, and home essentials. Limited time offer!",
-      url: "https://images.unsplash.com/photo-1607083206325-caf1edba7a0f?w=1200",
-      ctaText: "Shop Now",
-      ctaLink: "/summer-sale",
-      category: "Promotion",
-      priority: 1,
-      isActive: true
-      },
+    {
+      id: 1,
+      type: "image",
+      title: "Demo",
+      description:
+        "Explore the intricate connections and pathways that form the backbone of artificial intelligence systems.",
+      url: "https://images.unsplash.com/photo-1607083206325-caf1edba7a0f?w=1920&h=800&fit=crop&q=90",
+    },
     {
       id: 2,
-      type: 'banner',
-      title: "New Arrivals - Latest Tech",
-      description: "Explore cutting-edge smartphones, laptops, and smart home devices just arrived in stock.",
-      url: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&h=1080&fit=crop&q=80",
-      ctaText: "Explore",
-      ctaLink: "/new-arrivals",
-      category: "New Products",
-      priority: 2,
-      isActive: true
+      type: "video",
+      title: "Machine Learning in Action",
+            url: ad1,
+      thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
       id: 3,
-      type: 'video',
-      title: "Product Showcase - Premium Electronics",
-      description: "Watch our latest collection of premium electronics in action. See quality, performance, and innovation.",
-      url: "",
-      thumbnail: "",
-      category: "Electronics",
-      duration: "2:30",
-      isPromotional: true
+      type: "image",
+      title: "Demo",
+      description:
+        "Explore the intricate connections and pathways that form the backbone of AI systems.",
+      url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
       id: 4,
-      type: 'video',
-      title: "Fashion Collection 2024",
-      description: "Discover the latest fashion trends and styles in our exclusive 2024 collection.",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&h=1080&fit=crop&q=80",
-      category: "Fashion",
-      duration: "1:45",
-      isPromotional: true
+      type: "video",
+      title: "Machine Learning in Action",
+      url: ad1,
+      thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
       id: 5,
-      type: 'video',
-      title: "Home & Living Essentials",
-      description: "Transform your space with our curated selection of home decor and living essentials.",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop&q=80",
-      category: "Home & Living",
-      duration: "3:15",
-      isPromotional: false
+      type: "image",
+      title: "Demo",
+      description:
+        "Explore the intricate connections and pathways that form the backbone of AI systems.",
+      url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
-    {
-      id: 6,
-      type: 'video',
-      title: "Robotics & AI",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920&h=1080&fit=crop&q=80",
-      category: "Robotics"
-    }
   ];
 
   const currentItem = mediaItems[currentSlide];
-  const isVideo = currentItem.type === 'video';
+  const isVideo = currentItem.type === "video";
 
-  // Auto-slide functionality
   useEffect(() => {
-    if (isAutoPlay && !isPlaying) {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
-      }, isVideo ? 8000 : 6000);
-      return () => clearInterval(interval);
-    }
-  }, [isAutoPlay, isPlaying, mediaItems.length, isVideo]);
+    setIsLoaded(true);
+  }, []);
 
-  // Reset video when slide changes
+  // Progress and auto-slide
+  useEffect(() => {
+    if (isAutoPlay && !isPlaying && isLoaded) {
+      const duration = isVideo ? 8000 : 6000;
+      const startTime = Date.now();
+
+      const updateProgress = () => {
+        const elapsed = Date.now() - startTime;
+        const newProgress = (elapsed / duration) * 100;
+
+        if (newProgress >= 100) {
+          setProgress(0);
+          setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
+        } else {
+          setProgress(newProgress);
+          progressRef.current = requestAnimationFrame(updateProgress);
+        }
+      };
+
+      progressRef.current = requestAnimationFrame(updateProgress);
+
+      return () => {
+        if (progressRef.current) {
+          cancelAnimationFrame(progressRef.current);
+        }
+      };
+    } else {
+      setProgress(0);
+    }
+  }, [
+    isAutoPlay,
+    isPlaying,
+    currentSlide,
+    mediaItems.length,
+    isVideo,
+    isLoaded,
+  ]);
+
+  // Video handling
   useEffect(() => {
     if (videoRef.current && isVideo) {
       videoRef.current.currentTime = 0;
@@ -100,21 +126,29 @@ const BeautifulSlider = () => {
         videoRef.current.play();
       }
     }
-  }, []);
+  }, [currentSlide, isVideo]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
     setIsPlaying(false);
+    setProgress(0);
+    setShowShareMenu(false);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + mediaItems.length) % mediaItems.length
+    );
     setIsPlaying(false);
+    setProgress(0);
+    setShowShareMenu(false);
   };
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
     setIsPlaying(false);
+    setProgress(0);
+    setShowShareMenu(false);
   };
 
   const togglePlay = () => {
@@ -135,18 +169,54 @@ const BeautifulSlider = () => {
     }
   };
 
+  const toggleAutoPlay = () => {
+    setIsAutoPlay(!isAutoPlay);
+    if (!isAutoPlay) {
+      setProgress(0);
+    }
+  };
+
+  const resetSlider = () => {
+    setCurrentSlide(0);
+    setIsPlaying(false);
+    setProgress(0);
+    setShowShareMenu(false);
+  };
+
   return (
-    <>
-      {/* ⚠️ IMPORTANT: z-index को 40 या उससे कम रखें (header z-50 है) */}
-      <div className="relative w-full h-[50vh] sm:h-screen overflow-hidden bg-black z-40">
-      {/* Main Media Container */}
-      <div className="relative w-full h-full">
+    <div
+      className={`
+      relative w-full transition-all duration-700 ease-out
+      ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+    `}
+    >
+      {/* Main Container */}
+      <div
+        ref={containerRef}
+        className="
+          relative w-full overflow-hidden
+          h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh]
+          min-h-[400px] max-h-[900px]
+          bg-gradient-to-br from-gray-900 to-black
+          shadow-2xl
+        "
+      >
+        {/* Enhanced Progress Bar
+        <div className="absolute top-0 left-0 right-0 h-2 bg-black z-30">
+          <div 
+            className="h-full bg-[#8b2727] transition-all duration-100 ease-linear relative"
+            style={{ width: `${progress}%` }}
+          >
+            <div className="absolute right-0 top-0 w-2 h-full bg-[#d2af6f] rounded-full"></div>
+          </div>
+        </div> */}
+
         {/* Media Display */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-10">
           {isVideo ? (
             <video
               ref={videoRef}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-full object-cover"
               poster={currentItem.thumbnail}
               muted={isMuted}
               loop
@@ -160,174 +230,186 @@ const BeautifulSlider = () => {
             <img
               src={currentItem.url}
               alt={currentItem.title}
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-1000"
+              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />
-          )}
-          
-          {/* Gradient Overlay for Images */}
-          {!isVideo && (
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
           )}
         </div>
 
-        {/* Text Overlay for Images Only */}
-        {!isVideo && (
-          <div className="absolute inset-0 flex items-end justify-start p-6 sm:p-6 lg:p-12">
-            {/* ⚠️ IMPORTANT: Top padding add करें ताकि text header के नीचे दिखे */}
-            <div className="max-w-3xl space-y-3 sm:space-y-6 animate-fade-in pb-20 sm:pb-80 lg:pb-10 pt-24 sm:pt-32 lg:pt-40 sm:p-10 pl-10 sm:pl-15">
-              {/* Category Badge */}
-              <div className="inline-flex items-center px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
-                <span className="text-white text-xs sm:text-sm font-medium">
-                  {currentItem.category}
-                </span>
-                {currentItem.duration && (
-                  <>
-                    <div className="w-1 h-1 bg-white/60 rounded-full mx-2 sm:mx-3"></div>
-                    <span className="text-white/80 text-xs sm:text-sm">{currentItem.duration}</span>
-                  </>
-                )}
-              </div>
-              
-              {/* Title */}
-              <h1 className="text-2xl sm:text-4xl lg:text-7xl font-bold text-white leading-tight">
-                {currentItem.title}
-              </h1>
-              
-              {/* Description */}
-              <p className="text-white/90 text-sm sm:text-lg lg:text-xl leading-relaxed max-w-2xl">
-                {currentItem.description}
-              </p>
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 z-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent z-20"></div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap gap-2 sm:gap-4 pt-2 sm:pt-4">
-                <button className="group relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-8 py-2 sm:py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-2xl">
-                  <Play className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Read Article
-                </button>
-                
-                <button className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white/80 font-medium transition-all duration-300 hover:bg-white/10 hover:text-white hover:scale-105 active:scale-95 shadow-xl">
-                  <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-                
-                <button className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white/80 font-medium transition-all duration-300 hover:bg-white/10 hover:text-white hover:scale-105 active:scale-95 shadow-xl">
-                  <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-              </div>
+        {/* Enhanced Top Bar */}
+        <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-2 sm:p-4 md:p-6 z-40">
+          {/* Left Side */}
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+            {/* Auto Play Status */}
+            <div
+              className={`my-2 px-1.5 py-0.5 sm:px-4 sm:py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                isAutoPlay
+                  ? "bg-[#d2af6f] text-black border border-[#d2af6f]/30"
+                  : "bg-[#8b2727] text-white border border-[#8b2727]/30"
+              }`}
+            >
+              {isAutoPlay ? "AUTO" : "MANUAL"}
             </div>
           </div>
-        )}
 
-        {/* Video Controls Overlay */}
-        {isVideo && (
-          <div 
-            className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
-              showControls ? 'bg-black/20' : 'bg-transparent'
-            }`}
-            onMouseEnter={() => setShowControls(true)}
-            onMouseLeave={() => setShowControls(false)}
-          >
-            <div className={`transition-all duration-300 ${showControls ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-              <button
-                onClick={togglePlay}
-                className="p-4 sm:p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl"
-              >
-                {isPlaying ? <Pause className="w-8 h-8 sm:w-12 sm:h-12" /> : <Play className="w-8 h-8 sm:w-12 sm:h-12 ml-1" />}
-              </button>
-            </div>
+          {/* Right Side */}
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+            {/* Video Controls */}
+            {isVideo && (
+              <>
+                <button
+                  onClick={toggleMute}
+                  className="p-1.5 sm:p-2 md:p-2.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 transition-all duration-200"
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-3 h-3 sm:w-4 sm:h-4" />
+                  ) : (
+                    <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                  )}
+                </button>
+              </>
+            )}
           </div>
-        )}
-
-        {/* Top Controls Bar - Header के नीचे position करें */}
-        <div className="absolute top-20 sm:top-24 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between z-30">
-          {/* Category Badge */}
-          <div className="inline-flex items-center px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2 sm:mr-3"></div>
-            <span className="text-white text-xs sm:text-sm font-medium">
-              {currentItem.category}
-            </span>
-          </div>
-            
-          {/* Video Controls */}
-          {isVideo && (
-            <div className="flex items-center gap-2 sm:gap-3">
-              <button
-                onClick={toggleMute}
-                className="p-2 sm:p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-xl"
-              >
-                {isMuted ? <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" /> : <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />}
-              </button>
-              
-              <button className="p-2 sm:p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-xl">
-                <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl z-30"
+          className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 p-2 sm:p-3 md:p-4 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 hover:scale-110 transition-all duration-200 z-40"
         >
-          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
-        
+
         <button
           onClick={nextSlide}
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 sm:p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl z-30"
+          className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 p-2 sm:p-3 md:p-4 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 hover:scale-110 transition-all duration-200 z-40"
         >
-          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
 
-        {/* Bottom Controls */}
-        <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between z-30">
-          {/* Slide Indicators */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            {mediaItems.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => goToSlide(index)}
-                className={`relative overflow-hidden rounded-full transition-all duration-500 ${
-                  index === currentSlide
-                    ? 'w-12 sm:w-16 h-2 sm:h-3 bg-white shadow-lg shadow-white/50'
-                    : 'w-2 sm:w-3 h-2 sm:h-3 bg-white/40 hover:bg-white/60'
-                }`}
-              >
-                {index === currentSlide && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-                )}
-                {/* Media Type Indicator */}
-                <div className="absolute top-0 right-0 w-1 h-1 rounded-full bg-white/60"></div>
-              </button>
-            ))}
-          </div>
-
-          {/* Right Controls */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            {/* Slide Counter */}
-            <div className="px-2 sm:px-4 py-1 sm:py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-xl">
-              <span className="text-white text-xs sm:text-sm font-medium">
-                {String(currentSlide + 1).padStart(2, '0')} / {String(mediaItems.length).padStart(2, '0')}
-              </span>
-            </div>
-            
-            {/* Auto-play Toggle */}
+        {/* Video Play Button */}
+        {isVideo && (
+          <div
+            className="absolute inset-0 flex items-center justify-center z-30"
+            onMouseEnter={() => setShowControls(true)}
+            onMouseLeave={() => setShowControls(false)}
+          >
             <button
-              onClick={() => setIsAutoPlay(!isAutoPlay)}
-              className={`px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 backdrop-blur-xl shadow-xl ${
-                isAutoPlay
-                  ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
-                  : 'bg-white/10 text-white/80 border border-white/20 hover:bg-white/20'
-              }`}
+              onClick={togglePlay}
+              className={`
+                p-3 sm:p-4 md:p-6 lg:p-8 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white 
+                hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 hover:scale-110 transition-all duration-300 shadow-2xl
+                ${showControls ? "opacity-100 scale-100" : "opacity-0 scale-95"}
+              `}
             >
-              AUTO {isAutoPlay ? 'ON' : 'OFF'}
+              {isPlaying ? (
+                <Pause className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
+              ) : (
+                <Play className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 ml-1" />
+              )}
             </button>
+          </div>
+        )}
+
+        {/* Bottom Content - Only for Images */}
+        {!isVideo && (
+          <div className="absolute bottom-40 left-10 right-0 z-30">
+            <div className="ml-2 sm:ml-4 md:ml-6 lg:ml-8 pl-2 sm:pl-4 md:pl-6 lg:pl-8 pr-2 sm:pr-4 md:pr-6 pb-4 sm:pb-6">
+              <div className="max-w-4xl">
+                {/* Title */}
+                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 leading-tight">
+                  {currentItem.title}
+                </h1>
+
+                {/* Description */}
+                {currentItem.description && (
+                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-3 sm:mb-4 md:mb-6 max-w-3xl leading-relaxed">
+                    {currentItem.description}
+                  </p>
+                )}
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6"></div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Enhanced Bottom Controls */}
+        <div className="absolute bottom-0 left-0 right-0 z-30">
+          <div className="flex items-center justify-between px-2 sm:px-4 md:px-6 pb-2 sm:pb-4 md:pb-6">
+            {/* Left Side - Slide Indicators */}
+            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2">
+              {mediaItems.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => goToSlide(index)}
+                  className={`
+                    relative overflow-hidden rounded-full transition-all duration-300 group
+                    ${
+                      index === currentSlide
+                        ? "w-6 sm:w-8 md:w-12 h-1.5 sm:h-2 md:h-2.5 bg-[#8b2727] shadow-lg"
+                        : "w-1.5 sm:w-2 md:w-2.5 h-1.5 sm:h-2 md:h-2.5 bg-white/60 hover:bg-white/60"
+                    }
+                  `}
+                ></button>
+              ))}
+            </div>
+
+            {/* Right Side - Enhanced Controls */}
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+              {/* Enhanced Pagination Counter */}
+              <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full">
+                <span className="text-white text-xs sm:text-sm font-mono">
+                  {String(currentSlide + 1).padStart(2, "0")} of{" "}
+                  {String(mediaItems.length).padStart(2, "0")}
+                </span>
+                <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white/60 rounded-full"></div>
+                <span className="text-white/80 text-xs hidden sm:inline">
+                  {isVideo ? "VIDEO" : "ARTICLE"}
+                </span>
+              </div>
+
+              {/* Reset Button */}
+              <button
+                onClick={resetSlider}
+                className="p-1.5 sm:p-2 md:p-2.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 transition-all duration-200 hover:scale-105"
+                title="Reset to first slide"
+              >
+                <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4" />
+              </button>
+
+              {/* Enhanced Auto-play Toggle */}
+              <button
+                onClick={toggleAutoPlay}
+                className={`
+                  flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200
+                  ${
+                    isAutoPlay
+                      ? "bg-[#8b2727] text-white shadow-lg shadow-[#8b2727]/25"
+                      : "bg-[#d2af6f] text-black hover:bg-[#8b2727] hover:text-white"
+                  }
+                `}
+              >
+                <div
+                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${
+                    isAutoPlay ? "bg-white animate-pulse" : "bg-white/60"
+                  }`}
+                ></div>
+                <span className="hidden sm:inline">
+                  AUTO {isAutoPlay ? "ON" : "OFF"}
+                </span>
+                <span className="sm:hidden">{isAutoPlay ? "ON" : "OFF"}</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </>
-);
+  );
 };
 
 export default BeautifulSlider;
