@@ -50,7 +50,7 @@ const ProductCard = () => {
   }
 
   return (
-    <div className="outer pt-10 bg-gray-50 min-h-screen">
+    <div className="outer pt-10 bg-[#EDEFEF] min-h-screen">
       <div className="container mx-auto max-w-[1200px] w-full px-4 py-6">
         <div className="product-inner">
           <div className="product-inner-content">
