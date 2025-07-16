@@ -21,10 +21,10 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed top-4 left-0 right-0 z-50 mx-auto sm:max-w-[800px] bg-white/50 backdrop-blur-lg transition-all duration-700"
+      className="fixed top-4 left-0 right-0 z-50 mx-auto sm:max-w-[800px] bg-[#ACACAC]/10 backdrop-blur-lg transition-all duration-700"
       style={{
         borderRadius: '30px',
-        border: '1px solid rgba(255, 255, 255, 0.3)',
+        // border: '1px solid #26282A',
       }}
     >
       <nav className="px-6 sm:px-8 lg:px-10 py-3">
@@ -38,10 +38,10 @@ const Navbar = () => {
     <Link
       key={name}
       to={path}
-      className="text-base font-medium text-black relative group transition-colors duration-300 hover:text-[#F0EBE3]"
+      className="text-base font-medium text-black relative group transition-colors duration-300"
     >
       {name}
-      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#8b2727] transition-all duration-300 group-hover:w-full"></span>
+      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#000] transition-all duration-300 group-hover:w-full"></span>
     </Link>
   ))}
 

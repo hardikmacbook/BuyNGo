@@ -55,18 +55,18 @@ const FlipCards = () => {
   return (
     <div className="min-h-screen py-16 px-4" style={{
       background: `
-        linear-gradient(135deg, rgba(210, 175, 111, 0.1) 0%, rgba(139, 39, 39, 0.05) 50%, rgba(210, 175, 111, 0.08) 100%),
-        radial-gradient(ellipse at 20% 80%, rgba(210, 175, 111, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(139, 39, 39, 0.1) 0%, transparent 50%),
-        linear-gradient(180deg, #f8f4f0 0%, #ffffff 50%, #f9f6f2 100%)
+        linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(20, 20, 20, 0.98) 50%, rgba(25, 25, 25, 0.96) 100%),
+        radial-gradient(ellipse at 20% 80%, rgba(139, 39, 39, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(210, 175, 111, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 50%, #1a1a1a 100%)
       `
     }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-4 tracking-tight" style={{ color: '#8b2727' }}>
+          <h1 className="text-5xl font-bold mb-4 tracking-tight" style={{ color: '#d2af6f' }}>
             Our Core Values
           </h1>
-          <p className="text-xl" style={{ color: '#8b2727', opacity: 0.8 }}>
+          <p className="text-xl" style={{ color: '#d2af6f', opacity: 0.8 }}>
             These principles guide everything we do, from product development to customer service.
           </p>
         </div>
@@ -131,22 +131,22 @@ const FlipCards = () => {
                   style={{ 
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg) translateZ(20px)',
-                    background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #f8f8f8 100%)',
+                    background: 'linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 50%, #2a2a2a 100%)',
                     boxShadow: `
                       0 25px 50px -12px rgba(139, 39, 39, 0.3),
                       0 10px 25px -5px rgba(0, 0, 0, 0.15),
-                      inset 0 1px 0 rgba(255, 255, 255, 1),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.1),
                       inset 0 -1px 0 rgba(0, 0, 0, 0.05)
                     `,
-                    borderColor: '#8b2727',
+                    borderColor: '#d2af6f',
                     borderOpacity: 0.2
                   }}
                 >
                   <div className="relative z-10 text-center">
                     <h3 className="text-2xl font-bold mb-4 text-center relative"
                         style={{ 
-                          color: '#8b2727',
-                          textShadow: '0 2px 4px rgba(139, 39, 39, 0.1)'
+                          color: '#d2af6f',
+                          textShadow: '0 2px 4px rgba(210, 175, 111, 0.1)'
                         }}>
                       {card.backTitle}
                       
@@ -154,14 +154,14 @@ const FlipCards = () => {
                       <div 
                         className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-0.5 rounded-full"
                         style={{ 
-                          background: `#8b2727`,
+                          background: `#d2af6f`,
                           boxShadow: '0 2px 4px rgba(210, 175, 111, 0.3)'
                         }}
                       ></div>
                     </h3>
                     
                     <p className="text-center leading-relaxed mb-4"
-                       style={{ color: '#000' }}>
+                       style={{ color: '#e0e0e0' }}>
                       {card.backContent}
                     </p>
                   </div>
@@ -172,7 +172,7 @@ const FlipCards = () => {
                   <div 
                     className="absolute bottom-4 w-20 h-1 rounded-full"
                     style={{ 
-                      background: `#8b2727`,
+                      background: `#d2af6f`,
                       boxShadow: '0 2px 8px rgba(210, 175, 111, 0.4), 0 4px 16px rgba(139, 39, 39, 0.2)'
                     }}
                   ></div>
