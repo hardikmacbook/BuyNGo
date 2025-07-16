@@ -38,7 +38,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                className="text-base font-medium transition hover:scale-105 text-black hover:text-white"
+                className="text-base font-medium transition hover:scale-105 text-black hover:text-[#8b2727]"
               >
                 {name}
               </Link>
