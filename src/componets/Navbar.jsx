@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed top-4 left-0 right-0 z-50 mx-auto sm:max-w-[800px] bg-[#ACACAC]/10 backdrop-blur-lg transition-all duration-700"
+      className="fixed top-4 left-0 right-0 z-50 mx-auto sm:max-w-[800px] bg-white/30 backdrop-blur-lg transition-all duration-700"
       style={{
         borderRadius: '30px',
         // border: '1px solid #26282A',
