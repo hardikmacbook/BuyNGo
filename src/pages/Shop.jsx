@@ -109,7 +109,7 @@ const Shop = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2]">
+    <div className="pt-28 bg-[#EDEFEF]">
       {/* Breadcrumb */}
       <div className="bg-white shadow-sm border-b border-[#d2af6f]/30">
         <div className="container mx-auto max-w-7xl px-4 py-3">

@@ -3,7 +3,7 @@ import { BookOpen, Lightbulb, Target, Rocket, Users, Globe } from 'lucide-react'
 
 const CompanyStory = () => {
   return (
-    <div className="w-full bg-white py-20 lg:py-15">
+    <div className="w-full bg-white py-30 lg:py-15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header
