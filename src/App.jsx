@@ -7,7 +7,7 @@ import Cart from "./pages/Cart";
 import Navbar from "./componets/Header/Navbar";
 import ProductDetails from "./pages/ProductDetail";
 import Shop from "./pages/Shop";
-import Footer from "./componets/Footer";
+import Footer from "./componets/Footer/Footer";
 import ScrollToTop from "./componets/ScrollToTop";
 import { CartProvider } from "./context/CartContext";
 
