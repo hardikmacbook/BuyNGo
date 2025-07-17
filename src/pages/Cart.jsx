@@ -57,7 +57,7 @@ const Cart = () => {
                   {/* Price */}
                   <div className="col-span-1 md:col-span-2 text-left md:text-center">
                     <div className="md:hidden text-sm text-gray-500 mb-1">Price:</div>
-                    <div className="font-medium text-[#8b2727]">${item.price}</div>
+                    <div className="font-medium text-[#8b2727]">₹{item.price}</div>
                   </div>
                   
                   {/* Quantity */}
@@ -83,7 +83,7 @@ const Cart = () => {
                   {/* Total */}
                   <div className="col-span-1 md:col-span-2 flex justify-between items-center">
                     <div className="md:hidden text-sm text-gray-500">Total:</div>
-                    <div className="font-bold text-right">${(item.price * item.quantity).toFixed(2)}</div>
+                    <div className="font-bold text-right">₹{(item.price * item.quantity).toFixed(2)}</div>
                     <button 
                       onClick={() => removeFromCart(item.id)}
                       className="text-gray-400 cursor-pointer hover:text-[#8b2727] ml-4"
@@ -108,7 +108,7 @@ const Cart = () => {
                 </button>
                 <div className="text-right">
                   <div className="text-gray-600 mb-1">Total Amount:</div>
-                  <div className="text-2xl font-bold text-[#8b2727]">${totalAmount.toFixed(2)}</div>
+                  <div className="text-2xl font-bold text-[#8b2727]">₹{totalAmount.toFixed(2)}</div>
                 </div>
               </div>
               

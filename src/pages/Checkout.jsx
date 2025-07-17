@@ -477,7 +477,7 @@ const Checkout = () => {
                         Processing...
                       </>
                     ) : (
-                      <>Place Order - ${totalWithShipping.toFixed(2)}</>
+                      <>Place Order - ₹{totalWithShipping.toFixed(2)}</>
                     )}
                   </button>
                 </div>
@@ -506,7 +506,7 @@ const Checkout = () => {
                       <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-medium text-[#8b2727]">${(item.price * item.quantity).toFixed(2)}</p>
+                      <p className="font-medium text-[#8b2727]">₹{(item.price * item.quantity).toFixed(2)}</p>
                     </div>
                   </div>
                 ))}
@@ -516,18 +516,18 @@ const Checkout = () => {
               <div className="space-y-2 py-4 border-b border-gray-200">
                 <div className="flex justify-between text-gray-600">
                   <span>Subtotal</span>
-                  <span>${totalAmount.toFixed(2)}</span>
+                  <span>₹{totalAmount.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Shipping</span>
-                  <span>${shippingCost.toFixed(2)}</span>
+                  <span>₹{shippingCost.toFixed(2)}</span>
                 </div>
               </div>
               
               {/* Total */}
               <div className="flex justify-between items-center py-4">
                 <span className="text-lg font-bold text-gray-800">Total</span>
-                <span className="text-xl font-bold text-[#8b2727]">${totalWithShipping.toFixed(2)}</span>
+                <span className="text-xl font-bold text-[#8b2727]">₹{totalWithShipping.toFixed(2)}</span>
               </div>
               
               {/* Place order button (desktop only) */}
