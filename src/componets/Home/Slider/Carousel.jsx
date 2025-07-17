@@ -18,7 +18,7 @@ import {
   X,
   RotateCcw,
 } from "lucide-react";
-import ad1 from "../assets/images/ad1.mp4"
+import ad1 from "../../../assets/images/ad1.mp4"
 
 const BeautifulSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

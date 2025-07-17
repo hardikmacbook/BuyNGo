@@ -4,7 +4,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Error from "./pages/Error";
 import Cart from "./pages/Cart";
-import Navbar from "./componets/Navbar";
+import Navbar from "./componets/Header/Navbar";
 import ProductDetails from "./pages/ProductDetail";
 import Shop from "./pages/Shop";
 import Footer from "./componets/Footer";
@@ -29,9 +29,10 @@ function MainLayout() {
   const hideFooterRoutes = ["/"];
 
   // Check if current path matches any known route
-  const knownRoutes = ["/", "/about", "/shop", "/contact",];
-  const isKnownRoute = knownRoutes.some(route =>
-    location.pathname === route || location.pathname.startsWith("/shop/")
+  const knownRoutes = ["/", "/about", "/shop", "/contact"];
+  const isKnownRoute = knownRoutes.some(
+    (route) =>
+      location.pathname === route || location.pathname.startsWith("/shop/")
   );
 
   return (
@@ -48,7 +49,9 @@ function MainLayout() {
       </Routes>
 
       {/* Show footer only if it's not in hide list AND is a known route */}
-      {!hideFooterRoutes.includes(location.pathname) && isKnownRoute && <Footer />}
+      {!hideFooterRoutes.includes(location.pathname) && isKnownRoute && (
+        <Footer />
+      )}
     </>
   );
 }
