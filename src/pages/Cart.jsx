@@ -123,14 +123,15 @@ const Cart = () => {
                   Continue Shopping
                 </Link>
                 
-                <button 
+                <Link 
+                  to="/checkout"
                   className="px-6 py-3 bg-gradient-to-r from-[#8b2727] to-[#a83333] hover:from-[#6a1d1d] hover:to-[#8b2727] text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg cursor-pointer"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                   Proceed to Checkout
-                </button>
+                </Link>
               </div>
             </div>
           </div>
