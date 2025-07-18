@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-3xl bg-white/80 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700 border border-gray-200"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-3xl bg-white/50 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
       style={{}}
     >
       <nav className="px-4 sm:px-8 py-2">
