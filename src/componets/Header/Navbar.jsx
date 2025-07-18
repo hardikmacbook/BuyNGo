@@ -33,7 +33,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                className="text-base font-semibold text-gray-800 relative group px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-100 focus:bg-gray-200"
+                className="text-base font-semibold text-gray-800 relative group px-2 py-1 rounded transition-colors duration-200 focus:bg-gray-200"
               >
                 {name}
                 <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
@@ -46,7 +46,7 @@ const Navbar = () => {
               aria-label="View cart"
             >
               <FaLuggageCart className="text-xl text-gray-800" />
-              <span className="absolute -top-1 -right-2 text-xs bg-red-600 text-white rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center border border-white">
+              <span className="absolute -top-1 -right-2 text-xs bg-[#8b2727] text-white rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center">
                 {cartCount ?? 0}
               </span>
             </Link>
