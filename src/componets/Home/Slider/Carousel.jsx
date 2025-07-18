@@ -6,16 +6,6 @@ import {
   Pause,
   Volume2,
   VolumeX,
-  Maximize2,
-  Heart,
-  Share2,
-  Eye,
-  Clock,
-  MoreHorizontal,
-  MessageCircle,
-  Instagram,
-  Copy,
-  X,
   RotateCcw,
 } from "lucide-react";
 import ad1 from "../../../assets/images/ad1.mp4"
