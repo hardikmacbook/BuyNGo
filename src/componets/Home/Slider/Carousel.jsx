@@ -359,7 +359,7 @@ const BeautifulSlider = () => {
                 </span>
                 <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white/60 rounded-full"></div>
                 <span className="text-white/80 text-xs hidden sm:inline">
-                  {isVideo ? "VIDEO" : "ARTICLE"}
+                  {isVideo ? "ADS" : "BANNER"}
                 </span>
               </div>
 
