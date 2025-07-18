@@ -153,7 +153,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="min-h-screen pt-28 bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2]">
+    <div className="min-h-screen pt-28 bg-[#EDEFEF]">
       {/* Breadcrumb */}
       <div className="bg-white shadow-sm border-b border-[#d2af6f]/30 top-0 z-10">
         <div className="container mx-auto max-w-7xl px-4 py-3">
