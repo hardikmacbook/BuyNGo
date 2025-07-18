@@ -72,15 +72,6 @@ const ProductDetails = () => {
     }
   };
 
-  // Handle review input changes
-  const handleReviewChange = (e) => {
-    const { name, value } = e.target;
-    setNewReview({
-      ...newReview,
-      [name]: name === 'rating' ? parseInt(value) : value
-    });
-  };
-
   // First fetch all products
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=100")
