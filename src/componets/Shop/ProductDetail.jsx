@@ -284,13 +284,7 @@ const ProductDetails = () => {
                   )}
                 </button>
                 
-                <button 
-                  onClick={handleShare}
-                  className="cursor-pointer border border-gray-300 hover:bg-gray-100 p-3 rounded-lg transition-colors duration-200 shadow-sm"
-                  aria-label="Share product"
-                >
-                  <Share2 className="w-5 h-5" />
-                </button>
+               
                 
                 <button 
                   className="cursor-pointer border border-gray-300 hover:bg-gray-100 p-3 rounded-lg transition-colors duration-200 shadow-sm"
