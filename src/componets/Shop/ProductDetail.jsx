@@ -153,9 +153,9 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2]">
+    <div className="min-h-screen pt-28 bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2]">
       {/* Breadcrumb */}
-      <div className="bg-white shadow-sm border-b border-[#d2af6f]/30 sticky top-0 z-10">
+      <div className="bg-white shadow-sm border-b border-[#d2af6f]/30 top-0 z-10">
         <div className="container mx-auto max-w-7xl px-4 py-3">
           <nav className="flex items-center space-x-2 text-sm text-gray-600">
             <Link to="/" className="flex items-center hover:text-[#8b2727] transition-colors">
