@@ -58,20 +58,6 @@ const ProductDetails = () => {
     }
   };
 
-  // Handle review submission
-  const handleReviewSubmit = (e) => {
-    e.preventDefault();
-    if (newReview.name && newReview.comment) {
-      const reviewWithDate = {
-        ...newReview,
-        date: new Date().toLocaleDateString(),
-        id: Date.now()
-      };
-      setReviews([...reviews, reviewWithDate]);
-      setNewReview({ name: '', rating: 5, comment: '' });
-    }
-  };
-
   // First fetch all products
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=100")
