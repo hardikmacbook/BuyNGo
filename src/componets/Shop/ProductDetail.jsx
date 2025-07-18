@@ -165,7 +165,7 @@ const ProductDetails = () => {
                   className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
                 {product.discountPercentage > 0 && (
-                  <div className="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded-full">
+                  <div className="absolute top-4 left-4 bg-[#8b2727] text-white text-sm font-bold px-2 py-1 rounded-full">
                     {Math.round(product.discountPercentage)}% OFF
                   </div>
                 )}
@@ -176,7 +176,7 @@ const ProductDetails = () => {
                 {product.images.map((image, index) => (
                   <div 
                     key={index} 
-                    className={`w-20 h-20 flex-shrink-0 cursor-pointer border-2 rounded-lg overflow-hidden transition-all duration-200 hover:shadow-md ${currentImage === index ? 'border-red-900 shadow-md' : 'border-gray-200'}`}
+                    className={`w-20 h-20 flex-shrink-0 cursor-pointer border-2 rounded-lg overflow-hidden transition-all duration-200 hover:shadow-md ${currentImage === index ? 'border-[#8b2727] shadow-md' : 'border-gray-200'}`}
                     onClick={() => setCurrentImage(index)}
                   >
                     <img 
@@ -193,26 +193,26 @@ const ProductDetails = () => {
             <div className="md:w-1/2">
               <div className="flex justify-between items-start">
                 <h1 className="text-3xl font-bold text-gray-800 mb-2">{product.title}</h1>
-                <div className="flex items-center bg-yellow-100 px-3 py-1.5 rounded-full">
-                  <span className="text-yellow-500 mr-1">★</span>
+                <div className="flex items-center bg-[#d2af6f] px-3 py-1.5 rounded-full">
+                  <span className="mr-2">★</span>
                   <span className="font-medium">{product.rating}</span>
                 </div>
               </div>
               
-              <div className="inline-block text-sm text-white bg-[#8b2727]/80 px-3 py-1 rounded-full mb-4">{product.category}</div>
+              <div className="inline-block text-sm text-white bg-[#8b2727] px-3 py-1 rounded-full mb-4">{product.category}</div>
               
               <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
               
               <div className="mb-6 bg-gray-50 p-4 rounded-lg">
                 <div className="flex items-baseline">
-                  <span className="text-3xl font-bold text-red-900">₹{product.price}</span>
+                  <span className="text-3xl font-bold text-[#8b2727]">₹{product.price}</span>
                   {product.discountPercentage > 0 && (
                     <span className="ml-2 text-sm text-green-600 font-medium">{product.discountPercentage}% off</span>
                   )}
                 </div>
                 
                 {product.stock <= 10 ? (
-                  <div className="text-sm text-orange-600 mt-1 flex items-center">
+                  <div className="text-sm text-[#8b2727] mt-1 flex items-center">
                     <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-1"></span>
                     Only {product.stock} left in stock!
                   </div>
