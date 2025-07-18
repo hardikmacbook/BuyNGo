@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Home, ChevronRight, Share2, Heart, ShoppingBag, Check } from "lucide-react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 
 
 const ProductDetails = () => {

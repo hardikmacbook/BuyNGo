@@ -6,7 +6,7 @@ import Error from "./pages/Error";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Navbar from "./componets/Header/Navbar";
-import ProductDetails from "./pages/ProductDetail";
+import ProductDetails from "./componets/Shop/ProductDetail";
 import Shop from "./pages/Shop";
 import Footer from "./componets/Footer/Footer";
 import ScrollToTop from "./componets/ScrollToTop";
