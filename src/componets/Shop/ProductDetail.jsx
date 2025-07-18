@@ -335,14 +335,6 @@ const ProductDetails = () => {
                 >
                   Additional Details
                 </button>
-                <button
-                  onClick={() => setActiveTab('reviews')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${activeTab === 'reviews' 
-                    ? 'border-red-900 text-red-900' 
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}
-                >
-                  Reviews
-                </button>
               </nav>
             </div>
             
@@ -379,34 +371,6 @@ const ProductDetails = () => {
                       <span className="text-gray-600">{product.discountPercentage}%</span>
                     </div>
                   </div>
-                </div>
-              )}
-              
-              {activeTab === 'reviews' && (
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-medium mb-4 text-gray-800 border-l-4 border-red-900 pl-3">Customer Reviews</h3>
-                  
-                  {/* Reviews list */}
-                  {reviews.length > 0 ? (
-                    <div className="space-y-4 mb-8">
-                      {reviews.map(review => (
-                        <div key={review.id} className="border-b pb-4 hover:bg-gray-50 p-3 rounded transition-colors">
-                          <div className="flex justify-between">
-                            <span className="font-medium text-gray-800">{review.name}</span>
-                            <span className="text-sm text-gray-500">{review.date}</span>
-                          </div>
-                          <div className="flex items-center my-1">
-                            {[...Array(5)].map((_, i) => (
-                              <span key={i} className={i < review.rating ? 'text-yellow-500' : 'text-gray-300'}>★</span>
-                            ))}
-                          </div>
-                          <p className="text-gray-700 mt-2">{review.comment}</p>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-gray-500 mb-6 bg-gray-50 p-4 rounded-lg">No reviews yet. Be the first to review this product!</p>
-                  )}
                 </div>
               )}
             </div>
