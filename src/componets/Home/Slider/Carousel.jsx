@@ -234,7 +234,7 @@ const BeautifulSlider = () => {
           {/* Left Side */}
           <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
             {/* Auto Play Status */}
-            <div
+            {/* <div
               className={`my-2 px-1.5 py-0.5 sm:px-4 sm:py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                 isAutoPlay
                   ? "bg-[#d2af6f] text-black border border-[#d2af6f]/30"
@@ -242,7 +242,7 @@ const BeautifulSlider = () => {
               }`}
             >
               {isAutoPlay ? "AUTO" : "MANUAL"}
-            </div>
+            </div> */}
           </div>
 
           {/* Right Side */}
@@ -364,36 +364,13 @@ const BeautifulSlider = () => {
               </div>
 
               {/* Reset Button */}
-              <button
+              {/* <button
                 onClick={resetSlider}
                 className="p-1.5 sm:p-2 md:p-2.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 transition-all duration-200 hover:scale-105"
                 title="Reset to first slide"
               >
                 <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4" />
-              </button>
-
-              {/* Enhanced Auto-play Toggle */}
-              <button
-                onClick={toggleAutoPlay}
-                className={`
-                  flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200
-                  ${
-                    isAutoPlay
-                      ? "bg-[#8b2727] text-white shadow-lg shadow-[#8b2727]/25"
-                      : "bg-[#d2af6f] text-black hover:bg-[#8b2727] hover:text-white"
-                  }
-                `}
-              >
-                <div
-                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${
-                    isAutoPlay ? "bg-white animate-pulse" : "bg-white/60"
-                  }`}
-                ></div>
-                <span className="hidden sm:inline">
-                  AUTO {isAutoPlay ? "ON" : "OFF"}
-                </span>
-                <span className="sm:hidden">{isAutoPlay ? "ON" : "OFF"}</span>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
