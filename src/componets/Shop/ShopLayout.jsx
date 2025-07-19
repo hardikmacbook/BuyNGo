@@ -129,7 +129,7 @@ const ShopLayout = () => {
         {/* Search and Filter Bar */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-8 border border-[#d2af6f]/20">
           <div className="flex flex-col lg:flex-row gap-4 items-center">
-            {/* Search 
+             {/* Search */}
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -139,9 +139,9 @@ const ShopLayout = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-            </div> */}
+            </div> 
 
-            {/* Filter Toggle
+            {/* Filter Toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="flex items-center gap-2 px-4 py-3 bg-[#8b2727] text-white rounded-xl hover:bg-[#d2af6f] transition-colors hover:text-black cursor-pointer"
@@ -149,7 +149,7 @@ const ShopLayout = () => {
               <Filter className="w-5 h-5" />
               Filters
               <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
-            </button>  */}
+            </button> 
             
             {/* View Mode */}
             <div className="flex border border-gray-200 rounded-xl overflow-hidden">
