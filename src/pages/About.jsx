@@ -1,12 +1,12 @@
 import React from 'react'
-import CompanyStory from '../componets/About/TimeLine'
-import TimeLine from '../componets/About/Story'
+import CompanyStory from '../componets/About/Story'
+import TimeLine from '../componets/About/TimeLine'
 
 const About = () => {
   return (
     <>
-        <TimeLine/>
         <CompanyStory/>
+        <TimeLine/>
     </>
   )
 }
