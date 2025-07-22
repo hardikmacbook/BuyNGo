@@ -10,98 +10,87 @@ import React, { useRef } from "react";
 const VelocityText = () => {
   const targetRef = useRef(null);
 
+  // Track scroll progress only within this section
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start end", "end start"],
+    offset: ["start center", "end center"], // Only animate when section is in viewport center
   });
 
   const scrollVelocity = useVelocity(scrollYProgress);
 
-  // Very subtle skew effect
-  const skewXRaw = useTransform(
-    scrollVelocity,
-    [-0.1, 0.1],
-    ["2deg", "-2deg"]
+  // Subtle velocity-based skew - slower response
+  const skewX = useSpring(
+    useTransform(scrollVelocity, [-0.5, 0.5], ["0.5deg", "-0.5deg"]),
+    { stiffness: 100, damping: 40, mass: 2 }
   );
-  const skewX = useSpring(skewXRaw, { 
-    mass: 8, 
-    stiffness: 50, 
-    damping: 40 
-  });
 
-  // Proper horizontal movement - full text visible
-  const xRaw = useTransform(scrollYProgress, [0, 1], [300, -2200]);
-  const x = useSpring(xRaw, { 
-    mass: 8, 
-    stiffness: 50, 
-    damping: 40 
-  });
+  // Animate text only when this section is in view - slower and smoother
+  const x = useSpring(
+    useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]),
+    { stiffness: 80, damping: 40, mass: 3 }
+  );
 
-  // Fade effect
+  // Section visibility opacity
   const opacity = useTransform(
-    scrollYProgress, 
-    [0, 0.15, 0.85, 1], 
-    [0.5, 1, 1, 0.5]
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 1, 1, 0]
   );
+
+  // Gentle scale effect
+  const scale = useSpring(
+    useTransform(scrollVelocity, [-0.3, 0, 0.3], [0.99, 1, 0.99]),
+    { stiffness: 150, damping: 90, mass: 2 }
+  );
+
+  const features = [
+    "PREMIUM QUALITY",
+    "FAST DELIVERY", 
+    "SECURE SHOPPING",
+    "24/7 SUPPORT",
+    "FREE RETURNS",
+    "GLOBAL SHIPPING"
+  ];
 
   return (
     <section
       ref={targetRef}
-      className="relative py-12 bg-white overflow-hidden border-y border-gray-100"
+      className="relative py-24 bg-white overflow-hidden border-y border-gray-100"
     >
-      {/* Subtle background dots */}
-      <div className="absolute inset-0 opacity-[0.02]" 
-           style={{
-             backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`,
-             backgroundSize: '40px 40px'
-           }}>
+      {/* Minimal background texture */}
+      <div className="absolute inset-0 opacity-[0.015]">
+        <div 
+          className="w-full h-full"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.3) 1px, transparent 0)`,
+            backgroundSize: '32px 32px'
+          }}
+        />
       </div>
 
-      {/* Reduced height container */}
-      <div className="relative flex items-center justify-start h-20 md:h-24">
+      {/* Main content container - only animates when this section is in view */}
+      <div className="relative flex items-center h-32 md:h-40 lg:h-48">
         <motion.div
-          style={{ x, skewX, opacity }}
+          style={{ x, skewX, opacity, scale }}
           className="flex items-center whitespace-nowrap will-change-transform"
         >
-          {/* Main Text with responsive sizes */}
-          <span className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 tracking-wider">
-            PREMIUM QUALITY
-          </span>
-          
-          {/* Separator */}
-          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-600 rounded-full mx-8 md:mx-12 lg:mx-16"></div>
-          
-          <span className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 tracking-wider">
-            FAST DELIVERY
-          </span>
-          
-          {/* Separator */}
-          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-600 rounded-full mx-8 md:mx-12 lg:mx-16"></div>
-          
-          <span className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 tracking-wider">
-            SECURE SHOPPING
-          </span>
-          
-          {/* Separator */}
-          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-600 rounded-full mx-8 md:mx-12 lg:mx-16"></div>
-          
-          <span className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 tracking-wider">
-            24/7 SUPPORT
-          </span>
-          
-          {/* Extra separator for loop effect */}
-          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-600 rounded-full mx-8 md:mx-12 lg:mx-16"></div>
-          
-          {/* Repeat first text for seamless loop */}
-          <span className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 tracking-wider">
-            PREMIUM QUALITY
-          </span>
+          {/* Render text multiple times for seamless infinite loop */}
+          {Array(4).fill(features).flat().map((feature, index) => (
+            <React.Fragment key={index}>
+              <span className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 tracking-[0.15em] select-none">
+                {feature}
+              </span>
+              
+              {/* Minimalist separator */}
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 bg-gray-900 rounded-full mx-8 md:mx-12 lg:mx-16" />
+            </React.Fragment>
+          ))}
         </motion.div>
       </div>
 
-      {/* Bottom accent line */}
+      {/* Progress indicator - shows progress through THIS section only */}
       <motion.div 
-        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"
+        className="absolute bottom-0 left-0 h-px bg-gray-900"
         style={{
           width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
         }}
