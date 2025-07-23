@@ -25,7 +25,7 @@
 > All screenshots are organized in `/design/` folder.
 
 ### 🏠 Home Page
-| ![](design/home/home1.png) | ![](design/home/home2.png) | ![](design/home/home3.png) |
+| ![](./src/assets/images/home1.png) | ![](./src/assets/images/home1.png) | ![](./src/assets/images/home1.png) |
 
 ### 🧾 Product Page
 | ![](design/product/product1.png) | ![](design/product/product2.png) | ![](design/product/product3.png) |
