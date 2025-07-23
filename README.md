@@ -29,13 +29,13 @@ All UI previews are stored inside the `design/` folder. Below are visuals for ea
 ### 🏠 Home Page
 
 **First Image**  
-<img src="design/home/home1.png" width="600" />
+<img src="./src/assets/images/home1.png" width="600" />
 
 **Second Image**  
-<img src="design/home/home2.png" width="600" />
+<img src="./src/assets/images/home2.png" width="600" />
 
 **Third Image**  
-<img src="design/home/home3.png" width="600" />
+<img src="./src/assets/images/home3.png" width="600" />
 
 ---
 
