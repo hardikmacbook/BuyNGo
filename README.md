@@ -3,9 +3,9 @@
   A sleek and modern eCommerce web app built with <strong>React</strong>, <strong>Tailwind CSS</strong> & <strong>JavaScript</strong>. Featuring cart, inquiry, search, checkout & more!
 </p>
 
-<p align="center">
+<!-- <p align="center">
   <img src="src/assets/images/logo.png" alt="BuyNGo Logo" height="100"/>
-</p>
+</p> -->
 
 ---
 
@@ -22,42 +22,53 @@
 
 ## 📸 Screenshots
 
-> _Replace these with your own project images._
+> All screenshots are organized in `/design/` folder.
 
-| Home Page | Product Detail | Cart Page |
-|----------|----------------|-----------|
-| ![Home](src/assets/images/home.png) | ![Product](src/assets/images/product.png) | ![Cart](src/assets/images/cart.png) |
+### 🏠 Home Page
+| ![](design/home/home1.png) | ![](design/home/home2.png) | ![](design/home/home3.png) |
+
+### 🧾 Product Page
+| ![](design/product/product1.png) | ![](design/product/product2.png) | ![](design/product/product3.png) |
+
+### 🛒 Cart Page
+| ![](design/cart/cart1.png) | ![](design/cart/cart2.png) | ![](design/cart/cart3.png) |
+
+### 📩 Inquiry Modal
+| ![](design/inquiry/inquiry1.png) | ![](design/inquiry/inquiry2.png) | ![](design/inquiry/inquiry3.png) |
+
+### 💳 Checkout Page
+| ![](design/checkout/checkout1.png) | ![](design/checkout/checkout2.png) | ![](design/checkout/checkout3.png) |
+
 
 ---
 
 ## 🧱 Folder Structure
 
 LAVISH-CLOTH/
-│
-├── public/ # Static files
-├── src/
-│ ├── assets/images/ # Logo, product & UI images
-│ ├── components/ # Layout & shared components
-│ │ ├── About/ # About & Timeline
-│ │ ├── Contact/ # Contact layout
-│ │ ├── Footer/ # Footer component
-│ │ ├── Header/ # Logo, Navbar
-│ │ ├── Home/ # Home page sections
-│ │ ├── Review/ # Testimonials
-│ │ └── Shop/ # Shop Layout & Product details
-│ ├── context/ # Cart context logic
-│ ├── lib/ # Utilities (ScrollToTop, PageTitle)
-│ ├── pages/ # Main pages (Cart, Checkout, About, etc.)
-│ ├── App.jsx # Main app wrapper
-│ └── main.jsx # Entry point
-│
-├── .env # Environment variables
-├── .gitignore
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── vite.config.js
-└── README.md
+├
+│   ├── home/
+│   │   ├── home1.png
+│   │   ├── home2.png
+│   │   └── home3.png
+│   ├── product/
+│   │   ├── product1.png
+│   │   ├── product2.png
+│   │   └── product3.png
+│   ├── cart/
+│   │   ├── cart1.png
+│   │   ├── cart2.png
+│   │   └── cart3.png
+│   ├── inquiry/
+│   │   ├── inquiry1.png
+│   │   ├── inquiry2.png
+│   │   └── inquiry3.png
+│   ├── checkout/
+│   │   ├── checkout1.png
+│   │   ├── checkout2.png
+│   │   └── checkout3.png
+│   └── misc/
+│       └── logo.png
+
 
 
 
