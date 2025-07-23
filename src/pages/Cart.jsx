@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import SetPageTitle from "../componets/SetPageTitle";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -12,6 +13,8 @@ const Cart = () => {
   };
 
   return (
+    <>
+    <SetPageTitle title="Cart - BuyNGo"/>
     <div className="pt-28 cart-page bg-gray-50 min-h-screen py-10">
       <div className="container mx-auto max-w-[1200px] w-full px-4">
         {/* Breadcrumb */}
@@ -157,6 +160,7 @@ const Cart = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
