@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h1 align="center">🛍️ BuyNGo</h1>
 <p align="center">
   A sleek and modern eCommerce web app built with <strong>React</strong>, <strong>Tailwind CSS</strong> & <strong>JavaScript</strong>. Featuring cart, inquiry, search, checkout & more!
@@ -147,7 +147,6 @@ LAVISH-CLOTH/
 
 ## 🚀 Getting Started
 
-<<<<<<< HEAD
 ### 🔧 Requirements
 
 - Node.js 16+
@@ -179,8 +178,6 @@ git clone https://github.com/YOUR_USERNAME/buyngo.git
 >>>>>>> 7aee92d3374829e2ab77950a8dfa7a10fd7bc167
 cd buyngo
 npm install
-<<<<<<< HEAD
-=======
 
 # Start the development server
 npm run dev
