@@ -22,10 +22,62 @@
 
 ## 📸 Screenshots
 
+All screenshots are stored inside the `design/` folder for clarity and documentation purposes.
+
+---
+
+### 🏠 Home Page
+
+<p align="center">
+  <img src="./src/assets/images/home1.png" width="250" style="margin-right: 15px;" />
+  <img src="./src/assets/images/home2.png" width="250" style="margin-right: 15px;" />
+  <img src="./src/assets/images/home3.png" width="250" />
+</p>
+
+---
+
+### 🧾 Product Page
+
+<p align="center">
+  <img src="design/product/product1.png" width="250" style="margin-right: 15px;" />
+  <img src="design/product/product2.png" width="250" style="margin-right: 15px;" />
+  <img src="design/product/product3.png" width="250" />
+</p>
+
+---
+
+### 🛒 Cart Page
+
+<p align="center">
+  <img src="design/cart/cart1.png" width="250" style="margin-right: 15px;" />
+  <img src="design/cart/cart2.png" width="250" style="margin-right: 15px;" />
+  <img src="design/cart/cart3.png" width="250" />
+</p>
+
+---
+
+### 📩 Inquiry Modal
+
+<p align="center">
+  <img src="design/inquiry/inquiry1.png" width="250" style="margin-right: 15px;" />
+  <img src="design/inquiry/inquiry2.png" width="250" style="margin-right: 15px;" />
+  <img src="design/inquiry/inquiry3.png" width="250" />
+</p>
+
+---
+
+### 💳 Checkout Page
+
+<p align="center">
+  <img src="design/checkout/checkout1.png" width="250" style="margin-right: 15px;" />
+  <img src="design/checkout/checkout2.png" width="250" style="margin-right: 15px;" />
+  <img src="design/checkout/checkout3.png" width="250" />
+</p>
+
 > All screenshots are organized in `/design/` folder.
 
 ### 🏠 Home Page
-| ![](./src/assets/images/home1.png) | <br> ![](./src/assets/images/home2.png) | <br> ![](./src/assets/images/home3.png) |
+| ![](./src/assets/images/home2.png) | ![](./src/assets/images/home3.png) |
 
 ### 🧾 Product Page
 | ![](design/product/product1.png) | ![](design/product/product2.png) | ![](design/product/product3.png) |
