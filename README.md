@@ -89,8 +89,6 @@ All UI previews are stored inside the `images/` folder. Below are visuals for ea
 
 **Third Image**  
 <img src="design/checkout/checkout3.png" width="600" />
-| ![](design/checkout/checkout1.png) | ![](design/checkout/checkout2.png) | ![](design/checkout/checkout3.png) |
-
 
 ---
 
@@ -122,95 +120,7 @@ LAVISH-CLOTH/
 │       └── logo.png
 
 
-=======
-<div align="center">
 
-# 🛍️ BuyNGo  
-A sleek and modern **eCommerce web app** built with React, Tailwind CSS & JavaScript.  
-Includes **cart**, **inquiry**, **checkout**, **search**, dark/light mode, and more.
-
-</div>
-
----
-
-## ✨ Features
-
-<div align="center">
-
-🔎 Smart Product Search  
-🛒 Cart Management via LocalStorage  
-📩 Inquiry Modal for Quick Product Questions  
-💳 Smooth Checkout Flow  
-🌙 Dark / Light Mode Toggle  
-🎯 Responsive, Animated & UX-optimized UI  
-
-</div>
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-All UI previews showcase the **modern, responsive** design of each major page.
-</div>
-
----
-
-### 🏠 Home Page  
-<div align="center">
-
-<img src="./src/assets/images/home1.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="./src/assets/images/home2.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="./src/assets/images/home3.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />
-
-</div>
-
----
-
-### 🧾 Product Page  
-<div align="center">
-
-<img src="design/product/product1.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/product/product2.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/product/product3.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />
-
-</div>
-
----
-
-### 🛒 Cart Page  
-<div align="center">
-
-<img src="design/cart/cart1.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/cart/cart2.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/cart/cart3.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />
-
-</div>
-
----
-
-### 📩 Inquiry Modal  
-<div align="center">
-
-<img src="design/inquiry/inquiry1.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/inquiry/inquiry2.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/inquiry/inquiry3.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />
-
-</div>
-
----
-
-### 💳 Checkout Page  
-<div align="center">
-
-<img src="design/checkout/checkout1.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/checkout/checkout2.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />  
-<img src="design/checkout/checkout3.png" width="700" style="border-radius: 16px; padding: 12px; margin: 12px;" />
-
-</div>
-
----
->>>>>>> 7aee92d3374829e2ab77950a8dfa7a10fd7bc167
 
 
 ---
