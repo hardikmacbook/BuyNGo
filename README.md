@@ -22,6 +22,73 @@
 
 ## 📸 Screenshots
 
+All UI previews are stored inside the `design/` folder. Below are visuals for each major page.
+
+---
+
+### 🏠 Home Page
+
+**First Image**  
+<img src="design/home/home1.png" width="600" />
+
+**Second Image**  
+<img src="design/home/home2.png" width="600" />
+
+**Third Image**  
+<img src="design/home/home3.png" width="600" />
+
+---
+
+### 🧾 Product Page
+
+**First Image**  
+<img src="design/product/product1.png" width="600" />
+
+**Second Image**  
+<img src="design/product/product2.png" width="600" />
+
+**Third Image**  
+<img src="design/product/product3.png" width="600" />
+
+---
+
+### 🛒 Cart Page
+
+**First Image**  
+<img src="design/cart/cart1.png" width="600" />
+
+**Second Image**  
+<img src="design/cart/cart2.png" width="600" />
+
+**Third Image**  
+<img src="design/cart/cart3.png" width="600" />
+
+---
+
+### 📩 Inquiry Modal
+
+**First Image**  
+<img src="design/inquiry/inquiry1.png" width="600" />
+
+**Second Image**  
+<img src="design/inquiry/inquiry2.png" width="600" />
+
+**Third Image**  
+<img src="design/inquiry/inquiry3.png" width="600" />
+
+---
+
+### 💳 Checkout Page
+
+**First Image**  
+<img src="design/checkout/checkout1.png" width="600" />
+
+**Second Image**  
+<img src="design/checkout/checkout2.png" width="600" />
+
+**Third Image**  
+<img src="design/checkout/checkout3.png" width="600" />
+
 All screenshots are stored inside the `design/` folder for clarity and documentation purposes.
 
 ---
