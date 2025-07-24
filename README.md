@@ -73,16 +73,6 @@ npm install
 npm start
 ```
 
-### Build for Production
-
-```bash
-# Create production build
-npm run build
-
-# Preview production build locally
-npm run preview
-```
-
 ---
 
 ## 🛠️ Tech Stack
