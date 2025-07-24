@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Search, Filter, Grid, List, ChevronDown, Star, ShoppingCart, Home, ChevronRight } from "lucide-react";
+import { Search, Filter, Grid, List, ChevronDown, Star, ShoppingCart, Home, ChevronRight, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-
-
 
 const ShopLayout = () => {
   const [data, setData] = useState([]);
@@ -18,12 +16,13 @@ const ShopLayout = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
   const [categories, setCategories] = useState([]);
+  const [maxPrice, setMaxPrice] = useState(2000);
   const { addToCart } = useCart();
 
-   // Add to cart function
-   const handleAddToCart = (e, product) => {
-    e.preventDefault(); // Prevent navigation when clicking the button
-    e.stopPropagation(); // Stop event bubbling
+  // Add to cart function
+  const handleAddToCart = (e, product) => {
+    e.preventDefault();
+    e.stopPropagation();
     addToCart(product);
   };
 
@@ -40,6 +39,7 @@ const ShopLayout = () => {
         
         // Set max price for price range
         const maxPrice = Math.max(...data.products.map(product => product.price));
+        setMaxPrice(Math.ceil(maxPrice));
         setPriceRange([0, Math.ceil(maxPrice)]);
         
         setLoading(false);
@@ -73,7 +73,7 @@ const ShopLayout = () => {
     }
 
     setFilteredData(filtered);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
   }, [data, searchTerm, selectedCategory, priceRange, sortBy]);
 
   // Function to create URL-friendly slugs from product titles
@@ -93,38 +93,192 @@ const ShopLayout = () => {
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedCategory("all");
-    setPriceRange([0, Math.max(...data.map(product => product.price))]);
+    setPriceRange([0, maxPrice]);
     setSortBy("default");
   };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2]">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
-          {/* <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#8b2727] mx-auto mb-4"></div> */}
-          <div className="text-xl text-[#8b2727] font-medium">Loading amazing products...</div>
+          <div className="w-12 h-12 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="text-gray-600 font-light">Loading amazing products...</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="pt-28 bg-[#EDEFEF]">
+    <div className="pt-28 bg-gray-50 min-h-screen">
       {/* Breadcrumb */}
-      <div className="bg-white shadow-sm border-b border-[#d2af6f]/30">
+      <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="container mx-auto max-w-7xl px-4 py-3">
           <nav className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link to="/" className="flex items-center hover:text-[#8b2727] transition-colors">
+            <Link to="/" className="flex items-center hover:text-gray-900 transition-colors">
               <Home className="w-4 h-4 mr-1" />
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-[#8b2727] font-medium">Shop</span>
+            <span className="text-gray-900 font-medium">Shop</span>
           </nav>
         </div>
       </div>
 
       <div className="container mx-auto max-w-7xl px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-light text-gray-900 mb-4">Our Products</h1>
+          <div className="w-24 h-px bg-gray-900 mx-auto mb-4"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Discover our carefully curated collection of premium products
+          </p>
+        </div>
+
+        {/* Search and Filter Controls */}
+        <div className="bg-white rounded-2xl border-2 border-gray-100 p-6 mb-8 shadow-sm">
+          {/* Top Row - Search, Filter Toggle, View Mode */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+            {/* Search Bar */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors"
+              />
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center gap-4">
+              {/* Filter Toggle */}
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className="flex items-center gap-2 px-4 py-3 border-2 border-gray-200 rounded-lg hover:border-gray-900 transition-colors"
+              >
+                <Filter className="w-4 h-4" />
+                <span className="font-medium">Filters</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* View Mode Toggle */}
+              <div className="flex border-2 border-gray-200 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`px-4 py-3 transition-colors ${viewMode === 'grid' 
+                    ? 'bg-gray-900 text-white' 
+                    : 'bg-white text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  <Grid className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`px-4 py-3 transition-colors ${viewMode === 'list' 
+                    ? 'bg-gray-900 text-white' 
+                    : 'bg-white text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  <List className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Expandable Filter Options */}
+          {showFilters && (
+            <div className="border-t border-gray-200 pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Category Filter */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors"
+                  >
+                    <option value="all">All Categories</option>
+                    {categories.map((category) => (
+                      <option key={category} value={category}>
+                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Price Range */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Price Range: ₹{priceRange[0]} - ₹{priceRange[1]}
+                  </label>
+                  <div className="space-y-3">
+                    <input
+                      type="range"
+                      min="0"
+                      max={maxPrice}
+                      value={priceRange[1]}
+                      onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="number"
+                        placeholder="Min"
+                        value={priceRange[0]}
+                        onChange={(e) => setPriceRange([parseInt(e.target.value) || 0, priceRange[1]])}
+                        className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-900"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Max"
+                        value={priceRange[1]}
+                        onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value) || maxPrice])}
+                        className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gray-900"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sort By */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors"
+                  >
+                    <option value="default">Default</option>
+                    <option value="name">Name (A-Z)</option>
+                    <option value="price-low">Price (Low to High)</option>
+                    <option value="price-high">Price (High to Low)</option>
+                    <option value="rating">Rating (High to Low)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Clear Filters Button */}
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <button
+                  onClick={clearFilters}
+                  className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Clear All Filters
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Results Info */}
+        <div className="flex items-center justify-between mb-6">
+          <p className="text-gray-600">
+            Showing <span className="font-medium">{indexOfFirstProduct + 1}</span> to{' '}
+            <span className="font-medium">{Math.min(indexOfLastProduct, filteredData.length)}</span> of{' '}
+            <span className="font-medium">{filteredData.length}</span> products
+          </p>
+        </div>
 
         {/* Products Grid/List */}
         <div className={`${viewMode === 'grid' 
@@ -134,52 +288,64 @@ const ShopLayout = () => {
           {currentProducts.map((product) => (
             <div 
               key={product.id}
-              className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#d2af6f]/20 hover:border-[#8b2727] ${viewMode === 'list' ? 'flex p-4' : 'p-6'}`}
+              className={`group border-2 border-gray-100 rounded-2xl bg-white hover:border-gray-300 hover:-translate-y-1 transition-all duration-300 ease-out hover:shadow-lg ${viewMode === 'list' ? 'flex p-6' : 'p-6'}`}
             >
-              {/* Clickable Image */}
+              {/* Product Image */}
               <Link 
                 to={`/shop/${createSlug(product.title)}`}
-                className={`${viewMode === 'list' ? 'w-48 h-32 flex-shrink-0 mr-6' : 'w-full h-48 mb-4'} bg-gradient-to-br from-[#f8f3e9] to-[#f0e6d2] rounded-xl flex items-center justify-center overflow-hidden group`}
+                className={`${viewMode === 'list' ? 'w-48 h-32 flex-shrink-0 mr-6' : 'w-full h-48 mb-4'} bg-gray-50 rounded-xl flex items-center justify-center overflow-hidden`}
               >
                 <img
-                  className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="max-w-full max-h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                   src={product.images[0]}
                   alt={product.title}
                 />
               </Link>
               
-              {/* Non-clickable Product Info */}
+              {/* Product Info */}
               <div className={`${viewMode === 'list' ? 'flex-1' : ''}`}>
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-gray-800 leading-tight">
-                    {product.title.length > (viewMode === 'list' ? 50 : 25) 
-                      ? product.title.slice(0, viewMode === 'list' ? 50 : 25) + "..." 
-                      : product.title}
-                  </h3>
-                  <div className="flex items-center bg-[#f8f3e9] px-2 py-1 rounded-full">
-                    <Star className="w-4 h-4 text-[#8b2727  ] fill-current" />
-                    <span className="text-sm text-gray-700 ml-1 font-medium">{product.rating}</span>
-                  </div>
-                </div>
+                {/* Category */}
+                <span className="inline-block text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
+                  {product.category}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-lg font-medium text-gray-900 mb-2 leading-tight">
+                  {product.title.length > (viewMode === 'list' ? 50 : 40) 
+                    ? product.title.slice(0, viewMode === 'list' ? 50 : 40) + "..." 
+                    : product.title}
+                </h3>
                 
-                <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                {/* Description */}
+                <p className="text-gray-600 text-sm mb-3 leading-relaxed">
                   {product.description.length > (viewMode === 'list' ? 120 : 80) 
                     ? product.description.slice(0, viewMode === 'list' ? 120 : 80) + "..." 
                     : product.description}
                 </p>
+
+                {/* Rating */}
+                <div className="flex items-center mb-4">
+                  <div className="flex text-gray-400 mr-2">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'text-gray-900 fill-current' : 'text-gray-300'}`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-gray-600 text-sm">({product.rating})</span>
+                </div>
                 
+                {/* Price */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-[#8b2727]">
-                    ₹{product.price}
-                  </span>
-                  <span className="text-xs text-[#8b2727] bg-[#f8f3e9] px-3 py-1 rounded-full font-medium">
-                    {product.category}
-                  </span>
+                  <span className="text-xl font-medium text-gray-900">₹{product.price}</span>
                 </div>
               
-                 <button 
-                onClick={(e) => handleAddToCart(e, product)}
-                className="w-full bg-gradient-to-r from-[#8b2727] to-[#a83333] hover:from-[#6a1d1d] hover:to-[#8b2727] text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-lg cursor-pointer">
+                {/* Add to Cart Button */}
+                <button 
+                  onClick={(e) => handleAddToCart(e, product)}
+                  className="w-full border-2 border-gray-200 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300 flex items-center justify-center gap-2"
+                >
                   <ShoppingCart className="w-4 h-4" />
                   Add to Cart
                 </button>
@@ -194,7 +360,7 @@ const ShopLayout = () => {
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-4 py-2 bg-[#d2af6f] border border-[#d2af6f]/30 rounded-lg hover:bg-[#8b2727] disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer hover:text-white"
+              className="px-4 py-2 border-2 border-gray-200 rounded-lg hover:border-gray-900 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Previous
             </button>
@@ -207,9 +373,9 @@ const ShopLayout = () => {
                 <button
                   key={pageNumber}
                   onClick={() => paginate(pageNumber)}
-                  className={`px-4 py-2 border rounded-lg transition-colors ${currentPage === pageNumber
-                      ? 'bg-[#8b2727] text-white border-[#8b2727]'
-                      : 'bg-white border-[#d2af6f]/30 hover:bg-[#8b2727] hover:text-white cursor-pointer'
+                  className={`px-4 py-2 border-2 rounded-lg transition-colors ${currentPage === pageNumber
+                      ? 'bg-gray-900 text-white border-gray-900'
+                      : 'border-gray-200 hover:border-gray-900 hover:text-gray-900'
                   }`}
                 >
                   {pageNumber}
@@ -220,7 +386,7 @@ const ShopLayout = () => {
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-4 py-2 bg-[#d2af6f] border border-[#d2af6f]/30 rounded-lg hover:bg-[#8b2727] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              className="px-4 py-2 border-2 border-gray-200 rounded-lg hover:border-gray-900 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Next
             </button>
@@ -231,13 +397,13 @@ const ShopLayout = () => {
         {filteredData.length === 0 && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-semibold text-[#8b2727] mb-2">No products found</h3>
-            <p className="text-gray-600 mb-4">Try adjusting your search or filter criteria</p>
+            <h3 className="text-2xl font-light text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600 mb-6">Try adjusting your search or filter criteria</p>
             <button
               onClick={clearFilters}
-              className="bg-[#8b2727] text-white px-6 py-3 rounded-xl hover:bg-[#6a1d1d] transition-colors"
+              className="border-2 border-gray-200 px-6 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300"
             >
-              Clear Filters
+              Clear All Filters
             </button>
           </div>
         )}
