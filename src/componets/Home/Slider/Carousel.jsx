@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import ad1 from "../../../assets/images/ad1.mp4";
+import AppleAds from "../../../assets/images/apple.mp4";  
 
 const BeautifulSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,17 +20,17 @@ const BeautifulSlider = () => {
   const mediaItems = useMemo(() => [
     {
       id: 1,
+      type: "video",
+      title: "Featured Products",
+      url: AppleAds,
+      thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
+    },
+    {
+      id: 2,
       type: "image",
       title: "Premium Collection",
       description: "Discover our carefully curated selection of premium products designed for modern living.",
       url: "https://images.unsplash.com/photo-1607083206325-caf1edba7a0f?w=1920&h=800&fit=crop&q=90",
-    },
-    {
-      id: 2,
-      type: "video",
-      title: "Featured Products",
-      url: ad1,
-      thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
       id: 3,
