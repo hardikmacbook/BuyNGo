@@ -67,10 +67,10 @@ git clone https://github.com/hardikmacbook/BuyNGo.git
 cd BuyNGo
 
 # Install dependencies
-npm install
+npm install 
 
 # Start development server
-npm start
+npm run dev
 ```
 
 ---
