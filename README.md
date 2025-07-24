@@ -4,9 +4,9 @@
   A sleek and modern eCommerce web app built with <strong>React</strong>, <strong>Tailwind CSS</strong> & <strong>JavaScript</strong>. Featuring cart, inquiry, search, checkout & more!
 </p>
 
-<!-- <p align="center">
+<p align="center">
   <img src="src/assets/images/logo.png" alt="BuyNGo Logo" height="100"/>
-</p> -->
+</p>
 
 ---
 
@@ -210,14 +210,12 @@ All UI previews showcase the **modern, responsive** design of each major page.
 </div>
 
 ---
->>>>>>> 7aee92d3374829e2ab77950a8dfa7a10fd7bc167
 
 
 ---
 
 ## ⚙️ Tech Stack
 
-<<<<<<< HEAD
 - ⚛️ React (with Vite)
 - 🎨 Tailwind CSS
 - 🧠 Context API for Cart
@@ -231,49 +229,29 @@ All UI previews showcase the **modern, responsive** design of each major page.
 | 🧠 Context API    | State Management (Cart, UI)    |
 | 🔗 React Router   | SPA Routing                    |
 | 💾 LocalStorage   | Persistent Cart Data           |
->>>>>>> 7aee92d3374829e2ab77950a8dfa7a10fd7bc167
 
 ---
 
 ## 🚀 Getting Started
 
-<<<<<<< HEAD
 ### 🔧 Requirements
 
 - Node.js 16+
 - npm or yarn
 
-### 📥 Installation
-
-```bash
-git clone https://github.com/YOUR_USERNAME/buyngo.git
-=======
-### 🔧 Prerequisites
-
-<div align="center">
-
-- Node.js 16+  
-- npm or yarn
-
-</div>
-
 ---
 
 ### 📥 Installation
 
-```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/buyngo.git
+git clone https://github.com/hardikmacbook/BuyNGo
 
 # Navigate into the project folder
->>>>>>> 7aee92d3374829e2ab77950a8dfa7a10fd7bc167
 cd buyngo
 npm install
-<<<<<<< HEAD
 =======
 
 # Start the development server
 npm run dev
 
 
->>>>>>> 7aee92d3374829e2ab77950a8dfa7a10fd7bc167
