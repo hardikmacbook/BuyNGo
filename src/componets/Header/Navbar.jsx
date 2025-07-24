@@ -33,7 +33,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                className="text-base font-semibold text-black relative group px-2 py-1 rounded transition-colors duration-200 focus:bg-gray-200"
+                className="text-base font-semibold text-black relative group px-2 py-1 rounded transition-colors duration-200"
               >
                  <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-[40px]"></span>
                 {name}
@@ -43,11 +43,11 @@ const Navbar = () => {
             {/* Cart Icon (Desktop) */}
             <Link
               to="/cart"
-              className="relative flex items-center justify-center ml-2 group p-2 rounded hover:bg-gray-100"
+              className="relative flex items-center justify-center ml-2 group p-2 rounded"
               aria-label="View cart"
             >
-              <FaLuggageCart className="text-xl text-gray-800" />
-              <span className="absolute -top-1 -right-2 text-xs bg-[#8b2727] text-white rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center">
+              <FaLuggageCart className="text-xl text-black" />
+              <span className="absolute -top-1 -right-2 text-xs bg-black text-white rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center">
                 {cartCount ?? 0}
               </span>
             </Link>
