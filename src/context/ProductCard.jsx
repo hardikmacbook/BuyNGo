@@ -64,13 +64,13 @@ const ProductCard = () => {
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50 min-h-screen">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-light text-gray-900 mb-6">
+      <div className="text-center mb-10">
+        <h1 className="text-4xl font-light text-gray-900 mb-4">
           Our Products
         </h1>
-        <div className="w-24 h-px bg-gray-900 mx-auto mb-6"></div>
+        <div className="w-24 h-px bg-gray-900 mx-auto mb-4"></div>
         <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed text-lg">
           Carefully curated products designed with quality and style in mind.
         </p>
@@ -95,33 +95,41 @@ const ProductCard = () => {
               to={`/shop/${createSlug(product.title)}`} 
               className="relative block"
             >
-              <div className="h-64 bg-gray-50 rounded-t-2xl overflow-hidden">
+              <div className="h-48 bg-gray-50 rounded-t-2xl overflow-hidden">
                 <img
                   src={product.images[0]}
                   alt={product.title}
-                  className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
               </div>
             </Link>
 
             {/* Product Content */}
-            <div className="p-8">
+            <div className="p-6">
               {/* Category */}
-              <span className="inline-block text-xs text-gray-500 font-medium uppercase tracking-wide mb-3">
+              <span className="inline-block text-xs text-gray-500 font-medium uppercase tracking-wide mb-2">
                 {product.category}
               </span>
 
               {/* Title */}
-              <h3 className="text-lg font-medium text-gray-900 mb-3 leading-tight">
+              <h3 className="text-lg font-medium text-gray-900 mb-2 leading-tight">
                 {product.title.length > 50 
                   ? product.title.slice(0, 50) + "..." 
                   : product.title
                 }
               </h3>
 
+              {/* Description */}
+              <p className="text-gray-600 text-sm mb-3 leading-relaxed">
+                {product.description.length > 80 
+                  ? product.description.slice(0, 80) + "..." 
+                  : product.description
+                }
+              </p>
+
               {/* Rating */}
-              <div className="flex items-center mb-6">
+              <div className="flex items-center mb-4">
                 <div className="flex text-gray-400 mr-2">
                   {[...Array(5)].map((_, i) => (
                     <svg 
@@ -138,7 +146,7 @@ const ProductCard = () => {
               </div>
 
               {/* Price Section */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3">
                   <span className="text-xl font-medium text-gray-900">${product.price}</span>
                   {product.discountPercentage > 0 && (
@@ -165,7 +173,7 @@ const ProductCard = () => {
       </div>
 
       {/* View All Products Button */}
-      <div className="text-center mt-12">
+      <div className="text-center mt-8">
         <button className="border-2 border-gray-200 px-8 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300">
           View All Products
         </button>
