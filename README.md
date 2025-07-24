@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h1 align="center">🛍️ BuyNGo</h1>
 <p align="center">
   A sleek and modern eCommerce web app built with <strong>React</strong>, <strong>Tailwind CSS</strong> & <strong>JavaScript</strong>. Featuring cart, inquiry, search, checkout & more!
@@ -89,8 +89,6 @@ All UI previews are stored inside the `images/` folder. Below are visuals for ea
 
 **Third Image**  
 <img src="design/checkout/checkout3.png" width="600" />
-| ![](design/checkout/checkout1.png) | ![](design/checkout/checkout2.png) | ![](design/checkout/checkout3.png) |
-
 
 ---
 
