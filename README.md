@@ -37,7 +37,7 @@
 - **Shopping Cart**: Add, remove, and manage items with real-time updates
 - **Secure Checkout**: Streamlined checkout process with form validation
 - **Product Search**: Advanced search functionality with filters
-- **Customer Enquiry**: Contact forms and customer support integration
+<!-- - **Customer Enquiry**: Contact forms and customer support integration -->
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 
 ### Technical Features
@@ -45,8 +45,8 @@
 - **Tailwind CSS**: Utility-first CSS framework for rapid styling
 - **JavaScript ES6+**: Modern JavaScript with async/await patterns
 - **API Integration**: RESTful API for product data and operations
-- **State Management**: Efficient state handling for cart and user data
-- **Performance Optimized**: Lazy loading and code splitting implemented
+<!-- - **State Management**: Efficient state handling for cart and user data
+- **Performance Optimized**: Lazy loading and code splitting implemented -->
 
 </div>
 
