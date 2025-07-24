@@ -140,10 +140,10 @@ const ProductCard = () => {
               {/* Price Section */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3">
-                  <span className="text-xl font-medium text-gray-900">${product.price}</span>
+                  <span className="text-xl font-medium text-gray-900">₹{product.price}</span>
                   {product.discountPercentage > 0 && (
                     <span className="text-gray-500 line-through text-sm">
-                      ${(product.price * (1 + product.discountPercentage / 100)).toFixed(2)}
+                      ₹{(product.price * (1 + product.discountPercentage / 100)).toFixed(2)}
                     </span>
                   )}
                 </div>
