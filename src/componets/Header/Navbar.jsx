@@ -33,16 +33,17 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                className="text-base font-semibold text-gray-800 relative group px-2 py-1 rounded transition-colors duration-200 focus:bg-gray-200"
+                className="text-base font-semibold text-black relative group px-2 py-1 rounded transition-colors duration-200 focus:bg-gray-200"
               >
+                 <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-[40px]"></span>
                 {name}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-[40px]"></span>
               </Link>
             ))}
             {/* Cart Icon (Desktop) */}
             <Link
               to="/cart"
-              className="relative flex items-center justify-center ml-2 group p-2 rounded hover:bg-gray-100 focus:bg-gray-200"
+              className="relative flex items-center justify-center ml-2 group p-2 rounded hover:bg-gray-100"
               aria-label="View cart"
             >
               <FaLuggageCart className="text-xl text-gray-800" />
@@ -82,7 +83,9 @@ const Navbar = () => {
         {/* Mobile Menu */}
         <div
           className={`lg:hidden transition-all duration-500 ${
-            isMobileOpen ? "max-h-[400px] opacity-100 mt-2" : "max-h-0 opacity-0"
+            isMobileOpen
+              ? "max-h-[400px] opacity-100 mt-2"
+              : "max-h-0 opacity-0"
           } overflow-hidden`}
         >
           <div className="flex flex-col gap-2 py-4 px-2 bg-white/95 rounded-xl shadow border-t border-gray-200">
