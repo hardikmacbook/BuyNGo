@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 Hardik Kamaliya
+Copyright (c) 2025 BuyNGO
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Additional Terms and Conditions for E-commerce Projects:
+
+This license applies to all source code, documentation, configuration files,
+database schemas, API specifications, user interface designs, and any other
+materials included in this BuyNGO e-commerce software project.
+
+The copyright holder(s) retain all rights to trademarks, service marks, trade
+names, and brand identities associated with BuyNGO. Use of such marks
+requires separate written permission from the copyright holder(s).
+
+This software may include integrations with third-party payment processors,
+shipping providers, analytics services, and other commercial APIs. Users are
+responsible for complying with the terms of service and licensing requirements
+of any third-party services they choose to integrate.
+
+While this software is provided under the MIT License, users deploying this
+BuyNGO e-commerce solution in production environments are strongly encouraged to:
+
+1. Implement appropriate security measures including SSL/TLS encryption,
+   secure payment processing, and data protection protocols
+2. Comply with applicable data privacy regulations (GDPR, CCPA, etc.)
+3. Ensure PCI DSS compliance when handling payment card information
+4. Regularly update dependencies and apply security patches
+5. Conduct security audits and penetration testing
+6. Implement proper backup and disaster recovery procedures
+
+The copyright holder(s) make no warranties regarding the security,
+performance, or suitability of this software for any particular use case,
+including but not limited to e-commerce applications handling sensitive
+customer data or financial transactions.
+
+Users assume full responsibility for the secure and compliant operation
+of any e-commerce platform built using this BuyNGO software.
+
+END OF TERMS AND CONDITIONS
