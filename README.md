@@ -87,7 +87,7 @@ npm run dev
 ## 📂 Project Structure
 
 ```
-LAVISH-CLOTH/
+BuyNGO/
 ├── node_modules/
 ├── public/
 │   └── assets/
