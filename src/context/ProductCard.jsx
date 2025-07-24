@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
+import { ShoppingCart } from "lucide-react";
 
 const ProductCard = () => {
   const [products, setProducts] = useState([]);
@@ -150,15 +151,14 @@ const ProductCard = () => {
               </div>
 
               {/* Add to Cart Button */}
-              <button
+              <Link
                 onClick={(e) => handleAddToCart(e, product)}
                 className="w-full border-2 border-gray-200 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300 flex items-center justify-center space-x-2"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.395.395-.395 1.036 0 1.431v0c.395.395 1.036.395 1.431 0L17 13M17 13v4a2 2 0 01-2 2H9a2 2 0 01-2-2v-4m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
-                </svg>
+                  <ShoppingCart className="w-4 h-4" />
+              
                 <span>Add to Cart</span>
-              </button>
+              </Link>
             </div>
           </div>
         ))}
