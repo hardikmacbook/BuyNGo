@@ -40,17 +40,6 @@ const CustomerReviews = () => {
     }
   ];
 
-  const renderStars = (rating) => {
-    return [...Array(5)].map((_, i) => (
-      <span
-        key={i}
-        className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-200'}`}
-      >
-        ★
-      </span>
-    ));
-  };
-
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
@@ -86,11 +75,6 @@ const CustomerReviews = () => {
                   {review.date}
                 </p>
               </div>
-            </div>
-
-            {/* Rating Stars */}
-            <div className="flex items-center mb-4">
-              {renderStars(review.rating)}
             </div>
 
             {/* Review Text */}
