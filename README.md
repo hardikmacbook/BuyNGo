@@ -14,13 +14,13 @@
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-<img src="https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=BuyNGo+Home+Page" alt="BuyNGo Home Page" style="border-radius: 12px; margin: 20px 0;" width="700">
+<img src="./src/assets/images/home1.png" alt="BuyNGo Home Page" style="border-radius: 12px; margin: 20px 0;" width="700">
 
 ### 🛍️ Product Catalog
-<img src="https://via.placeholder.com/800x400/7C3AED/FFFFFF?text=Product+Catalog" alt="Product Catalog" style="border-radius: 12px; margin: 20px 0;" width="700">
+<img src="./src/assets/images/product-catalog.png" alt="Product Catalog" style="border-radius: 12px; margin: 20px 0;" width="700">
 
 ### 🛒 Shopping Cart & Checkout
-<img src="https://via.placeholder.com/800x400/059669/FFFFFF?text=Shopping+Cart+%26+Checkout" alt="Shopping Cart" style="border-radius: 12px; margin: 20px 0;" width="700">
+<img src="./src/assets/images/cart-page.png" alt="Shopping Cart" style="border-radius: 12px; margin: 20px 0;" width="700">
 
 ---
 
