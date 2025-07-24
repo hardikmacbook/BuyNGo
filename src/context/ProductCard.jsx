@@ -120,14 +120,6 @@ const ProductCard = () => {
                 }
               </h3>
 
-              {/* Description */}
-              <p className="text-gray-600 text-sm mb-3 leading-relaxed">
-                {product.description.length > 80 
-                  ? product.description.slice(0, 80) + "..." 
-                  : product.description
-                }
-              </p>
-
               {/* Rating */}
               <div className="flex items-center mb-4">
                 <div className="flex text-gray-400 mr-2">
