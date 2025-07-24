@@ -1,14 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  RotateCcw,
-} from "lucide-react";
-import ad1 from "../../../assets/images/ad1.mp4"
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import ad1 from "../../../assets/images/ad1.mp4";
 
 const BeautifulSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -18,189 +10,181 @@ const BeautifulSlider = () => {
   const [showControls, setShowControls] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  
   const videoRef = useRef(null);
   const progressRef = useRef(null);
-  const containerRef = useRef(null);
+  const timeoutRef = useRef(null);
 
-  const mediaItems = [
+  // Memoized media items to prevent recreation
+  const mediaItems = useMemo(() => [
     {
       id: 1,
       type: "image",
-      title: "Demo",
-      description:
-        "Explore the intricate connections and pathways that form the backbone of artificial intelligence systems.",
+      title: "Premium Collection",
+      description: "Discover our carefully curated selection of premium products designed for modern living.",
       url: "https://images.unsplash.com/photo-1607083206325-caf1edba7a0f?w=1920&h=800&fit=crop&q=90",
     },
     {
       id: 2,
       type: "video",
-      title: "Machine Learning in Action",
-            url: ad1,
+      title: "Featured Products",
+      url: ad1,
       thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
       id: 3,
       type: "image",
-      title: "Demo",
-      description:
-        "Explore the intricate connections and pathways that form the backbone of AI systems.",
+      title: "New Arrivals",
+      description: "Explore the latest additions to our collection with innovative designs and quality craftsmanship.",
       url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
       id: 4,
       type: "video",
-      title: "Machine Learning in Action",
+      title: "Brand Showcase",
       url: ad1,
       thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
       id: 5,
       type: "image",
-      title: "Demo",
-      description:
-        "Explore the intricate connections and pathways that form the backbone of AI systems.",
+      title: "Special Offers",
+      description: "Limited time deals on our most popular products with exceptional value and quality.",
       url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
-  ];
+  ], []);
 
-  const currentItem = mediaItems[currentSlide];
+  const currentItem = useMemo(() => mediaItems[currentSlide], [mediaItems, currentSlide]);
   const isVideo = currentItem.type === "video";
 
+  // Fast loading effect
   useEffect(() => {
-    setIsLoaded(true);
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
-  // Progress and auto-slide
+  // Optimized progress and auto-slide with RAF
   useEffect(() => {
-    if (isAutoPlay && !isPlaying && isLoaded) {
-      const duration = isVideo ? 8000 : 6000;
-      const startTime = Date.now();
-
-      const updateProgress = () => {
-        const elapsed = Date.now() - startTime;
-        const newProgress = (elapsed / duration) * 100;
-
-        if (newProgress >= 100) {
-          setProgress(0);
-          setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
-        } else {
-          setProgress(newProgress);
-          progressRef.current = requestAnimationFrame(updateProgress);
-        }
-      };
-
-      progressRef.current = requestAnimationFrame(updateProgress);
-
-      return () => {
-        if (progressRef.current) {
-          cancelAnimationFrame(progressRef.current);
-        }
-      };
-    } else {
+    if (!isAutoPlay || isPlaying || !isLoaded) {
       setProgress(0);
+      return;
     }
-  }, [
-    isAutoPlay,
-    isPlaying,
-    currentSlide,
-    mediaItems.length,
-    isVideo,
-    isLoaded,
-  ]);
 
-  // Video handling
+    const duration = isVideo ? 8000 : 6000;
+    const startTime = performance.now();
+
+    const updateProgress = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const newProgress = Math.min((elapsed / duration) * 100, 100);
+
+      if (newProgress >= 100) {
+        setProgress(0);
+        setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
+      } else {
+        setProgress(newProgress);
+        progressRef.current = requestAnimationFrame(updateProgress);
+      }
+    };
+
+    progressRef.current = requestAnimationFrame(updateProgress);
+
+    return () => {
+      if (progressRef.current) {
+        cancelAnimationFrame(progressRef.current);
+      }
+    };
+  }, [isAutoPlay, isPlaying, currentSlide, mediaItems.length, isVideo, isLoaded]);
+
+  // Optimized video handling
   useEffect(() => {
-    if (videoRef.current && isVideo) {
-      videoRef.current.currentTime = 0;
-      if (isPlaying) {
-        videoRef.current.play();
+    if (!videoRef.current || !isVideo) return;
+    
+    const video = videoRef.current;
+    video.currentTime = 0;
+    
+    if (isPlaying) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Handle play rejection silently
+        });
       }
     }
-  }, [currentSlide, isVideo]);
+  }, [currentSlide, isVideo, isPlaying]);
 
-  const nextSlide = () => {
+  // Memoized navigation functions
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
     setIsPlaying(false);
     setProgress(0);
-    setShowShareMenu(false);
-  };
+  }, [mediaItems.length]);
 
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + mediaItems.length) % mediaItems.length
-    );
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     setIsPlaying(false);
     setProgress(0);
-    setShowShareMenu(false);
-  };
+  }, [mediaItems.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = useCallback((index) => {
     setCurrentSlide(index);
     setIsPlaying(false);
     setProgress(0);
-    setShowShareMenu(false);
-  };
+  }, []);
 
-  const togglePlay = () => {
-    if (isVideo && videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
+  const togglePlay = useCallback(() => {
+    if (!isVideo || !videoRef.current) return;
+    
+    const video = videoRef.current;
+    if (isPlaying) {
+      video.pause();
+    } else {
+      video.play().catch(() => {});
+    }
+    setIsPlaying(!isPlaying);
+  }, [isVideo, isPlaying]);
+
+  const toggleMute = useCallback(() => {
+    if (!videoRef.current) return;
+    const newMuted = !isMuted;
+    videoRef.current.muted = newMuted;
+    setIsMuted(newMuted);
+  }, [isMuted]);
+
+  // Optimized controls visibility
+  const handleMouseEnter = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setShowControls(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    timeoutRef.current = setTimeout(() => setShowControls(false), 1000);
+  }, []);
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      if (progressRef.current) {
+        cancelAnimationFrame(progressRef.current);
       }
-      setIsPlaying(!isPlaying);
-    }
-  };
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlay(!isAutoPlay);
-    if (!isAutoPlay) {
-      setProgress(0);
-    }
-  };
-
-  const resetSlider = () => {
-    setCurrentSlide(0);
-    setIsPlaying(false);
-    setProgress(0);
-    setShowShareMenu(false);
-  };
+  if (!isLoaded) {
+    return (
+      <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] min-h-[400px] max-h-[900px] bg-gray-100 flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={`
-      relative w-full transition-all duration-700 ease-out
-      ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-    `}
-    >
-      {/* Main Container */}
-      <div
-        ref={containerRef}
-        className="
-          relative w-full overflow-hidden
-          h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh]
-          min-h-[400px] max-h-[900px]
-          bg-gradient-to-br from-gray-900 to-black
-          shadow-2xl
-        "
-      >
-        {/* Enhanced Progress Bar
-        <div className="absolute top-0 left-0 right-0 h-2 bg-black z-30">
-          <div 
-            className="h-full bg-[#8b2727] transition-all duration-100 ease-linear relative"
-            style={{ width: `${progress}%` }}
-          >
-            <div className="absolute right-0 top-0 w-2 h-full bg-[#d2af6f] rounded-full"></div>
-          </div>
-        </div> */}
+    <div className="relative w-full">
 
+      {/* Main Container */}
+      <div className="relative w-full overflow-hidden h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] min-h-[400px] max-h-[900px] bg-gray-100">
         {/* Media Display */}
         <div className="absolute inset-0 z-10">
           {isVideo ? (
@@ -211,6 +195,7 @@ const BeautifulSlider = () => {
               muted={isMuted}
               loop
               playsInline
+              preload="metadata"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
             >
@@ -220,157 +205,111 @@ const BeautifulSlider = () => {
             <img
               src={currentItem.url}
               alt={currentItem.title}
-              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              className="w-full h-full object-cover"
+              loading="eager"
             />
           )}
         </div>
 
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 z-20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent z-20"></div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20" />
 
-        {/* Enhanced Top Bar */}
-        <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-2 sm:p-4 md:p-6 z-40">
-          {/* Left Side */}
-          <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
-            {/* Auto Play Status */}
-            {/* <div
-              className={`my-2 px-1.5 py-0.5 sm:px-4 sm:py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                isAutoPlay
-                  ? "bg-[#d2af6f] text-black border border-[#d2af6f]/30"
-                  : "bg-[#8b2727] text-white border border-[#8b2727]/30"
-              }`}
+        {/* Top Controls */}
+        <div className="absolute top-4 right-4 flex items-center gap-2 z-40">
+          {isVideo && (
+            <button
+              onClick={toggleMute}
+              className="p-2 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-colors"
             >
-              {isAutoPlay ? "AUTO" : "MANUAL"}
-            </div> */}
-          </div>
-
-          {/* Right Side */}
-          <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
-            {/* Video Controls */}
-            {isVideo && (
-              <>
-                <button
-                  onClick={toggleMute}
-                  className="p-1.5 sm:p-2 md:p-2.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 transition-all duration-200"
-                >
-                  {isMuted ? (
-                    <VolumeX className="w-3 h-3 sm:w-4 sm:h-4" />
-                  ) : (
-                    <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />
-                  )}
-                </button>
-              </>
-            )}
-          </div>
+              {isMuted ? (
+                <VolumeX className="w-4 h-4" />
+              ) : (
+                <Volume2 className="w-4 h-4" />
+              )}
+            </button>
+          )}
         </div>
 
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 p-2 sm:p-3 md:p-4 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 hover:scale-110 transition-all duration-200 z-40"
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-all z-40"
         >
-          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 p-2 sm:p-3 md:p-4 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 hover:scale-110 transition-all duration-200 z-40"
+          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-all z-40"
         >
-          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+          <ChevronRight className="w-5 h-5" />
         </button>
 
         {/* Video Play Button */}
         {isVideo && (
           <div
             className="absolute inset-0 flex items-center justify-center z-30"
-            onMouseEnter={() => setShowControls(true)}
-            onMouseLeave={() => setShowControls(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <button
               onClick={togglePlay}
-              className={`
-                p-3 sm:p-4 md:p-6 lg:p-8 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white 
-                hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 hover:scale-110 transition-all duration-300 shadow-2xl
-                ${showControls ? "opacity-100 scale-100" : "opacity-0 scale-95"}
-              `}
+              className={`p-6 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-all ${
+                showControls ? "opacity-100" : "opacity-0"
+              }`}
             >
               {isPlaying ? (
-                <Pause className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
+                <Pause className="w-8 h-8" />
               ) : (
-                <Play className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 ml-1" />
+                <Play className="w-8 h-8 ml-1" />
               )}
             </button>
           </div>
         )}
 
-        {/* Bottom Content - Only for Images */}
+        {/* Content - Only for Images */}
         {!isVideo && (
-          <div className="absolute bottom-40 left-10 right-0 z-30">
-            <div className="ml-2 sm:ml-4 md:ml-6 lg:ml-8 pl-2 sm:pl-4 md:pl-6 lg:pl-8 pr-2 sm:pr-4 md:pr-6 pb-4 sm:pb-6">
-              <div className="max-w-4xl">
-                {/* Title */}
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 leading-tight">
-                  {currentItem.title}
-                </h1>
-
-                {/* Description */}
-                {currentItem.description && (
-                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-3 sm:mb-4 md:mb-6 max-w-3xl leading-relaxed">
-                    {currentItem.description}
-                  </p>
-                )}
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6"></div>
-              </div>
+          <div className="absolute bottom-20 left-8 right-8 z-30">
+            <div className="max-w-4xl">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-white mb-4 leading-tight">
+                {currentItem.title}
+              </h1>
+              {currentItem.description && (
+                <p className="text-white/90 text-base lg:text-lg max-w-3xl leading-relaxed">
+                  {currentItem.description}
+                </p>
+              )}
             </div>
           </div>
         )}
 
-        {/* Enhanced Bottom Controls */}
+        {/* Bottom Controls */}
         <div className="absolute bottom-0 left-0 right-0 z-30">
-          <div className="flex items-center justify-between px-2 sm:px-4 md:px-6 pb-2 sm:pb-4 md:pb-6">
-            {/* Left Side - Slide Indicators */}
-            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2">
-              {mediaItems.map((item, index) => (
+          <div className="flex items-center justify-between px-6 pb-6">
+            {/* Slide Indicators */}
+            <div className="flex items-center gap-2">
+              {mediaItems.map((_, index) => (
                 <button
-                  key={item.id}
+                  key={index}
                   onClick={() => goToSlide(index)}
-                  className={`
-                    relative overflow-hidden rounded-full transition-all duration-300 group
-                    ${
-                      index === currentSlide
-                        ? "w-6 sm:w-8 md:w-12 h-1.5 sm:h-2 md:h-2.5 bg-[#8b2727] shadow-lg"
-                        : "w-1.5 sm:w-2 md:w-2.5 h-1.5 sm:h-2 md:h-2.5 bg-white/60 hover:bg-white/60"
-                    }
-                  `}
-                ></button>
+                  className={`transition-all duration-300 rounded-full ${
+                    index === currentSlide
+                      ? "w-8 h-2 bg-white"
+                      : "w-2 h-2 bg-white/60 hover:bg-white/80"
+                  }`}
+                />
               ))}
             </div>
 
-            {/* Right Side - Enhanced Controls */}
-            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
-              {/* Enhanced Pagination Counter */}
-              <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full">
-                <span className="text-white text-xs sm:text-sm font-mono">
-                  {String(currentSlide + 1).padStart(2, "0")} of{" "}
-                  {String(mediaItems.length).padStart(2, "0")}
-                </span>
-                <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white/60 rounded-full"></div>
-                <span className="text-white/80 text-xs hidden sm:inline">
-                  {isVideo ? "ADS" : "BANNER"}
-                </span>
-              </div>
-
-              {/* Reset Button */}
-              {/* <button
-                onClick={resetSlider}
-                className="p-1.5 sm:p-2 md:p-2.5 bg-black/40 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-[#8b2727]/40 hover:border-[#8b2727]/40 transition-all duration-200 hover:scale-105"
-                title="Reset to first slide"
-              >
-                <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4" />
-              </button> */}
+            {/* Counter */}
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full">
+              <span className="text-white text-sm font-mono">
+                {String(currentSlide + 1).padStart(2, "0")} / {String(mediaItems.length).padStart(2, "0")}
+              </span>
+              <div className="w-1 h-1 bg-white/60 rounded-full" />
+              <span className="text-white/80 text-xs">
+                {isVideo ? "VIDEO" : "IMAGE"}
+              </span>
             </div>
           </div>
         </div>
