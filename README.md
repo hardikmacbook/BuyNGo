@@ -77,9 +77,9 @@ npm run dev
 
 ## 🛠️ Tech Stack
 
-| Frontend | Styling | Language | Deployment |
-|----------|---------|----------|------------|
-| React 18+ | Tailwind CSS | JavaScript ES6+ | Vercel |
+| Frontend | Styling | Language | Deployment | Frontend |
+|----------|---------|----------|------------| ------------|
+| React 18+ | Tailwind CSS | JavaScript ES6+ | Vercel | API
 | React Router | CSS3 | HTML5 | GitHub Actions |
 
 ---
