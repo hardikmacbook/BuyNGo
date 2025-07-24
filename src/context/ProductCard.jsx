@@ -81,11 +81,11 @@ const ProductCard = () => {
         {products.slice(0, 8).map((product) => (
           <div 
             key={product.id}
-            className="group border-2 border-gray-100 rounded-2xl bg-white hover:border-gray-300 hover:-translate-y-1 transition-all duration-300 ease-out hover:shadow-lg"
+            className="relative group border-2 border-gray-100 rounded-2xl bg-white hover:border-gray-300 hover:-translate-y-1 transition-all duration-300 ease-out hover:shadow-lg"
           >
             {/* Discount Badge */}
             {product.discountPercentage > 0 && (
-              <div className="absolute top-4 right-4 bg-gray-900 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
+              <div className="absolute top-4 right-4 bg-black text-white px-3 py-1 rounded-full text-xs font-medium z-5">
                 -{Math.round(product.discountPercentage)}%
               </div>
             )}
@@ -166,9 +166,9 @@ const ProductCard = () => {
 
       {/* View All Products Button */}
       <div className="text-center mt-8">
-        <button className="border-2 border-gray-200 px-8 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300">
+        <Link to="/shop" className="border-2 border-gray-200 px-8 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300">
           View All Products
-        </button>
+        </Link>
       </div>
     </section>
   );
