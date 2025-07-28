@@ -231,6 +231,8 @@ export default function ContactLayout() {
                     </div>
                   </div>
 
+
+
                   <div className="group">
                     <label htmlFor="message" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
                       Project Details *
