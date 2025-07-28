@@ -49,7 +49,7 @@
 - **Performance Optimized**: Lazy loading and code splitting implemented -->
 
 ### API
-- **: https://68850ebb745306380a3a371f.mockapi.io/ByuNGO
+- **Live API**: https://68850ebb745306380a3a371f.mockapi.io/ByuNGO
 
 </div>
 
