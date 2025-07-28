@@ -268,18 +268,19 @@ const BeautifulSlider = () => {
 
         {/* Content - Only for Images */}
         {!isVideo && (
-          <div className="absolute bottom-20 left-8 right-8 z-30">
-            <div className="max-w-4xl">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-white mb-4 leading-tight">
-                {currentItem.title}
-              </h1>
-              {currentItem.description && (
-                <p className="text-white/90 text-base lg:text-lg max-w-3xl leading-relaxed">
-                  {currentItem.description}
-                </p>
-              )}
-            </div>
-          </div>
+          <div className="absolute top-70 left-20 z-30">
+  <div className="max-w-4xl px-8">
+    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-white mb-4 leading-tight">
+      {currentItem.title}
+    </h1>
+    {currentItem.description && (
+      <p className="text-white/90 text-base lg:text-lg max-w-3xl leading-relaxed text-center">
+        {currentItem.description}
+      </p>
+    )}
+  </div>
+</div>
+
         )}
 
         {/* Bottom Controls */}
