@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import ad1 from "../../../assets/images/ad1.mp4";
-import AppleAds from "../../../assets/images/apple.mp4";  
+import AppleAds from "../../../../public/ads/apple.mp4";  
 
 const BeautifulSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
