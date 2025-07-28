@@ -1,41 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, RotateCcw } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 
-const SimpleSlider = () => {
+const BeautifulSlider = () => {
   // ===== BASIC STATES =====
-  // કયા slide પર છીએ
+  // kya slide par hai
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Video play થઈ રહ્યો છે કે નહીં
+  // video play thay raho che ke nahi
   const [isPlaying, setIsPlaying] = useState(false);
   
-  // Video mute છે કે નહીં
+  // video mute che ke nahi
   const [isMuted, setIsMuted] = useState(true);
   
-  // AutoPlay ચાલુ છે કે નહીં
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
-  
-  // Progress કેટલો થયો (0-100%)
-  const [progress, setProgress] = useState(0);
-  
-  // API નો data
+  // API no data
   const [mediaItems, setMediaItems] = useState([]);
   
-  // Loading state
+  // loading state
   const [isLoading, setIsLoading] = useState(true);
   
-  // Error state
+  // error state
   const [error, setError] = useState(null);
 
   // ===== REFS =====
-  const videoRef = useRef(null); // Video element માટે
-  const timerRef = useRef(null); // Timer માટે
+  const videoRef = useRef(null); // video element mate
 
   // ===== API CALL =====
-  // Component load થાય ત્યારે API call કરો
+  // component load thay tyare API call karo
   useEffect(() => {
     const fetchData = async () => {
-      console.log("🔄 API call કરી રહ્યા છીએ...");
+      console.log("API call kari rahya chiye...");
       
       try {
         // API call
@@ -46,14 +39,14 @@ const SimpleSlider = () => {
         }
         
         const data = await response.json();
-        console.log("✅ Data મળ્યો:", data);
+        console.log("Data malyo:", data);
         
-        // Data set કરો
+        // data set karo
         setMediaItems(data);
         setError(null);
         
       } catch (err) {
-        console.error("❌ Error:", err);
+        console.error("Error ayo:", err);
         setError(err.message);
       } finally {
         setIsLoading(false);
@@ -61,63 +54,19 @@ const SimpleSlider = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency - ફક્ત એક જ વાર run થશે
+  }, []); // empty dependency - fakat ek j var run thase
 
   // ===== CURRENT ITEM =====
-  // હાલમાં કયો item display કરવો છે
+  // haal ma kyo item display karvo che
   const currentItem = mediaItems[currentSlide] || null;
   const isVideo = currentItem?.type === "video";
 
-  // ===== AUTO-SLIDE TIMER =====
-  // AutoPlay માટે timer
-  useEffect(() => {
-    // જો AutoPlay બંધ છે અથવા video play થઈ રહ્યો છે તો timer શરૂ ન કરો
-    if (!isAutoPlay || isPlaying || mediaItems.length === 0) {
-      setProgress(0);
-      return;
-    }
-
-    console.log("⏰ Timer શરૂ કર્યું");
-    
-    // Video માટે 8 સેકંડ, Image માટે 6 સેકંડ
-    const duration = isVideo ? 8000 : 6000;
-    let startTime = Date.now();
-
-    // Progress update કરવા માટે
-    const updateProgress = () => {
-      const elapsed = Date.now() - startTime;
-      const progressPercent = (elapsed / duration) * 100;
-
-      if (progressPercent >= 100) {
-        // Next slide પર જાવ
-        setCurrentSlide(prev => (prev + 1) % mediaItems.length);
-        setProgress(0);
-        console.log("➡️ Next slide પર ગયા");
-      } else {
-        // Progress update કરો
-        setProgress(progressPercent);
-        timerRef.current = setTimeout(updateProgress, 50); // 50ms માં update
-      }
-    };
-
-    // Timer શરૂ કરો
-    timerRef.current = setTimeout(updateProgress, 50);
-
-    // Cleanup function
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-        console.log("🛑 Timer બંધ કર્યું");
-      }
-    };
-  }, [currentSlide, isAutoPlay, isPlaying, mediaItems.length, isVideo]);
-
   // ===== VIDEO HANDLING =====
-  // Video ના લીધે જ્યારે slide change થાય
+  // video na lidhe jyare slide change thay
   useEffect(() => {
     if (videoRef.current && isVideo) {
       const video = videoRef.current;
-      video.currentTime = 0; // Video શરૂઆતથી ચલાવો
+      video.currentTime = 0; // video shuruaat thi chalavo
 
       if (isPlaying) {
         video.play().catch(err => console.log("Video play error:", err));
@@ -129,113 +78,94 @@ const SimpleSlider = () => {
 
   // ===== BUTTON FUNCTIONS =====
   
-  // Next slide પર જાવ
+  // next slide par jav
   const nextSlide = () => {
-    console.log("➡️ Next button દબાવ્યું");
+    console.log("Next button dabavyu");
     setCurrentSlide(prev => (prev + 1) % mediaItems.length);
     setIsPlaying(false);
-    setProgress(0);
   };
 
-  // Previous slide પર જાવ
+  // previous slide par jav
   const prevSlide = () => {
-    console.log("⬅️ Previous button દબાવ્યું");
+    console.log("Previous button dabavyu");
     setCurrentSlide(prev => (prev - 1 + mediaItems.length) % mediaItems.length);
     setIsPlaying(false);
-    setProgress(0);
   };
 
-  // Specific slide પર જાવ
+  // specific slide par jav
   const goToSlide = (index) => {
-    console.log(`🎯 Slide ${index + 1} પર ગયા`);
+    console.log(`Slide ${index + 1} par gaya`);
     setCurrentSlide(index);
     setIsPlaying(false);
-    setProgress(0);
   };
 
-  // Video play/pause toggle
+  // video play/pause toggle
   const togglePlay = () => {
     if (!isVideo || !videoRef.current) return;
     
     if (isPlaying) {
       videoRef.current.pause();
-      console.log("⏸️ Video pause કર્યું");
+      console.log("Video pause karyu");
     } else {
       videoRef.current.play();
-      console.log("▶️ Video play કર્યું");
+      console.log("Video play karyu");
     }
     setIsPlaying(!isPlaying);
   };
 
-  // Sound toggle
+  // sound toggle
   const toggleMute = () => {
     if (!videoRef.current) return;
     
     const newMuted = !isMuted;
     videoRef.current.muted = newMuted;
     setIsMuted(newMuted);
-    console.log(newMuted ? "🔇 Mute કર્યું" : "🔊 Unmute કર્યું");
+    console.log(newMuted ? "Mute karyu" : "Unmute karyu");
   };
 
-  // AutoPlay toggle
-  const toggleAutoPlay = () => {
-    setIsAutoPlay(prev => !prev);
-    setProgress(0);
-    console.log(isAutoPlay ? "⏹️ AutoPlay બંધ કર્યું" : "▶️ AutoPlay ચાલુ કર્યું");
-  };
-
-  // Retry function
+  // retry function
   const retryFetch = () => {
-    console.log("🔄 Retry કરી રહ્યા છીએ...");
+    console.log("Retry kari rahya chiye...");
     setError(null);
     setIsLoading(true);
     window.location.reload();
   };
 
-  // Cleanup when component unmount થાય
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
-  }, []);
-
   // ===== RENDER CONDITIONS =====
   
-  // Loading state
+  // loading state
   if (isLoading) {
     return (
       <div className="relative w-full h-[80vh] bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading slider...</p>
+          <p className="text-gray-600">Slider load thay che...</p>
         </div>
       </div>
     );
   }
 
-  // Error state
+  // error state
   if (error || mediaItems.length === 0) {
     return (
       <div className="relative w-full h-[80vh] bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-500 text-4xl mb-4">⚠️</div>
-          <h3 className="text-gray-800 text-lg font-medium mb-2">Error Loading Content</h3>
-          <p className="text-gray-600 text-sm mb-4">{error || 'No data found'}</p>
+          <h3 className="text-gray-800 text-lg font-medium mb-2">Content load nathi thatu</h3>
+          <p className="text-gray-600 text-sm mb-4">{error || 'Koi data nathi maltu'}</p>
           <button onClick={retryFetch} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            Retry
+            Retry karo
           </button>
         </div>
       </div>
     );
   }
 
-  // No current item
+  // no current item
   if (!currentItem) {
     return (
       <div className="relative w-full h-[80vh] bg-gray-100 flex items-center justify-center">
-        <p>No content available</p>
+        <p>Koi content available nathi</p>
       </div>
     );
   }
@@ -245,24 +175,12 @@ const SimpleSlider = () => {
     <div className="relative w-full">
       
       {/* Main Container */}
-      <div className="relative w-full h-[80vh] bg-gray-900 overflow-hidden">
-        
-        {/* Progress Bar - ફક્ત AutoPlay ચાલુ હોય ત્યારે દેખાશે */}
-        {isAutoPlay && progress > 0 && (
-          <div className="absolute top-0 left-0 right-0 z-50">
-            <div className="h-1 bg-gray-700">
-              <div 
-                className="h-full bg-white transition-all duration-100"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          </div>
-        )}
+      <div className="relative w-full h-[80vh] overflow-hidden">
 
-        {/* Media Content - Video અથવા Image */}
+        {/* Media Content - video athva image */}
         <div className="absolute inset-0">
           {isVideo ? (
-            // Video Element
+            // video element
             <video
               ref={videoRef}
               className="w-full h-full object-cover"
@@ -274,7 +192,7 @@ const SimpleSlider = () => {
               <source src={currentItem.url} type="video/mp4" />
             </video>
           ) : (
-            // Image Element
+            // image element
             <img
               src={currentItem.url}
               alt={currentItem.title}
@@ -283,39 +201,27 @@ const SimpleSlider = () => {
           )}
         </div>
 
-        {/* Dark Overlay - Text દેખાવા માટે */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* dark overlay - text dekhava mate */}
+        <div className="absolute inset-0" />
 
-        {/* Top Controls - AutoPlay અને Sound buttons */}
+        {/* top controls - sound button */}
         <div className="absolute top-4 right-4 flex gap-2 z-40">
-          
-          {/* AutoPlay Toggle Button */}
-          <button
-            onClick={toggleAutoPlay}
-            className={`p-2 rounded-full text-white border border-white/30 ${
-              isAutoPlay ? 'bg-green-500/70' : 'bg-black/50'
-            }`}
-            title={isAutoPlay ? 'AutoPlay બંધ કરો' : 'AutoPlay ચાલુ કરો'}
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
-
-          {/* Sound Toggle Button - ફક્ત Video માટે */}
+          {/* sound toggle button - fakat video mate */}
           {isVideo && (
             <button
               onClick={toggleMute}
               className="p-2 bg-black/50 rounded-full text-white border border-white/30"
-              title={isMuted ? 'Sound ચાલુ કરો' : 'Sound બંધ કરો'}
+              title={isMuted ? 'Sound chalu karo' : 'Sound band karo'}
             >
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </button>
           )}
         </div>
 
-        {/* Navigation Arrows - ફક્ત multiple slides હોય તો */}
+        {/* navigation arrows - fakat multiple slides hoy to */}
         {mediaItems.length > 1 && (
           <>
-            {/* Previous Button */}
+            {/* previous button */}
             <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 rounded-full text-white border border-white/30 hover:bg-black/70 z-40"
@@ -323,7 +229,7 @@ const SimpleSlider = () => {
               <ChevronLeft className="w-5 h-5" />
             </button>
 
-            {/* Next Button */}
+            {/* next button */}
             <button
               onClick={nextSlide}
               className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 rounded-full text-white border border-white/30 hover:bg-black/70 z-40"
@@ -333,7 +239,7 @@ const SimpleSlider = () => {
           </>
         )}
 
-        {/* Video Play Button - ફક્ત Video માટે */}
+        {/* video play button - fakat video mate */}
         {isVideo && (
           <div className="absolute inset-0 flex items-center justify-center z-30">
             <button
@@ -349,7 +255,7 @@ const SimpleSlider = () => {
           </div>
         )}
 
-        {/* Content Text - ફક્ત Image માટે */}
+        {/* content text - fakat image mate */}
         {!isVideo && (
           <div className="absolute top-1/2 left-8 -translate-y-1/2 z-30">
             <div className="max-w-2xl">
@@ -365,10 +271,10 @@ const SimpleSlider = () => {
           </div>
         )}
 
-        {/* Bottom Controls */}
+        {/* bottom controls */}
         <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center z-30">
           
-          {/* Slide Indicators - Dots */}
+          {/* slide indicators - dots */}
           {mediaItems.length > 1 && (
             <div className="flex gap-2">
               {mediaItems.map((_, index) => (
@@ -385,7 +291,7 @@ const SimpleSlider = () => {
             </div>
           )}
 
-          {/* Slide Counter */}
+          {/* slide counter */}
           <div className="flex items-center gap-2 px-3 py-1 bg-black/50 rounded-full border border-white/30">
             <span className="text-white text-sm">
               {currentSlide + 1} / {mediaItems.length}
@@ -393,9 +299,6 @@ const SimpleSlider = () => {
             <span className="text-white/70 text-xs">
               {isVideo ? "VIDEO" : "IMAGE"}
             </span>
-            {isAutoPlay && (
-              <span className="text-green-400 text-xs">AUTO</span>
-            )}
           </div>
         </div>
 
@@ -404,4 +307,4 @@ const SimpleSlider = () => {
   );
 };
 
-export default SimpleSlider;
+export default BeautifulSlider;
