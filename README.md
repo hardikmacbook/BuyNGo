@@ -30,7 +30,6 @@
 
 ### 🛒 Shopping Cart Page
 <img src="./src/assets/images/cart-page.png" alt="Shopping Cart" style="border-radius: 12px; margin: 20px 0;" width="700">
->>>>>>> 1cd370fc4c9edd08e4c4cb3c990ea6f756795bac
 
 ---
 
