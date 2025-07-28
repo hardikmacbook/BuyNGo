@@ -56,7 +56,7 @@ const ShopLayout = () => {
   };
 
   useEffect(() => {
-    fetch("https://68850ebb745306380a3a371f.mockapi.io/ByuNGO")
+    fetch("https://68871534071f195ca97f2f9b.mockapi.io/BuyNGO-Products")
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
