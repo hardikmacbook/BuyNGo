@@ -5,7 +5,6 @@ export default function ContactLayout() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    service: '',
     message: ''
   });
 
@@ -36,17 +35,6 @@ export default function ContactLayout() {
     }
   ];
 
-  const services = [
-    "Electrical Installation",
-    "Industrial Wiring",
-    "Power Systems",
-    "Lighting Solutions",
-    "Maintenance & Repair",
-    "Emergency Services",
-    "Consultation",
-    "Other"
-  ];
-
   const validateField = (name, value) => {
     let error = '';
     
@@ -61,11 +49,6 @@ export default function ContactLayout() {
           error = 'Email is required';
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
           error = 'Please enter a valid email address';
-        }
-        break;
-      case 'message':
-        if (!value.trim()) {
-          error = 'Project Details are required';
         }
         break;
       default:
@@ -140,14 +123,11 @@ export default function ContactLayout() {
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.fullName);
       formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('company', formData.company);
-      formDataToSend.append('service', formData.service);
       formDataToSend.append('message', formData.message);
       formDataToSend.append('_replyto', formData.email);
       formDataToSend.append('_subject', `New Contact Form Submission from ${formData.fullName}`);
 
-      const response = await fetch('https://formspree.io/f/xzzglbyp', {
+      const response = await fetch('https://formspree.io/f/xrblkqln', {
         method: 'POST',
         body: formDataToSend,
         headers: {
@@ -163,9 +143,6 @@ export default function ContactLayout() {
         setFormData({
           fullName: '',
           email: '',
-          phone: '',
-          company: '',
-          service: '',
           message: ''
         });
         setFieldErrors({});
@@ -252,24 +229,6 @@ export default function ContactLayout() {
                         <p className="mt-2 text-sm text-[#8b2727]">{fieldErrors.email}</p>
                       )}
                     </div>
-                  </div>
-
-                  <div className="group">
-                    <label htmlFor="service" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
-                      Service Required
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleInputChange}
-                      className="w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-200 focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg text-slate-700 group-hover:border-slate-300 outline-none"
-                    >
-                      <option value="">Select a service</option>
-                      {services.map((service, index) => (
-                        <option key={index} value={service}>{service}</option>
-                      ))}
-                    </select>
                   </div>
 
                   <div className="group">
