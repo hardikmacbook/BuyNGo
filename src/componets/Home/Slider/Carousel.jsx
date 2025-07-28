@@ -268,7 +268,7 @@ const BeautifulSlider = () => {
 
         {/* Content - Only for Images */}
         {!isVideo && (
-          <div className="absolute top-70 left-20 z-30">
+          <div className="absolute lg:top-70 lg:left-20 z-30">
   <div className="max-w-4xl px-8">
     <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-white mb-4 leading-tight">
       {currentItem.title}
