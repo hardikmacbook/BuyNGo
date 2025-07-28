@@ -9,62 +9,82 @@ const BeautifulSlider = () => {
   const [showControls, setShowControls] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [mediaItems, setMediaItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   const videoRef = useRef(null);
   const progressRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  // Memoized media items to prevent recreation
-  const mediaItems = useMemo(() => [
-    {
-      id: 1,
-      type: "video",
-      title: "Featured Products",
-      url: "https://e3w9maxxkbm3wyrc.public.blob.vercel-storage.com/apple.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
-    },
-    {
-      id: 2,
-      type: "image",
-      title: "Premium Collection",
-      description: "Discover our carefully curated selection of premium products designed for modern living.",
-      url: "https://images.unsplash.com/photo-1607083206325-caf1edba7a0f?w=1920&h=800&fit=crop&q=90",
-    },
-    {
-      id: 3,
-      type: "image",
-      title: "New Arrivals",
-      description: "Explore the latest additions to our collection with innovative designs and quality craftsmanship.",
-      url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
-    },
-    {
-      id: 4,
-      type: "video",
-      title: "Brand Showcase",
-      url: "https://e3w9maxxkbm3wyrc.public.blob.vercel-storage.com/cloths.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
-    },
-    {
-      id: 5,
-      type: "image",
-      title: "Special Offers",
-      description: "Limited time deals on our most popular products with exceptional value and quality.",
-      url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
-    },
-  ], []);
+  // Fetch data from API
+  useEffect(() => {
+    const fetchSliderData = async () => {
+      setIsLoading(true);
+      setError(null);
+      
+      try {
+        const response = await fetch('https://68871534071f195ca97f2f9b.mockapi.io/BuyNGO-Slider');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Validate and set the data
+        if (Array.isArray(data) && data.length > 0) {
+          setMediaItems(data);
+        } else {
+          throw new Error('Invalid data format or empty array');
+        }
+      } catch (err) {
+        console.error('Error fetching slider data:', err);
+        setError(err.message);
+        
+        // Fallback to default data in case of error
+        setMediaItems([
+          {
+            id: 1,
+            type: "image",
+            title: "Error Loading Data",
+            description: "Unable to load slider content. Please try again later.",
+            url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
+          }
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const currentItem = useMemo(() => mediaItems[currentSlide], [mediaItems, currentSlide]);
-  const isVideo = currentItem.type === "video";
+    fetchSliderData();
+  }, []);
+
+  const currentItem = useMemo(() => 
+    mediaItems.length > 0 ? mediaItems[currentSlide] : null, 
+    [mediaItems, currentSlide]
+  );
+  
+  const isVideo = currentItem?.type === "video";
 
   // Fast loading effect
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!isLoading && mediaItems.length > 0) {
+      const timer = setTimeout(() => setIsLoaded(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, mediaItems.length]);
+
+  // Reset currentSlide when mediaItems change
+  useEffect(() => {
+    if (mediaItems.length > 0 && currentSlide >= mediaItems.length) {
+      setCurrentSlide(0);
+    }
+  }, [mediaItems.length, currentSlide]);
 
   // Optimized progress and auto-slide with RAF
   useEffect(() => {
-    if (!isAutoPlay || isPlaying || !isLoaded) {
+    if (!isAutoPlay || isPlaying || !isLoaded || mediaItems.length === 0) {
       setProgress(0);
       return;
     }
@@ -113,12 +133,14 @@ const BeautifulSlider = () => {
 
   // Memoized navigation functions
   const nextSlide = useCallback(() => {
+    if (mediaItems.length === 0) return;
     setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
     setIsPlaying(false);
     setProgress(0);
   }, [mediaItems.length]);
 
   const prevSlide = useCallback(() => {
+    if (mediaItems.length === 0) return;
     setCurrentSlide((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     setIsPlaying(false);
     setProgress(0);
@@ -171,7 +193,38 @@ const BeautifulSlider = () => {
     };
   }, []);
 
-  if (!isLoaded) {
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] min-h-[400px] max-h-[900px] bg-gray-100 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
+          <p className="text-gray-600 text-sm">Loading slider content...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error && mediaItems.length === 0) {
+    return (
+      <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] min-h-[400px] max-h-[900px] bg-gray-100 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center px-4">
+          <div className="text-red-500 text-xl">⚠️</div>
+          <p className="text-gray-600 text-sm">Failed to load slider content</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-4 py-2 bg-gray-900 text-white text-sm rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Initial loading check
+  if (!isLoaded || !currentItem) {
     return (
       <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] min-h-[400px] max-h-[900px] bg-gray-100 flex items-center justify-center">
         <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
@@ -181,7 +234,6 @@ const BeautifulSlider = () => {
 
   return (
     <div className="relative w-full">
-
       {/* Main Container */}
       <div className="relative w-full overflow-hidden h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] min-h-[400px] max-h-[900px] bg-gray-100">
         {/* Media Display */}
@@ -203,7 +255,7 @@ const BeautifulSlider = () => {
           ) : (
             <img
               src={currentItem.url}
-              alt={currentItem.title}
+              alt={currentItem.title || 'Slider image'}
               className="w-full h-full object-cover"
               loading="eager"
             />
@@ -230,19 +282,23 @@ const BeautifulSlider = () => {
         </div>
 
         {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-all z-40"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
+        {mediaItems.length > 1 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-all z-40"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-all z-40"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-all z-40"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </>
+        )}
 
         {/* Video Play Button */}
         {isVideo && (
@@ -268,39 +324,39 @@ const BeautifulSlider = () => {
 
         {/* Content - Only for Images */}
         {!isVideo && (
-         <div className="absolute top-1/2 left-10 lg:left-20 z-30 transform -translate-y-1/2">
-  <div className="max-w-4xl px-8">
-    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-white mb-4 leading-tight">
-      {currentItem.title}
-    </h1>
-    {currentItem.description && (
-      <p className="text-white/90 text-base lg:text-lg max-w-3xl leading-relaxed">
-        {currentItem.description}
-      </p>
-    )}
-  </div>
-</div>
-
-
+          <div className="absolute top-1/2 left-10 lg:left-20 z-30 transform -translate-y-1/2">
+            <div className="max-w-4xl px-8">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-white mb-4 leading-tight">
+                {currentItem.title}
+              </h1>
+              {currentItem.description && (
+                <p className="text-white/90 text-base lg:text-lg max-w-3xl leading-relaxed">
+                  {currentItem.description}
+                </p>
+              )}
+            </div>
+          </div>
         )}
 
         {/* Bottom Controls */}
         <div className="absolute bottom-0 left-0 right-0 z-30">
           <div className="flex items-center justify-between px-6 pb-6">
             {/* Slide Indicators */}
-            <div className="flex items-center gap-2">
-              {mediaItems.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentSlide
-                      ? "w-8 h-2 bg-white"
-                      : "w-2 h-2 bg-white/60 hover:bg-white/80"
-                  }`}
-                />
-              ))}
-            </div>
+            {mediaItems.length > 1 && (
+              <div className="flex items-center gap-2">
+                {mediaItems.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`transition-all duration-300 rounded-full ${
+                      index === currentSlide
+                        ? "w-8 h-2 bg-white"
+                        : "w-2 h-2 bg-white/60 hover:bg-white/80"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
 
             {/* Counter */}
             <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full">
