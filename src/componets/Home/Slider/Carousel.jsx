@@ -139,7 +139,7 @@ const BeautifulSlider = () => {
       <div className="relative w-full h-[80vh] bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Slider load thay che...</p>
+          <p className="text-gray-600">Slider Loading...</p>
         </div>
       </div>
     );
@@ -257,18 +257,19 @@ const BeautifulSlider = () => {
 
         {/* content text - fakat image mate */}
         {!isVideo && (
-          <div className="absolute top-1/2 left-8 -translate-y-1/2 z-30">
-            <div className="max-w-2xl">
-              <h1 className="text-3xl md:text-5xl font-light text-white mb-4">
-                {currentItem.title}
-              </h1>
-              {currentItem.description && (
-                <p className="text-white/90 text-lg">
-                  {currentItem.description}
-                </p>
-              )}
-            </div>
-          </div>
+         <div className="absolute inset-y-0 left-10 lg:left-20 z-30 flex items-center">
+  <div className="max-w-4xl px-8">
+    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-white mb-4 leading-tight">
+      {currentItem.title}
+    </h1>
+    {currentItem.description && (
+      <p className="text-white/90 text-base lg:text-lg max-w-3xl leading-relaxed">
+        {currentItem.description}
+      </p>
+    )}
+  </div>
+</div>
+
         )}
 
         {/* bottom controls */}
