@@ -14,7 +14,6 @@
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-<<<<<<< HEAD
 <img src="./src/assets/images/md-home.png" alt="Home - BuyNGo" style="border-radius: 12px; margin: 20px 0;" width="700">
 
 ### 🛍️ Product Catalog
@@ -22,15 +21,6 @@
 
 ### 🛒 Shopping Cart & Checkout
 <img src="./src/assets/images/md-cart.png" alt="Cart - BuyNGO" style="border-radius: 12px; margin: 20px 0;" width="700">
-=======
-<img src="./src/assets/images/" alt="BuyNGo Home Page" style="border-radius: 12px; margin: 20px 0;" width="700">
-
-### 🛍️ Shop Page
-<img src="./src/assets/images/product-catalog.png" alt="Product Catalog" style="border-radius: 12px; margin: 20px 0;" width="700">
-
-### 🛒 Shopping Cart Page
-<img src="./src/assets/images/cart-page.png" alt="Shopping Cart" style="border-radius: 12px; margin: 20px 0;" width="700">
->>>>>>> 1cd370fc4c9edd08e4c4cb3c990ea6f756795bac
 
 ---
 
@@ -57,6 +47,9 @@
 - **API Integration**: RESTful API for product data and operations
 <!-- - **State Management**: Efficient state handling for cart and user data
 - **Performance Optimized**: Lazy loading and code splitting implemented -->
+
+### API
+- **Live API**: https://68850ebb745306380a3a371f.mockapi.io/ByuNGO
 
 </div>
 
