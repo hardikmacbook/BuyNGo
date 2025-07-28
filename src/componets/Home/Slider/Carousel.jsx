@@ -41,17 +41,8 @@ const BeautifulSlider = () => {
       } catch (err) {
         console.error('Error fetching slider data:', err);
         setError(err.message);
-        
-        // Fallback to default data in case of error
-        setMediaItems([
-          {
-            id: 1,
-            type: "image",
-            title: "Error Loading Data",
-            description: "Unable to load slider content. Please try again later.",
-            url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
-          }
-        ]);
+        // No fallback data - just set empty array
+        setMediaItems([]);
       } finally {
         setIsLoading(false);
       }
@@ -181,6 +172,14 @@ const BeautifulSlider = () => {
     timeoutRef.current = setTimeout(() => setShowControls(false), 1000);
   }, []);
 
+  // Retry function
+  const retryFetch = useCallback(() => {
+    setError(null);
+    setIsLoading(true);
+    // Re-trigger the useEffect
+    window.location.reload();
+  }, []);
+
   // Cleanup
   useEffect(() => {
     return () => {
@@ -205,18 +204,21 @@ const BeautifulSlider = () => {
     );
   }
 
-  // Error state
-  if (error && mediaItems.length === 0) {
+  // Error state - only show error, no fallback content
+  if (error || mediaItems.length === 0) {
     return (
       <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] min-h-[400px] max-h-[900px] bg-gray-100 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4 text-center px-4">
-          <div className="text-red-500 text-xl">⚠️</div>
-          <p className="text-gray-600 text-sm">Failed to load slider content</p>
+          <div className="text-red-500 text-4xl">⚠️</div>
+          <h3 className="text-gray-800 text-lg font-medium">Failed to Load Content</h3>
+          <p className="text-gray-600 text-sm max-w-md">
+            {error || 'No slider content available. Please check your connection and try again.'}
+          </p>
           <button 
-            onClick={() => window.location.reload()} 
-            className="px-4 py-2 bg-gray-900 text-white text-sm rounded-md hover:bg-gray-800 transition-colors"
+            onClick={retryFetch}
+            className="px-6 py-2 bg-gray-900 text-white text-sm rounded-md hover:bg-gray-800 transition-colors"
           >
-            Retry
+            Try Again
           </button>
         </div>
       </div>
