@@ -42,7 +42,7 @@ const ProductDetails = () => {
         setLoading(true);
         setError(false);
         
-        const response = await fetch("https://68850ebb745306380a3a371f.mockapi.io/ByuNGO");
+        const response = await fetch("https://68876fc0071f195ca980bfbd.mockapi.io/BuyNGo-Products");
         
         if (!response.ok) {
           throw new Error('Failed to fetch products');

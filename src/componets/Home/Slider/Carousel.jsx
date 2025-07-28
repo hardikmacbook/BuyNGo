@@ -24,7 +24,7 @@ const BeautifulSlider = () => {
       setError(null);
       
       try {
-        const response = await fetch('https://68871534071f195ca97f2f9b.mockapi.io/BuyNGO-Slider');
+        const response = await fetch('https://68876fc0071f195ca980bfbd.mockapi.io/BuyNGO-Slider');
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
