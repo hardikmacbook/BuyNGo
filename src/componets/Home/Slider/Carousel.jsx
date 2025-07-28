@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
-import ad1 from "../../../assets/images/ad1.mp4";
 
 const BeautifulSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,7 +41,7 @@ const BeautifulSlider = () => {
       id: 4,
       type: "video",
       title: "Brand Showcase",
-      url: ad1,
+      url: "https://e3w9maxxkbm3wyrc.public.blob.vercel-storage.com/cloths.mp4",
       thumbnail: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1920&h=1080&fit=crop&q=90",
     },
     {
