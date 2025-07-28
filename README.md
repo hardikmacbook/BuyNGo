@@ -14,12 +14,12 @@
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-<img src="./src/assets/images/home1.png" alt="BuyNGo Home Page" style="border-radius: 12px; margin: 20px 0;" width="700">
+<img src="./src/assets/images/" alt="BuyNGo Home Page" style="border-radius: 12px; margin: 20px 0;" width="700">
 
-### 🛍️ Product Catalog
+### 🛍️ Shop Page
 <img src="./src/assets/images/product-catalog.png" alt="Product Catalog" style="border-radius: 12px; margin: 20px 0;" width="700">
 
-### 🛒 Shopping Cart & Checkout
+### 🛒 Shopping Cart Page
 <img src="./src/assets/images/cart-page.png" alt="Shopping Cart" style="border-radius: 12px; margin: 20px 0;" width="700">
 
 ---
