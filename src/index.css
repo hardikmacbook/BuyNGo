@@ -1,4 +1,17 @@
 @import "tailwindcss";
+/* Import Google Fonts at the top */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Special+Elite&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+/* Apply font to body */
+body {
+  font-family: 'Merriweather', serif; /* You can change this to any font you imported */
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
 :root{
   --color-primary : #000;
   -color-secondary:#8b2727;
