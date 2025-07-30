@@ -11,6 +11,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Logo from "../Header/Logo";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -49,10 +50,8 @@ function Footer() {
           
           {/* Brand Section */}
           <div className="lg:col-span-1">
-            <div className="">
-              <Link to="/" className="inline-block">
-                <p className="text-3xl pb-5">Working on it</p>
-              </Link>
+            <div className="pb-5">
+               <Logo/>
             </div>
             
             <div className="space-y-4">
