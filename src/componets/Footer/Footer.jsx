@@ -21,16 +21,16 @@ function Footer() {
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/shop" },
     { name: "Contact", href: "/contact" },
-    { name: "Projects", href: "/blog" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const services = [
-    { name: "Residential Electrical", href: "#" },
-    { name: "Commercial Solutions", href: "#" },
-    { name: "Industrial Wiring", href: "#" },
-    { name: "Emergency Services", href: "#" },
-    { name: "Maintenance", href: "#" },
-  ];
+  { name: "Free Shipping", href: "#" },
+  { name: "Easy Returns", href: "#" },
+  { name: "24/7 Customer Support", href: "#" },
+  { name: "Secure Payments", href: "#" },
+  { name: "Gift Cards Available", href: "#" },
+];
 
   const handleSubmit = (e) => {
     e.preventDefault();
