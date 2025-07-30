@@ -1,18 +1,5 @@
 import React from 'react';
-import { CheckCircleIcon, SparklesIcon, ShieldCheckIcon, LightningBoltIcon, CreditCardIcon, RefreshIcon, UsersIcon, BadgeCheckIcon } from '@heroicons/react/solid';
 import Heading from "../../SectionHeadings/Heading";
-
-// Map each core value's id to an icon component (from Heroicons)
-const iconMap = {
-  1: <CheckCircleIcon className="h-7 w-7 text-white" />,
-  2: <SparklesIcon className="h-7 w-7 text-white" />,
-  3: <ShieldCheckIcon className="h-7 w-7 text-white" />,
-  4: <LightningBoltIcon className="h-7 w-7 text-white" />,
-  5: <CreditCardIcon className="h-7 w-7 text-white" />,
-  6: <RefreshIcon className="h-7 w-7 text-white" />,
-  7: <UsersIcon className="h-7 w-7 text-white" />,
-  8: <BadgeCheckIcon className="h-7 w-7 text-white" />,
-};
 
 const OurCoreValues = () => {
   const coreValues = [
@@ -67,7 +54,7 @@ const OurCoreValues = () => {
   ];
 
   return (
-    <section className="py-20 px-6 max-w-7xl mx-auto bg-gray-50">
+    <section className="py-20 px-6 max-w-7xl mx-auto">
       {/* Header */}
       <Heading
         heading="Our Core Values"
@@ -75,40 +62,26 @@ const OurCoreValues = () => {
       />
 
       {/* Values Grid */}
-      <div className="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {coreValues.map(({ id, title, description }) => (
           <div
             key={id}
             className="relative rounded-xl bg-white p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-shadow duration-300"
           >
-            {/* Gradient number badge with icon */}
-            <div
-              className="flex items-center justify-center h-14 w-14 rounded-full mb-5 mx-auto cursor-default select-none"
-              style={{
-                background: 'linear-gradient(135deg, #7f00ff, #e100ff)',
-                boxShadow: '0 4px 15px rgba(126, 0, 255, 0.6)',
-                transform: 'translateY(-10px)',
-                transition: 'transform 0.3s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-15px) scale(1.1)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(-10px) scale(1)';
-              }}
-            >
-              {iconMap[id] || (
-                <span className="font-extrabold text-white text-lg">{id}</span>
-              )}
+            {/* Optional icon placeholder */}
+            <div className="mb-5">
+              <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 font-bold text-lg shadow-inner">
+                {id}
+              </div>
             </div>
 
             {/* Title */}
-            <h3 className="text-2xl font-semibold text-gray-900 mb-3 leading-snug text-center">
+            <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-snug">
               {title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-600 text-base leading-relaxed text-center">{description}</p>
+            <p className="text-gray-600 text-base leading-relaxed">{description}</p>
           </div>
         ))}
       </div>
