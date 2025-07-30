@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
     // Update cart count
     setCartCount(updatedCart.reduce((total, item) => total + item.quantity, 0));
   };
-
+  
   // Remove from cart function
   const removeFromCart = (productId) => {
     const updatedCart = cart.filter(item => item.id !== productId);

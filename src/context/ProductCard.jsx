@@ -28,7 +28,7 @@ const ProductCard = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://68876fc0071f195ca980bfbd.mockapi.io/BuyNGo-Products");
+        const response = await fetch("https://demo-buyngo.free.beeceptor.com/products-data");
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

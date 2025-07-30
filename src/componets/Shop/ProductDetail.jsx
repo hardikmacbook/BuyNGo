@@ -42,7 +42,7 @@ const ProductDetails = () => {
         setLoading(true);
         setError(false);
         
-        const response = await fetch("https://68876fc0071f195ca980bfbd.mockapi.io/BuyNGo-Products");
+        const response = await fetch("https://demo-buyngo.free.beeceptor.com/products-data");
         
         if (!response.ok) {
           throw new Error('Failed to fetch products');
@@ -198,10 +198,6 @@ const ProductDetails = () => {
             <ChevronRight className="w-4 h-4" />
             <Link to="/shop" className="hover:text-black transition-colors">
               Shop
-            </Link>
-            <ChevronRight className="w-4 h-4" />
-            <Link to={`/shop?category=${product.category}`} className="hover:text-black transition-colors">
-              {product.category?.charAt(0).toUpperCase() + product.category?.slice(1)}
             </Link>
             <ChevronRight className="w-4 h-4" />
             <span className="text-black font-medium truncate max-w-[200px]">{product.name}</span>
