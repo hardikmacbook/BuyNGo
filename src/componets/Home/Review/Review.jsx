@@ -96,7 +96,7 @@ const CustomerReviews = () => {
 
       {/* View All Reviews Button */}
       <div className="text-center mt-12">
-        <button className="border-2 border-gray-200 px-8 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300">
+        <button className="border-2 border-gray-200 px-8 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300 cursor-pointer">
           View All Reviews
         </button>
       </div>
