@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-3xl bg-white/10 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-3xl bg-white/50 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
       style={{}}
     >
       <nav className="px-4 sm:px-8 py-2">
@@ -33,11 +33,9 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                className="text-gray-600 relative group px-2 py-1 rounded transition-colors duration-200 hover:text-black focus:text-black"
+                className="text-black transition-colors duration-200 relative inline-block after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-black after:left-0 after:-bottom-1 after:transition-all after:duration-200 hover:after:w-full focus:after:w-full"
               >
-                 <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-[40px]"></span>
                 {name}
-                <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-[40px]"></span>
               </Link>
             ))}
             {/* Cart Icon (Desktop) */}
