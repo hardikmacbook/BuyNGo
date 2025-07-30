@@ -51,38 +51,38 @@ function Footer() {
           <div className="lg:col-span-1">
             <div className="">
               <Link to="/" className="inline-block">
-                <p>BuyNGO</p>
+                <p className="text-3xl pb-5">Working on it</p>
               </Link>
             </div>
             
             <div className="space-y-4">
               <p className="text-gray-600 leading-relaxed">
-                Professional electrical solutions with reliable service and expert craftsmanship for residential and commercial needs.
+                Professional eCommerce solutions with reliable service and expert support — built to elevate your online shopping experience.
               </p>
               
               <div className="space-y-3">
                 <a
-                  href="mailto:avinyaelectricals@gmail.com"
+                  href="mailto:buyngo25@gmail.com"
                   className="flex items-center space-x-3 text-gray-700 hover:text-gray-900 transition-colors duration-200"
                 >
                   <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <Mail size={14} />
                   </div>
-                  <span className="text-sm">avinyaelectricals@gmail.com</span>
+                  <span className="text-sm">buyngo25@gmail.com</span>
                 </a>
                 
                 <a
-                  href="tel:+918799360195"
+                  href="tel:+918238923182"
                   className="flex items-center space-x-3 text-gray-700 hover:text-gray-900 transition-colors duration-200"
                 >
                   <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <Phone size={14} />
                   </div>
-                  <span className="text-sm">+91 87993 60195</span>
+                  <span className="text-sm">+91 82389 23182</span>
                 </a>
                 
                 <a
-                  href="https://maps.app.goo.gl/BefToyT4nEjuPh2x8"
+                  href="https://maps.app.goo.gl/GaeFj5hQsPZ7fyVL6"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-gray-700 hover:text-gray-900 transition-colors duration-200"
@@ -90,7 +90,7 @@ function Footer() {
                   <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <MapPin size={14} />
                   </div>
-                  <span className="text-sm">Vapi, Gujarat</span>
+                  <span className="text-sm">Surat, Gujarat</span>
                 </a>
               </div>
             </div>
@@ -104,7 +104,7 @@ function Footer() {
                 <li key={index}>
                   <Link
                     to={link.href}
-                    className="text-black hover:text-[#8b2727] transition-colors duration-200 relative inline-block after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#8b2727] after:left-0 after:-bottom-1 after:transition-all after:duration-200 hover:after:w-full"
+                    className="text-gray-600 hover:text-black transition-colors duration-200 relative inline-block after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-black after:left-0 after:-bottom-1 after:transition-all after:duration-200 hover:after:w-full"
                   >
                     {link.name}
                   </Link>
@@ -121,7 +121,7 @@ function Footer() {
                 <li key={index}>
                   <a
                     href={service.href}
-                    className="text-black hover:text-[#8b2727] transition-colors duration-200 relative inline-block after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#8b2727] after:left-0 after:-bottom-1 after:transition-all after:duration-200 hover:after:w-full"
+                    className="text-gray-600 hover:text-black transition-colors duration-200 relative inline-block after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-black after:left-0 after:-bottom-1 after:transition-all after:duration-200 hover:after:w-full"
                   >
                     {service.name}
                   </a>
@@ -151,7 +151,7 @@ function Footer() {
                   />
                   <button
                     type="submit"
-                    className="w-full bg-[#8b2727] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#d2af6f] transition-colors duration-200 flex items-center justify-center space-x-2 group cursor-pointer hover:text-black"
+                    className="w-full border-2 border-gray-200 py-3 px-4 rounded-lg font-medium flex items-center justify-center space-x-2 group cursor-pointer text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300"
                   >
                     <span>Subscribe</span>
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -178,7 +178,7 @@ function Footer() {
                   <a
                     key={index}
                     href={href}
-                    className="w-10 h-10 bg-gray-100 hover:bg-[#d2af6f] hover:text-black rounded-lg flex items-center justify-center text-black transition-all duration-200"
+                    className="w-10 h-10 bg-gray-100 hover:bg-black hover:text-white rounded-lg flex items-center justify-center text-black transition-all duration-200"
                   >
                     <Icon size={18} />
                   </a>
@@ -194,7 +194,7 @@ function Footer() {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-600 text-sm">
-              © 2025 <span className="font-semibold">Avinya Electricals</span>. All rights reserved.
+              © 2025 <span className="font-semibold text-black">BuyNGO</span> All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <a
