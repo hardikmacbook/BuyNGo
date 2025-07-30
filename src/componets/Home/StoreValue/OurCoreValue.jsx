@@ -1,4 +1,5 @@
 import React from 'react';
+import Heading from "../../SectionHeadings/Heading";
 
 const OurCoreValues = () => {
   const coreValues = [
@@ -27,14 +28,10 @@ const OurCoreValues = () => {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-light text-gray-900 mb-4">
-          Our Core Values
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          The principles that guide our commitment to excellence and shape every decision we make.
-        </p>
-      </div>
+      <Heading
+          heading="What Our Customers Say"
+          desc="Trusted by industries across Vapi and Silvassa for quality electrical products and exceptional service"
+        />
 
       {/* Values Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
