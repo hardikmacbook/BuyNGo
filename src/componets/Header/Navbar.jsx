@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-3xl bg-white/50 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-3xl bg-white/10 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
       style={{}}
     >
       <nav className="px-4 sm:px-8 py-2">
@@ -33,7 +33,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                className="text-base font-semibold text-black relative group px-2 py-1 rounded transition-colors duration-200"
+                className="text-gray-600 relative group px-2 py-1 rounded transition-colors duration-200 hover:text-black focus:text-black"
               >
                  <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-[40px]"></span>
                 {name}
