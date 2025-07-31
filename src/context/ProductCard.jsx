@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
+import Heading from "../componets/SectionHeadings/Heading";
 import { ShoppingCart, Image as ImageIcon } from "lucide-react";
 
 const ProductCard = () => {
@@ -100,13 +101,12 @@ const ProductCard = () => {
     <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50 min-h-screen">
       {/* Header */}
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-light text-gray-900 mb-4">
-          Our Products
-        </h1>
+        <Heading 
+        heading="Shop the Best. Love What You Buy"
+        desc="Top-quality products. Great prices. Fast delivery. Discover your next favorite item today!"
+        />
         <div className="w-24 h-px bg-gray-900 mx-auto mb-4"></div>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed text-lg">
-          Carefully curated products designed with quality and style in mind.
-        </p>
+        
       </div>
 
       {/* Products Grid */}
