@@ -104,9 +104,7 @@ const ProductCard = () => {
         <Heading 
         heading="Shop the Best. Love What You Buy"
         desc="Top-quality products. Great prices. Fast delivery. Discover your next favorite item today!"
-        />
-        <div className="w-24 h-px bg-gray-900 mx-auto mb-4"></div>
-        
+        />        
       </div>
 
       {/* Products Grid */}
