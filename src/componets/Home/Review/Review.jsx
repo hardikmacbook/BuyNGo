@@ -1,4 +1,5 @@
 import React from 'react';
+import Heading from '../../SectionHeadings/Heading';
 
 const CustomerReviews = () => {
   const reviews = [
@@ -44,13 +45,10 @@ const CustomerReviews = () => {
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-light text-gray-900 mb-6">
-          Customer Reviews
-        </h2>
-        <div className="w-24 h-px bg-gray-900 mx-auto mb-6"></div>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed text-lg">
-          What our customers are saying about their experience with us.
-        </p>
+        <Heading 
+        heading="What Our Customers Are Saying"
+        desc="Real reviews from happy shoppers. See why people love our products!"
+        />   
       </div>
 
       {/* Reviews Grid */}
