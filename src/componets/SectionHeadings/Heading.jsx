@@ -8,6 +8,7 @@ const Heading = ({ heading, desc }) => (
     >
       {heading}
     </h1>
+        <div className="w-40 h-px bg-gray-900 mx-auto mb-4"></div>
     <p className="text-xl" style={{ color: "gray", opacity: 0.6 }}>
       {desc}
     </p>
