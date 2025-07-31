@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Search, Filter, Grid, List, ChevronDown, Star, ShoppingCart, Home, ChevronRight, X, Image as ImageIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import Heading from "../SectionHeadings/Heading";
 
 const ShopLayout = () => {
   const [data, setData] = useState([]);
@@ -171,11 +172,10 @@ const ShopLayout = () => {
       <div className="container mx-auto max-w-7xl px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-light text-gray-900 mb-4">Our Products</h1>
-          <div className="w-24 h-px bg-gray-900 mx-auto mb-4"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Discover our carefully curated collection of premium products
-          </p>
+         <Heading
+        heading="Shop the Best. Love What You Buy"
+        desc="Top-quality products. Great prices. Fast delivery. Discover your next favorite item today!"
+        />   
         </div>
 
         {/* Search and Filter Controls */}
