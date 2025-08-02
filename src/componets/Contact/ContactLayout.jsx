@@ -156,14 +156,14 @@ export default function ContactLayout() {
 
       {/* Contact Form */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24 pt-10">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
           
           {/* Contact Form */}
+          
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50">
               <div className="bg-gradient-to-r from-slate-50 to-white px-6 sm:px-8 py-6 sm:py-8 border-b border-slate-200/50">
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Send Message</h2>
-                <p className="text-slate-600 text-base sm:text-lg">Tell us about your electrical project requirements</p>
+                <p className="text-slate-600 text-base sm:text-lg">Tell us about your  requirements</p>
               </div>
               
               <div className="p-6 sm:p-8">
@@ -214,7 +214,7 @@ export default function ContactLayout() {
 
                   <div className="group">
                     <label htmlFor="message" className="block text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">
-                      Project Details *
+                      Details *
                     </label>
                     <textarea
                       id="message"
@@ -225,7 +225,7 @@ export default function ContactLayout() {
                       required
                       rows={5}
                       className={`w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 ${fieldErrors.message ? 'border-[#d2af6f]' : 'border-slate-200'} focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 resize-none group-hover:border-slate-300 outline-none`}
-                      placeholder="Describe your electrical project requirements, timeline, and any specific needs..."
+                      placeholder="Describe your requirements and any specific needs..."
                     />
                     {fieldErrors.message && (
                       <p className="mt-2 text-sm text-[#8b2727]">{fieldErrors.message}</p>
@@ -283,6 +283,5 @@ export default function ContactLayout() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
