@@ -24,19 +24,19 @@ const CompanyStory = () => {
             
             <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
               <p className="text-xl leading-relaxed">
-                Our company’s journey began in 2023, when both of us — my business partner and I — decided to start this venture together. We shared a common vision of creating a business that would stand out in the market through quality, trust, and excellent service. With a strong belief in our combined experience and dedication, we decided to open our shop in partnership. We knew that by working together, we could build something successful and long-lasting, offering customers exactly what they needed.
+               The story of BuyNGO began as a bold vision during our college journey. Like many students, I noticed how online shopping platforms often felt impersonal and overwhelming, with generic experiences that didn’t truly serve the diverse needs of young shoppers like us. This realization sparked a desire to build something different—a project that would not only fulfill our academic goals but also pave the way toward a genuine, community-focused online marketplace.
               </p>
               
               <p className="text-lg leading-relaxed">
-                The idea for the shop came from countless conversations about the market’s growing needs and the gap we noticed between demand and supply. We both shared the same passion for quality products and excellent customer service, which became the foundation of our partnership. In 2023, we finally took the leap of faith and opened our shop, combining his supply network and my market knowledge to create a business that could truly serve customers better.
+                Starting BuyNGO as a college project meant there were plenty of challenges and late-night brainstorming sessions. Every line of code, every product selection, and each design choice was an opportunity to learn, improve, and innovate. I wanted BuyNGO to reflect the values of our generation: accessibility, transparency, and a real sense of connection between buyers and sellers.
               </p>
               
               <p className="text-lg leading-relaxed">
-               Starting this venture wasn’t without challenges. From selecting the right location to finalizing products and setting up operations, we had to carefully plan every step. But with mutual trust, dedication, and complementary skills, we turned every obstacle into an opportunity. Our shared goal was simple — to provide top-quality products, fair pricing, and dependable service, becoming a reliable name in the industry.
+              Though BuyNGO’s early days focused on building a solid foundation for our coursework, the dream extended far beyond that. My goal is to keep developing the platform—adding essential features like an admin panel, a robust backend, and advanced tools that will allow students (and users everywhere) to shop, manage, and interact seamlessly. Each step forward is inspired by the belief that even a project started in a classroom can grow into something far bigger, solving real-world problems and creating joyful shopping experiences along the way.
               </p>
               
               <p className="text-lg leading-relaxed">
-                Today, our company proudly stands as a symbol of collaboration, trust, and hard work. Our story is not just about two partners starting a shop; it’s about two people who believed in each other’s strengths and dared to dream together. As we continue to grow, we remain committed to the same values that brought us together — honesty, quality, and customer satisfaction.
+                BuyNGO’s founding moment is more than the start of a website—it’s the first step in a journey filled with creativity, ambition, and the commitment to continue building, improving, and making a difference for every customer we’ll serve in the future.
               </p>
             </div>
           </div>

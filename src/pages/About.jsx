@@ -1,6 +1,6 @@
 import React from 'react'
 import CompanyStory from '../componets/About/Story'
-import TimeLine from '../componets/About/TimeLine'
+// import TimeLine from '../componets/About/TimeLine'
 import SetPageTitle from "../componets/SetPageTitle";
 
 const About = () => {
@@ -8,7 +8,7 @@ const About = () => {
     <>
     <SetPageTitle title="About - BuyNGO"/>
         <CompanyStory/>
-        <TimeLine/>
+        {/* <TimeLine/> */}
     </>
   )
 }
