@@ -268,7 +268,7 @@ const BeautifulSlider = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20" />
 
         {/* Top Controls */}
-        <div className="absolute top-4 right-4 flex items-center gap-2 z-40">
+        <div className="absolute top-4 right-4 flex items-center gap-2 z-40 pt-17">
           {isVideo && (
             <button
               onClick={toggleMute}
