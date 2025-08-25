@@ -531,7 +531,7 @@ const Checkout = () => {
                 <div className="space-y-4 mb-6 max-h-80 overflow-y-auto">
                   {cart.map((item) => (
                     <div key={item.id} className="flex items-center space-x-4 py-3 border-b border-gray-100">
-                      <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+                      <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
                         <img 
                           src={item.image} 
                           alt={item.title} 
