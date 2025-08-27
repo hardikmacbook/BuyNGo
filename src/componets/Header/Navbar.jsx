@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95vw] max-w-3xl bg-white/50 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[55vw] lg:w-[35vw] max-w-3xl bg-white/50 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
       style={{}}
     >
       <nav className="px-4 sm:px-8 py-2">
@@ -97,20 +97,6 @@ const Navbar = () => {
                 {name}
               </Link>
             ))}
-            {/* Cart Icon in Mobile Menu (optional, since it's already in header) */}
-            {/*
-            <Link
-              to="/cart"
-              onClick={() => setIsMobileOpen(false)}
-              className="flex items-center gap-2 px-4 py-2 text-base font-medium rounded-lg transition text-gray-800 hover:bg-gray-100 focus:bg-gray-200"
-            >
-              <FaLuggageCart className="text-lg" />
-              Cart
-              <span className="ml-1 text-xs bg-red-600 text-white rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center border border-white">
-                {cartCount ?? 0}
-              </span>
-            </Link>
-            */}
           </div>
         </div>
       </nav>
