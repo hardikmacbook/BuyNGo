@@ -26,31 +26,7 @@ const OurCoreValues = () => {
       title: "Fast, Secure & Reliable Delivery",
       description:
         "We know time matters. That’s why we prioritize quick, trackable, and dependable shipping — ensuring your order reaches you exactly when expected, and in perfect condition.",
-    },
-    {
-      id: 5,
-      title: "Safe & Stress-Free Payments",
-      description:
-        "Our platform uses advanced encryption and secure gateways to protect your information. Shop confidently, knowing your privacy and data are always safe with us.",
-    },
-    {
-      id: 6,
-      title: "Sustainable Mindset",
-      description:
-        "We care about the planet. From using eco-friendly packaging to choosing sustainable materials where possible, we aim to reduce our impact and support conscious fashion choices.",
-    },
-    {
-      id: 7,
-      title: "Inclusive Fashion for All",
-      description:
-        "Everyone deserves to feel seen in fashion. Our collections celebrate all sizes, genders, and identities — because true style has no limits.",
-    },
-    {
-      id: 8,
-      title: "Honesty is Our Policy",
-      description:
-        "No hidden charges. No gimmicks. Just clear pricing, genuine discounts, and transparent communication — because trust is everything.",
-    },
+    }
   ];
 
   return (
