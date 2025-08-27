@@ -56,11 +56,11 @@ const Navbar = () => {
             {/* Cart Icon (Mobile) */}
             <Link
               to="/cart"
-              className="relative flex items-center justify-center group p-2 rounded hover:bg-gray-100 focus:bg-gray-200"
+              className="relative flex items-center justify-center group p-2 rounded"
               aria-label="View cart"
             >
-              <FaLuggageCart className="text-xl text-gray-800" />
-              <span className="absolute -top-1 -right-2 text-xs bg-red-600 text-white rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center border border-white">
+              <FaLuggageCart className="text-xl text-black" />
+              <span className="absolute -top-1 -right-2 text-xs bg-black text-white rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center">
                 {cartCount ?? 0}
               </span>
             </Link>
