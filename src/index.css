@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@250;350;450&display=swap');
+
 @import "tailwindcss";
 
-/* Apply font to body */
 body {
   font-family:  "Outfit", sans-serif;
   font-size: 16px;
