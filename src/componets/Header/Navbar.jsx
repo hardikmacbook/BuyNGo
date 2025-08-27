@@ -66,13 +66,13 @@ const Navbar = () => {
             </Link>
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="p-2 rounded-xl border border-gray-200 bg-white/70 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none"
+              className="p-2 rounded-xl border border-gray-200 bg-white/70 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none cursor-pointer"
               aria-label={isMobileOpen ? "Close menu" : "Open menu"}
             >
               {isMobileOpen ? (
-                <X className="w-6 h-6 text-gray-800" />
+                <X className="w-6 h-6 text-black" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-800" />
+                <Menu className="w-6 h-6 text-black" />
               )}
             </button>
           </div>
