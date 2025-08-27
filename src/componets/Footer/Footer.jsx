@@ -10,6 +10,7 @@ import {
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
+import { Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "../Header/Logo";
 
@@ -172,7 +173,7 @@ function Footer() {
                   { Icon: Facebook, href: "#" },
                   { Icon: Twitter, href: "#" },
                   { Icon: Instagram, href: "#" },
-                  { Icon: Linkedin, href: "#" }
+                  { Icon: Linkedin, href: "#" },
                 ].map(({ Icon, href }, index) => (
                   <a
                     key={index}
@@ -214,6 +215,13 @@ function Footer() {
               >
                 Cookie Policy
               </a>
+              <Link
+                to={"https://github.com/hardikmacbook/BuyNGo"}
+                target="_blank"
+                className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+              >
+                 <Github className="w-6 h-5" />
+              </Link>
             </div>
           </div>
         </div>
