@@ -197,24 +197,24 @@ function Footer() {
               © 2025 <span className="font-semibold text-black">BuyNGO</span> All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a
+              <Link
                 href="#"
                 className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 Privacy Policy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 Terms of Service
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 Cookie Policy
-              </a>
+              </Link>
               <Link
                 to={"https://github.com/hardikmacbook/BuyNGo"}
                 target="_blank"
