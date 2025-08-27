@@ -10,7 +10,6 @@ const NAV_ITEMS = [
   { name: "Shop", path: "/shop" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
-  // { name: "Blog", path: "/blog" }, // Remove or keep as needed
 ];
 
 const Navbar = () => {
