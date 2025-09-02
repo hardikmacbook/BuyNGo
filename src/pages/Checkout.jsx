@@ -10,7 +10,7 @@ const Checkout = () => {
   const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const shippingCost = 10; // Fixed shipping cost
   const totalWithShipping = totalAmount + shippingCost;
-  
+
   // Form states
   const [formData, setFormData] = useState({
     firstName: '',
@@ -28,11 +28,11 @@ const Checkout = () => {
     expiryDate: '',
     cvv: '',
   });
-  
+
   const [errors, setErrors] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
-  
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +40,6 @@ const Checkout = () => {
       ...formData,
       [name]: value
     });
-    
     // Clear error when field is edited
     if (errors[name]) {
       setErrors({
@@ -49,11 +48,10 @@ const Checkout = () => {
       });
     }
   };
-  
+
   // Validate form
   const validateForm = () => {
     const newErrors = {};
-    
     // Required fields validation
     const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'state', 'zipCode', 'country'];
     requiredFields.forEach(field => {
@@ -61,59 +59,54 @@ const Checkout = () => {
         newErrors[field] = 'This field is required';
       }
     });
-    
+
     // Email validation
     if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
     // Phone validation
     if (formData.phone && !/^[0-9\-\+\s()]{10,15}$/.test(formData.phone)) {
       newErrors.phone = 'Please enter a valid phone number';
     }
-    
-    // Payment method validation
+
+    // Payment method validation for credit card only
     if (formData.paymentMethod === 'credit-card') {
       if (!formData.cardNumber.trim()) {
         newErrors.cardNumber = 'Card number is required';
       } else if (!/^[0-9]{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) {
         newErrors.cardNumber = 'Please enter a valid 16-digit card number';
       }
-      
       if (!formData.cardName.trim()) {
         newErrors.cardName = 'Name on card is required';
       }
-      
       if (!formData.expiryDate.trim()) {
         newErrors.expiryDate = 'Expiry date is required';
       } else if (!/^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(formData.expiryDate)) {
         newErrors.expiryDate = 'Please use MM/YY format';
       }
-      
       if (!formData.cvv.trim()) {
         newErrors.cvv = 'CVV is required';
       } else if (!/^[0-9]{3,4}$/.test(formData.cvv)) {
         newErrors.cvv = 'CVV must be 3 or 4 digits';
       }
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       setIsProcessing(true);
-      
       // Simulate order processing
       setTimeout(() => {
         setIsProcessing(false);
         setOrderComplete(true);
         clearCart();
-        
         // Redirect to confirmation or home page after a delay
         setTimeout(() => {
           navigate('/');
@@ -121,7 +114,7 @@ const Checkout = () => {
       }, 2000);
     }
   };
-  
+
   // If cart is empty, redirect to shop
   if (cart.length === 0 && !orderComplete) {
     return (
@@ -147,7 +140,7 @@ const Checkout = () => {
             </div>
             <h2 className="text-2xl font-light text-gray-900 mb-4">Your cart is empty</h2>
             <p className="text-gray-600 mb-8 leading-relaxed">You need to add items to your cart before checkout.</p>
-            <Link 
+            <Link
               to="/shop"
               className="border-2 border-gray-200 px-8 py-3 rounded-lg font-medium text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300 inline-flex items-center gap-2"
             >
@@ -159,7 +152,7 @@ const Checkout = () => {
       </div>
     );
   }
-  
+
   // If order is complete, show success message
   if (orderComplete) {
     return (
@@ -185,7 +178,7 @@ const Checkout = () => {
             </div>
             <h2 className="text-2xl font-light text-gray-900 mb-4">Order Placed Successfully!</h2>
             <p className="text-gray-600 mb-8 leading-relaxed">Thank you for your purchase. You will be redirected to the home page shortly.</p>
-            <Link 
+            <Link
               to="/"
               className="bg-gray-900 px-8 py-3 rounded-lg font-medium text-white hover:bg-gray-800 transition-all duration-300 inline-flex items-center gap-2"
             >
@@ -196,7 +189,7 @@ const Checkout = () => {
       </div>
     );
   }
-  
+
   return (
     <>
       <SetPageTitle title="Checkout - BuyNGo"/>
@@ -226,12 +219,12 @@ const Checkout = () => {
               Complete your order details below
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Checkout Form */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl border-2 border-gray-100 shadow-sm p-8">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} id="checkout-form">
                   {/* Personal Information */}
                   <div className="mb-10">
                     <h2 className="text-xl font-medium text-gray-900 mb-6 pb-4 border-b border-gray-200">Personal Information</h2>
@@ -294,7 +287,7 @@ const Checkout = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Shipping Address */}
                   <div className="mb-10">
                     <h2 className="text-xl font-medium text-gray-900 mb-6 pb-4 border-b border-gray-200">Shipping Address</h2>
@@ -384,7 +377,7 @@ const Checkout = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Payment Method */}
                   <div className="mb-10">
                     <h2 className="text-xl font-medium text-gray-900 mb-6 pb-4 border-b border-gray-200">Payment Method</h2>
@@ -403,7 +396,7 @@ const Checkout = () => {
                           Credit/Debit Card
                         </label>
                       </div>
-                      
+
                       {formData.paymentMethod === 'credit-card' && (
                         <div className="ml-8 mt-4 space-y-4">
                           <div>
@@ -469,7 +462,7 @@ const Checkout = () => {
                           </div>
                         </div>
                       )}
-                      
+
                       <div className="flex items-center p-4 border-2 border-gray-200 rounded-lg">
                         <input
                           type="radio"
@@ -484,7 +477,7 @@ const Checkout = () => {
                           PayPal
                         </label>
                       </div>
-                      
+
                       <div className="flex items-center p-4 border-2 border-gray-200 rounded-lg">
                         <input
                           type="radio"
@@ -501,9 +494,9 @@ const Checkout = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-8 lg:hidden">
-                    <button 
+                    <button
                       type="submit"
                       disabled={isProcessing}
                       className="w-full bg-gray-900 px-6 py-4 rounded-lg font-medium text-white hover:bg-gray-800 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
@@ -521,20 +514,19 @@ const Checkout = () => {
                 </form>
               </div>
             </div>
-            
+
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl border-2 border-gray-100 shadow-sm p-8 sticky top-28">
                 <h2 className="text-xl font-medium text-gray-900 mb-6 pb-4 border-b border-gray-200">Order Summary</h2>
-                
                 {/* Order items */}
                 <div className="space-y-4 mb-6 max-h-80 overflow-y-auto">
                   {cart.map((item) => (
                     <div key={item.id} className="flex items-center space-x-4 py-3 border-b border-gray-100">
                       <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                        <img 
-                          src={item.image} 
-                          alt={item.title} 
+                        <img
+                          src={item.image}
+                          alt={item.title}
                           className="max-w-full max-h-full object-contain p-2"
                         />
                       </div>
@@ -548,7 +540,6 @@ const Checkout = () => {
                     </div>
                   ))}
                 </div>
-                
                 {/* Price details */}
                 <div className="space-y-3 py-4 border-b border-gray-200">
                   <div className="flex justify-between text-gray-600">
@@ -560,16 +551,14 @@ const Checkout = () => {
                     <span>₹{shippingCost.toFixed(2)}</span>
                   </div>
                 </div>
-                
                 {/* Total */}
                 <div className="flex justify-between items-center py-4">
                   <span className="text-lg font-medium text-gray-900">Total</span>
                   <span className="text-xl font-medium text-gray-900">₹{totalWithShipping.toFixed(2)}</span>
                 </div>
-                
                 {/* Place order button (desktop only) */}
                 <div className="mt-6 hidden lg:block">
-                  <button 
+                  <button
                     type="submit"
                     form="checkout-form"
                     disabled={isProcessing}
@@ -586,7 +575,6 @@ const Checkout = () => {
                     )}
                   </button>
                 </div>
-                
                 {/* Security notice */}
                 <div className="mt-6 text-xs text-gray-500 flex items-center justify-center">
                   <Lock className="w-4 h-4 mr-1" />

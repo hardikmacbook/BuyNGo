@@ -3,18 +3,15 @@
 @import "tailwindcss";
 
 body {
-  font-family:  "Outfit", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #333;
   margin: 0;
   padding: 0;
 }
-::selection{
+
+::selection {
   background-color: #000;
   color: white;
 }
-::-webkit-scrollbar{
-  display: none;
-}
-
