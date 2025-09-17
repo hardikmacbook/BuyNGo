@@ -272,7 +272,7 @@ const BeautifulSlider = () => {
           {isVideo && (
             <button
               onClick={toggleMute}
-              className="p-2 mt-20 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-colors"
+              className="mt-20 lg:mt-0 p-2 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-colors"
             >
               {isMuted ? (
                 <VolumeX className="w-4 h-4" />
