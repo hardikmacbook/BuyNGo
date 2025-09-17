@@ -272,7 +272,7 @@ const BeautifulSlider = () => {
           {isVideo && (
             <button
               onClick={toggleMute}
-              className="p-2 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-colors"
+              className="p-2 mt-20 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-black/60 transition-colors"
             >
               {isMuted ? (
                 <VolumeX className="w-4 h-4" />
@@ -359,17 +359,6 @@ const BeautifulSlider = () => {
                 ))}
               </div>
             )}
-
-            {/* Counter */}
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full">
-              <span className="text-white text-sm font-mono">
-                {String(currentSlide + 1).padStart(2, "0")} / {String(mediaItems.length).padStart(2, "0")}
-              </span>
-              <div className="w-1 h-1 bg-white/60 rounded-full" />
-              <span className="text-white/80 text-xs">
-                {isVideo ? "VIDEO" : "IMAGE"}
-              </span>
-            </div>
           </div>
         </div>
       </div>
