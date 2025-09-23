@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
-import { ShoppingCart, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { FaLuggageCart } from "react-icons/fa";
+import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { name: "Home", path: "/" },
@@ -16,10 +16,33 @@ const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { cartCount } = useCart();
 
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 60 || currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+      setLastScrollY(currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
     <header
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90vw] lg:w-[35vw] max-w-3xl bg-white/30 shadow-lg backdrop-blur-lg rounded-2xl transition-all duration-700"
-      style={{}}
+      className={`fixed z-50 lg:w-[35vw] w-[90vw] max-w-3xl bg-white/30 shadow-lg backdrop-blur-lg rounded-2xl transition-transform duration-500 ease-in-out`}
+      style={{
+        top: "1rem",
+        left: "50%",
+        transform: isVisible
+          ? "translateX(-50%) translateY(0)"
+          : "translateX(-50%) translateY(-150%)",
+      }}
     >
       <nav className="px-4 sm:px-8 py-2">
         <div className="flex items-center justify-between">
@@ -80,9 +103,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         <div
           className={`lg:hidden transition-all duration-500 ${
-            isMobileOpen
-              ? "max-h-[400px] opacity-100 mt-2"
-              : "max-h-0 opacity-0"
+            isMobileOpen ? "max-h-[400px] opacity-100 mt-2" : "max-h-0 opacity-0"
           } overflow-hidden`}
         >
           <div className="flex flex-col gap-2 py-4 px-2 bg-white/95 rounded-xl shadow border-t border-gray-200">
