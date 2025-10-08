@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
-const DEFAULT_GLOW_COLOR = '132, 0, 255';
+const DEFAULT_GLOW_COLOR = '248, 248, 255';
 const MOBILE_BREAKPOINT = 768;
 
 
@@ -17,15 +17,15 @@ const cardData = [
   },
   {
     color: '#060010',
-    title: 'Secure Payments',
-    description: 'Multiple payment options',
-    label: 'Safe & Secure'
+    title: 'WhatsApp Checkout',
+    description: 'Order directly via WhatsApp',
+    label: 'Quick Order'
   },
   {
     color: '#060010',
-    title: 'Order Tracking',
-    description: 'Real-time delivery updates',
-    label: 'Track Order'
+    title: 'Powered by Hardik',
+    description: 'Powered by Hardik',
+    label: 'Demo'
   },
   {
     color: '#060010',
@@ -35,9 +35,9 @@ const cardData = [
   },
   {
     color: '#060010',
-    title: 'Quick Checkout',
-    description: 'Fast and easy payment',
-    label: 'Easy Cart'
+    title: 'Quick Search',
+    description: 'Find products instantly',
+    label: 'Easy Search'
   },
   {
     color: '#060010',
