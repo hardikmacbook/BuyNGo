@@ -511,7 +511,6 @@ const GlobalSpotlight = ({
   return null;
 };
 
-
 const BentoCardGrid = ({ children, gridRef }) => (
   <div
     className="bento-section grid gap-2 p-3 max-w-[54rem] mx-auto select-none relative"
@@ -522,22 +521,17 @@ const BentoCardGrid = ({ children, gridRef }) => (
   </div>
 );
 
-
 const useMobileDetection = () => {
   const [isMobile, setIsMobile] = useState(false);
-
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
 
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
 
   return isMobile;
 };
