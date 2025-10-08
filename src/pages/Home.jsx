@@ -5,7 +5,6 @@ import OurCoreValue from "../componets/Home/StoreValue/OurCoreValue";
 import Review from "../componets/Home/Review/Review";
 import Footer from "../componets/Footer/Footer";
 import SetPageTitle from "../componets/SetPageTitle";
-import MagicBento from "../componets/ui/demo/MagicBento";
 // import VelocityText from "../componets/Home/text/VelocityText";
 
 const Home = () => {
@@ -20,7 +19,6 @@ const Home = () => {
         <ProductCard />
         <Review />
         <Footer />
-        <MagicBento/>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Heading = ({ heading, desc }) => (
-  <div className="text-center mb-16">
+  <div className="text-center mt-5">
     <h1
       className="text-5xl font-bold mb-4 tracking-tight"
       style={{ color: "#000" }}
