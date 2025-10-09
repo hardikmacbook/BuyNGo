@@ -653,6 +653,15 @@ export default function DomeGallery({
   }, []);
 
   const cssStyles = `
+     * {
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+    }
+    
     .sphere-root {
       --radius: 520px;
       --viewer-pad: 72px;
@@ -661,6 +670,17 @@ export default function DomeGallery({
       --rot-x: calc((360deg / var(--segments-y)) / 2);
       --item-width: calc(var(--circ) / var(--segments-x));
       --item-height: calc(var(--circ) / var(--segments-y));
+      max-width: 100% !important;
+      position: relative !important;
+    }
+    
+    body.dg-scroll-lock {
+      overflow: hidden !important;
+      position: fixed !important;
+      width: 100% !important;
+      height: 100% !important;
+      left: 0 !important;
+      top: 0 !important;
     }
     
     .sphere-root * {
@@ -678,6 +698,7 @@ export default function DomeGallery({
       margin: auto;
       perspective: calc(var(--radius) * 2);
       perspective-origin: 50% 50%;
+      overflow: hidden;
     }
     
     .sphere {
@@ -690,11 +711,9 @@ export default function DomeGallery({
       width: calc(var(--item-width) * var(--item-size-x));
       height: calc(var(--item-height) * var(--item-size-y));
       position: absolute;
-      top: -999px;
-      bottom: -999px;
-      left: -999px;
-      right: -999px;
-      margin: auto;
+      top: 0;
+      left: 0;
+      margin: 0;
       transform-origin: 50% 50%;
       backface-visibility: hidden;
       transition: transform 300ms;
@@ -740,7 +759,7 @@ export default function DomeGallery({
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
       <div
         ref={rootRef}
-        className="sphere-root relative w-full h-full"
+        className="sphere-root relative w-full h-full overflow-hidden"
         style={{
           ['--segments-x']: segments,
           ['--segments-y']: segments,
@@ -752,11 +771,10 @@ export default function DomeGallery({
       >
         <main
           ref={mainRef}
-          className="absolute inset-0 grid place-items-center select-none bg-transparent"
+          className="absolute inset-0 grid place-items-center select-none bg-transparent overflow-hidden"
           style={{
             touchAction: 'none',
-            WebkitUserSelect: 'none',
-            overflow: 'visible'
+            WebkitUserSelect: 'none'
           }}
         >
           <div className="stage">
@@ -764,7 +782,7 @@ export default function DomeGallery({
               {items.map((it, i) => (
                 <div
                   key={`${it.x},${it.y},${i}`}
-                  className="sphere-item absolute m-auto"
+                  className="sphere-item absolute"
                   data-src={it.src}
                   data-alt={it.alt}
                   data-offset-x={it.x}
@@ -775,11 +793,7 @@ export default function DomeGallery({
                     ['--offset-x']: it.x,
                     ['--offset-y']: it.y,
                     ['--item-size-x']: it.sizeX,
-                    ['--item-size-y']: it.sizeY,
-                    top: '-999px',
-                    bottom: '-999px',
-                    left: '-999px',
-                    right: '-999px'
+                    ['--item-size-y']: it.sizeY
                   }}
                 >
                   <div

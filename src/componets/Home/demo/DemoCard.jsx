@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Card = () => {
   const [time, setTime] = useState(new Date());
@@ -18,8 +19,10 @@ const Card = () => {
   const ampm = hours24 >= 12 ? 'PM' : 'AM';
 
   return (
+
+    <>
     <StyledWrapper>
-      <div className="watch mt-15 mb-40">
+      <div className="watch mt-20 mb-30">
         <div className="belt top" />
         <div className="frame">
           <div className="screen">
@@ -37,6 +40,34 @@ const Card = () => {
         <div className="powerBtn" />
       </div>
     </StyledWrapper>
+
+    <div className="text-center mb-8">
+            <div className="mt-8 flex justify-center">
+              <Link
+                to="/shop/apple-watch-series-9-gps-45mm-midnight-aluminum"
+                className="group border-2 border-gray-200 py-3 px-4 rounded-lg font-medium inline-flex items-center justify-center space-x-2 cursor-pointer text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300"
+              >
+                <span>Buy Now</span>
+    
+                <svg
+                  className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+    </>
+
+    
   );
 };
 
