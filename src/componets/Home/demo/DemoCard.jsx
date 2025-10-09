@@ -1,159 +1,169 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Card = () => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const hours24 = time.getHours();
+  const hours12 = hours24 % 12 || 12;
+  const minutes = String(time.getMinutes()).padStart(2, '0');
+  const ampm = hours24 >= 12 ? 'PM' : 'AM';
+
   return (
     <StyledWrapper>
-      <div className="watch mt-10 mb-35">
+      <div className="watch mt-15 mb-40">
+        <div className="belt top" />
         <div className="frame">
-          <div className="text">
-            <div>09</div>
-            <div>55</div>
+          <div className="screen">
+            <div className="text">
+              <div>{String(hours12).padStart(2, '0')}</div>
+              <div>{minutes}</div>
+            </div>
+            <div className="ampm">{ampm}</div>
           </div>
         </div>
-        <div className="sideBtn" />
-        <div className="powerBtn" />
-        <div className="dots">
-          <span className="dot" />
-          <span className="dot" />
-          <span className="dot" />
+        <div className="belt bottom" />
+        <div className="sideBtn">
+          <div className="btnLines" />
         </div>
+        <div className="powerBtn" />
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  
   .watch {
     position: relative;
-    transform: scale(0.7);
+    width: 280px;
+    height: 350px;
   }
-  .watch::after,
-  .watch::before {
-    content: "";
-    width: 10rem;
-    height: 200px;
-    background: radial-gradient(circle at 200px, rgb(0, 0, 0), rgb(48, 48, 48));
-    box-shadow: inset 0px -10px 18px #ffffffb9, 10px 0px 30px #00000071;
+
+  .belt {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 0%);
+    width: 80px;
+    height: 120px;
+    background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+    transform: translateX(-50%);
+    z-index: 1;
   }
-  .watch::before {
-    content: "";
-    width: 10rem;
-    height: 200px;
-    background: radial-gradient(circle at 200px, rgb(0, 0, 0), rgb(48, 48, 48));
-    box-shadow: inset 0px 10px 18px #ffffffb9, 10px 0px 30px #00000071;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -100%);
+
+  .belt.top {
+    top: -115px;
+    border-radius: 12px 12px 0 0;
   }
-  .dots {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 140%);
-    padding: 3px;
-    z-index: 20;
+
+  .belt.bottom {
+    bottom: -115px;
+    border-radius: 0 0 12px 12px;
   }
-  .dots .dot {
-    width: 17px;
-    aspect-ratio: 1;
-    background-color: #000000;
-    border-radius: 100px;
-    display: block;
-    margin-bottom: 50px;
-    box-shadow: inset 2px 0 5px #ffffff48;
-  }
+
   .frame {
-    background: #0d0d0d;
-    border-radius: 92px;
-    box-shadow: inset 0 0 24px 1px #0d0d0d, inset 0 0 0 12px #606c78,
-      0 20px 30px #00000071;
-    height: 380px;
-    margin: 0 20px;
-    padding: 28px 26px;
-    position: relative;
-    width: 20rem;
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    border-radius: 68px;
+    width: 280px;
+    height: 360px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 
+      0 30px 60px rgba(0, 0, 0, 0.4),
+      inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    padding: 12px;
+  }
+
+  .screen {
+    background: #000;
+    border-radius: 56px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    position: relative;
   }
+
   .text {
-    color: #dddf8f;
-    font-size: 10rem;
-    font-family: serif;
-    font-weight: bolder;
-    line-height: 0.8;
-    text-shadow: 0 0 40px #d7d886c7;
+    color: #fff;
+    font-size: 92px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    line-height: 0.95;
+    text-shadow: 0 0 40px rgba(232, 232, 142, 0.6);
   }
-  .frame::before {
-    border: 1px solid #0d0d0d;
-    border-radius: 80px;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.5),
-      inset 0 0 12px 2px rgba(255, 255, 255, 0.75);
-    content: "";
-    height: 356px;
-    left: 12px;
-    position: absolute;
-    top: 12px;
-    width: 18.625rem;
+
+  .ampm {
+    color: #fff;
+    font-size: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+    text-shadow: 0 0 20px rgba(232, 232, 142, 0.5);
+    opacity: 0.9;
   }
+
   .sideBtn {
-    background: #606c78;
-    border-left: 1px solid #000;
-    border-radius: 8px 6px 6px 8px / 20px 6px 6px 20px;
-    box-shadow: inset 8px 0 8px 0 #1c1f23, inset -2px 0 6px #272c31,
-      -4px 0 8px #0d0d0d40;
-    height: 72px;
     position: absolute;
-    right: 6px;
-    top: 108px;
-    width: 18px;
-    z-index: 9;
-  }
-  .sideBtn::before {
-    background: #272c31;
-    border-radius: 20%;
-    box-shadow: 0 -30px rgba(62, 70, 77, 0.75), 0 -27px #272c31, 0 -25px #000,
-      0 -21px rgba(62, 70, 77, 0.75), 0 -18px #272c31, 0 -16px #000,
-      0 -12px rgba(62, 70, 77, 0.75), 0 -9px #272c31, 0 -7px #000,
-      0 -3px rgba(62, 70, 77, 0.75), 0 0 #272c31, 0 2px #000,
-      0 6px rgba(62, 70, 77, 0.75), 0 9px #272c31, 0 11px #000,
-      0 15px rgba(62, 70, 77, 0.75), 0 18px #272c31, 0 20px #000,
-      0 24px rgba(62, 70, 77, 0.75), 0 27px #272c31, 0 29px #000;
-    content: "";
-    height: 3px;
-    margin-top: -2px;
-    position: absolute;
-    right: 2px;
-    top: 50%;
+    right: -4px;
+    top: 105px;
+    background: linear-gradient(90deg, #3a4556 0%, #2d3748 50%, #3a4556 100%);
+    border-radius: 0 8px 8px 0;
     width: 10px;
-    z-index: 9;
+    height: 70px;
+    box-shadow: 
+      2px 0 8px rgba(0, 0, 0, 0.5),
+      inset -1px 0 2px rgba(0, 0, 0, 0.5);
+    z-index: 3;
   }
-  .sideBtn::after {
-    background: #16181b;
-    border-radius: 2px 4px 4px 2px / 20px 8px 8px 20px;
-    box-shadow: inset -2px 0 2px 0 #000, inset -6px 0 18px #272c31;
-    content: "";
-    height: 72px;
+
+  .btnLines {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 6px;
+    top: 50%;
+    right: 2px;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 50px;
+    background: repeating-linear-gradient(
+      to bottom,
+      #2a3441 0px,
+      #2a3441 2px,
+      transparent 2px,
+      transparent 4px
+    );
   }
 
   .powerBtn {
-    background: #272c31;
-    border-radius: 2px 4px 4px 2px / 2px 8px 8px 2px;
-    box-shadow: inset 0 0 2px 1px #101315;
-    height: 72px;
     position: absolute;
-    right: 18px;
-    top: 212px;
-    width: 4px;
-  }`;
+    right: -4px;
+    top: 220px;
+    background: linear-gradient(90deg, #3a4556 0%, #2d3748 50%, #3a4556 100%);
+    border-radius: 0 8px 8px 0;
+    width: 10px;
+    height: 70px;
+    box-shadow: 
+      2px 0 8px rgba(0, 0, 0, 0.5),
+      inset -1px 0 2px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+  }
+`;
 
 export default Card;

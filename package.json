@@ -14,6 +14,7 @@
     "@formspree/react": "^3.0.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.8",
+    "@use-gesture/react": "^10.3.1",
     "axios": "^1.9.0",
     "framer-motion": "^12.23.6",
     "gsap": "^3.13.0",

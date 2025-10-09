@@ -5,7 +5,8 @@ import OurCoreValue from "../componets/Home/StoreValue/OurCoreValue";
 import Review from "../componets/Home/Review/Review";
 import Footer from "../componets/Footer/Footer";
 import SetPageTitle from "../componets/SetPageTitle";
-import DemoCard from "../componets/Home/demo/DemoCard";
+// import DemoCard from "../componets/Home/demo/DemoCard";
+import DomeGallery from "../componets/Home/demo/DomeGallery";
 // import VelocityText from "../componets/Home/text/VelocityText";
 
 const Home = () => {
@@ -19,7 +20,10 @@ const Home = () => {
         <OurCoreValue />
         <ProductCard />
         <Review />
-        <DemoCard/>
+        {/* <DemoCard/> */}
+          <div style={{ width: '100vw', height: '100vh' }}>
+      <DomeGallery />
+    </div>
         <Footer />
       </div>
     </>
