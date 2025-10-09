@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Card = () => {
   return (
     <StyledWrapper>
-      <div className="watch">
+      <div className="watch mt-10 mb-35">
         <div className="frame">
           <div className="text">
             <div>09</div>
