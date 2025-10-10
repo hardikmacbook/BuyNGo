@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")).render(
     <ClerkProvider
       publishableKey={PUBLISHABLE_KEY}
       afterSignOutUrl="/"
-      appearance={{ variables: { colorPrimary: "#d2af6f" } }} // Example style tweak
+      appearance={{ variables: { colorPrimary: "#000" } }} // Example style tweak
     >
       <App />
     </ClerkProvider>
