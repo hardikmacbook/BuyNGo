@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { FaLuggageCart } from "react-icons/fa";
 import { Menu, X } from "lucide-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 
 const NAV_ITEMS = [
   { name: "Home", path: "/" },
@@ -15,7 +16,6 @@ const NAV_ITEMS = [
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { cartCount } = useCart();
-
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
@@ -49,8 +49,8 @@ const Navbar = () => {
           {/* Logo */}
           <Logo />
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-6">
+          {/* Desktop Menu - Centered Navigation */}
+          <div className="hidden lg:flex items-center justify-center flex-1 space-x-6 ml-2">
             {NAV_ITEMS.map(({ name, path }) => (
               <Link
                 key={name}
@@ -60,10 +60,14 @@ const Navbar = () => {
                 {name}
               </Link>
             ))}
-            {/* Cart Icon (Desktop) */}
+          </div>
+
+          {/* Desktop Right Side: Cart + Auth */}
+          <div className="hidden lg:flex items-center space-x-1">
+            {/* Cart Icon */}
             <Link
               to="/cart"
-              className="relative flex items-center justify-center ml-2 group p-2 rounded"
+              className="relative flex items-center justify-center group p-2 rounded"
               aria-label="View cart"
             >
               <FaLuggageCart className="text-xl text-black" />
@@ -71,9 +75,31 @@ const Navbar = () => {
                 {cartCount ?? 0}
               </span>
             </Link>
+
+            {/* Clerk Auth Buttons */}
+            <SignedOut>
+              <div className="ml-2">
+                <SignInButton mode="modal">
+                  <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm font-medium">
+                    Login
+                  </button>
+                </SignInButton>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <div className="ml-2">
+                <UserButton 
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-9 h-9 ring-2 ring-black/10 hover:ring-black/20 transition-all"
+                    }
+                  }}
+                />
+              </div>
+            </SignedIn>
           </div>
 
-          {/* Mobile Right Side: Cart + Hamburger */}
+          {/* Mobile Right Side: Cart + Auth + Hamburger */}
           <div className="flex items-center space-x-3 lg:hidden">
             {/* Cart Icon (Mobile) */}
             <Link
@@ -86,6 +112,26 @@ const Navbar = () => {
                 {cartCount ?? 0}
               </span>
             </Link>
+
+            {/* Clerk Auth (Mobile) */}
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="px-3 py-1.5 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm font-medium">
+                  Login
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton 
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8 ring-2 ring-black/10"
+                  }
+                }}
+              />
+            </SignedIn>
+
+            {/* Hamburger Menu */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className="p-2 rounded-xl border border-gray-200 bg-white/70 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none cursor-pointer"
