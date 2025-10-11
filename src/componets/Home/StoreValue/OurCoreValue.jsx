@@ -14,40 +14,42 @@ const cardData = [
   {
     color: '#060010',
     title: 'Product Catalog',
-    description: 'Browse thousands of products',
-    label: 'Shopping'
-  },
-  {
-    color: '#060010',
-    title: 'WhatsApp Checkout',
-    description: 'Order directly via WhatsApp',
-    label: 'Quick Order'
-  },
-  {
-    color: '#060010',
-    title: 'Powered by Hardik',
-    description: 'Powered by Hardik',
-    label: 'Demo'
-  },
-  {
-    color: '#060010',
-    title: 'Customer Reviews',
-    description: 'Verified buyer ratings',
-    label: 'Trusted Reviews'
+    description: 'Browse 10,000+ electrical and industrial products.',
+    label: 'Shop Now'
   },
   {
     color: '#060010',
     title: 'Quick Search',
-    description: 'Find products instantly',
-    label: 'Easy Search'
+    description: 'Find any product instantly with smart search.',
+    label: 'Find Fast'
+  },
+  {
+    color: '#060010',
+    title: 'WhatsApp Checkout',
+    description: 'Order directly via WhatsApp in seconds.',
+    label: 'Instant Order'
+  },
+  {
+    color: '#060010',
+    title: 'Authorized Brands',
+    description: 'Genuine products from top-rated brands.',
+    label: '100% Genuine'
+  },
+  {
+    color: '#060010',
+    title: 'Customer Reviews',
+    description: 'See real feedback from verified buyers.',
+    label: 'Trusted by Users'
   },
   {
     color: '#060010',
     title: '24/7 Support',
-    description: 'Always here to help you',
-    label: 'Customer Care'
+    description: 'We’re always here to help you anytime.',
+    label: 'We’re Here'
   }
 ];
+
+
 
 
 

@@ -53,17 +53,25 @@ export const CartProvider = ({ children }) => {
     // Update cart count
     setCartCount(updatedCart.reduce((total, item) => total + item.quantity, 0));
     
-    // Show success notification
-    setNotification({
-      show: true,
-      message: `${product.title} added to cart`,
-      type: 'success'
-    });
+   // Limit title to 10 words max
+const limitedTitle = product.title
+  .split(' ')
+  .slice(0, 5)
+  .join(' ')
+  + (product.title.split(' ').length > 5 ? '...' : '');
+
+// Show success notification
+setNotification({
+  show: true,
+  message: `${limitedTitle} added to cart`,
+  type: 'success'
+});
+
     
-    // Hide notification after 3 seconds
+    // Hide notification after 5 seconds
     setTimeout(() => {
       setNotification({ show: false, message: '', type: '' });
-    }, 3000);
+    }, 5000);
     
     return true; // Return true to indicate operation succeeded
   };
@@ -88,10 +96,10 @@ export const CartProvider = ({ children }) => {
         type: 'remove'
       });
       
-      // Hide notification after 3 seconds
+      // Hide notification after 5 seconds
       setTimeout(() => {
         setNotification({ show: false, message: '', type: '' });
-      }, 3000);
+      }, 5000);
     }
   };
 
