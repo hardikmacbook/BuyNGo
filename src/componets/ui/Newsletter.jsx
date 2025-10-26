@@ -1,51 +1,30 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Newsletter = () => {
   const [showNewsletter, setShowNewsletter] = useState(false);
 
   useEffect(() => {
-    // Check if the newsletter has been closed before
-    const hasClosedNewsletter = localStorage.getItem('hasClosedNewsletter');
-    
-    // Always show newsletter on every visit if it hasn't been closed
-    if (!hasClosedNewsletter) {
-      // Show immediately on page load
-      setShowNewsletter(true);
-    }
-    
-    // Reset localStorage after 24 hours to show newsletter again
-    const lastClosedTime = localStorage.getItem('newsletterClosedTime');
-    if (lastClosedTime) {
-      const twentyFourHoursInMs = 24 * 60 * 60 * 1000;
-      const timeDifference = Date.now() - parseInt(lastClosedTime);
-      
-      if (timeDifference > twentyFourHoursInMs) {
-        localStorage.removeItem('hasClosedNewsletter');
-        localStorage.removeItem('newsletterClosedTime');
-        setShowNewsletter(true);
-      }
-    }
+    // Always show newsletter on every visit and refresh
+    setShowNewsletter(true);
   }, []);
 
   const handleClose = () => {
     setShowNewsletter(false);
-    // Save to localStorage that user has closed the newsletter
-    localStorage.setItem('hasClosedNewsletter', 'true');
-    localStorage.setItem('newsletterClosedTime', Date.now().toString());
+    // We don't save to localStorage anymore so it will show on next refresh
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would handle the newsletter subscription
-    alert('न्यूज़लेटर के लिए धन्यवाद! आपको जल्द ही अपडेट मिलेंगे।');
+    toast.success('Thank you for subscribing! 🎉 You’ll receive updates soon.');
     handleClose();
   };
 
   if (!showNewsletter) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-6">
+    <div className="fixed inset-0 bg-opacity-60 flex items-center justify-center z-50 p-6">
       <div className="bg-white rounded-lg shadow-2xl max-w-md w-full relative overflow-hidden">
         {/* Close button */}
         <button 
@@ -65,23 +44,23 @@ const Newsletter = () => {
               className="w-full h-full object-cover opacity-90"
             />
             <div className="absolute top-16 left-0 w-full text-center">
-              <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">हमारे न्यूज़लेटर से जुड़ें</h2>
+              <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Stay updated with our newsletter</h2>
             </div>
           </div>
           
           {/* Content section */}
           <div className="w-full p-8">
-            <p className="text-gray-700 mb-6 text-center">नवीनतम उत्पादों, ऑफर और समाचारों के बारे में अपडेट रहें।</p>
+            <p className="text-gray-700 mb-6 text-center">Receive the latest updates on new products, offers, and news.</p>
             
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">ईमेल पता</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email address</label>
                 <input
                   type="email"
                   id="email"
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-                  placeholder="आपका@ईमेल.कॉम"
+                  placeholder="Your@Email.com"
                 />
               </div>
               
@@ -89,11 +68,11 @@ const Newsletter = () => {
                 type="submit"
                 className="w-full bg-black text-white py-3 px-6 rounded-md hover:bg-gray-800 transition duration-300 font-medium"
               >
-                सब्सक्राइब करें
+                Subscribe
               </button>
               
               <p className="text-xs text-gray-500 text-center mt-4">
-                सब्सक्राइब करके, आप हमारी प्राइवेसी पॉलिसी और सेवा की शर्तों से सहमत होते हैं।
+                By subscribing, you agree to our Privacy Policy and Terms of Service.
               </p>
             </form>
           </div>
