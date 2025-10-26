@@ -8,9 +8,13 @@ import Checkout from "./pages/Checkout";
 import Navbar from "./componets/Header/Navbar";
 import ProductDetails from "./componets/Shop/ProductDetail";
 import Shop from "./pages/Shop";
+import Privacy from "./pages/Privacy";
 import Footer from "./componets/Footer/Footer";
 import ScrollToTop from "./componets/ScrollToTop";
 import { CartProvider } from "./context/CartContext";
+import CookiePolicy from "./pages/CookiePolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Newsletter from "./componets/ui/Newsletter";
 
 function App() {
   return (
@@ -18,6 +22,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <MainLayout />
+        <Newsletter />
       </BrowserRouter>
     </CartProvider>
   );
@@ -30,7 +35,7 @@ function MainLayout() {
   const hideFooterRoutes = ["/"];
 
   // Check if current path matches any known route
-  const knownRoutes = ["/", "/about", "/shop", "/contact"];
+  const knownRoutes = ["/", "/about", "/shop", "/contact", "/privacy-policy", "/cart", "/checkout", "/shop/:title", "/error", "/terms-of-service", "/cookie-policy"];
   const isKnownRoute = knownRoutes.some(
     (route) =>
       location.pathname === route || location.pathname.startsWith("/shop/")
@@ -47,6 +52,9 @@ function MainLayout() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/privacy-policy" element={<Privacy />} />
+        <Route path="/Terms-of-service" element={<TermsOfService/>} />
+        <Route path="/cookie-Policy" element={<CookiePolicy/>} />
         <Route path="*" element={<Error />} />
       </Routes>
 

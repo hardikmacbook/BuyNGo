@@ -13,6 +13,7 @@ import {
 import { Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "../Header/Logo";
+import Privacy from "../../pages/Privacy";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -198,19 +199,19 @@ function Footer() {
             </div>
             <div className="flex space-x-6 text-sm">
               <Link
-                href="#"
+                to="/privacy-policy"
                 className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                 to="/terms-of-service"
                 className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 Terms of Service
               </Link>
               <Link
-                href="#"
+                 to="/cookie-policy"
                 className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 Cookie Policy

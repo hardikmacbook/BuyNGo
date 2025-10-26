@@ -13,13 +13,18 @@
     "@clerk/clerk-react": "^5.51.0",
     "@formspree/react": "^3.0.0",
     "@heroicons/react": "^2.2.0",
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.4.0",
     "@tailwindcss/vite": "^4.1.8",
     "@use-gesture/react": "^10.3.1",
     "axios": "^1.9.0",
     "framer-motion": "^12.23.6",
+    "gl-matrix": "^3.4.4",
     "gsap": "^3.13.0",
     "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.511.0",
+    "maath": "^0.10.8",
+    "ogl": "^1.0.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
@@ -27,7 +32,8 @@
     "react-swiper": "^0.1.5",
     "styled-components": "^6.1.19",
     "swiper": "^11.2.8",
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.1.8",
+    "three": "^0.180.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
