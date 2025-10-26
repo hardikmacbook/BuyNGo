@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const Newsletter = () => {
   const [showNewsletter, setShowNewsletter] = useState(false);
@@ -29,7 +30,7 @@ const Newsletter = () => {
         {/* Close button */}
         <button 
           onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-700 hover:text-black z-10"
+          className="absolute top-4 right-4 text-gray-700 hover:text-black z-10 cursor-pointer"
           aria-label="Close newsletter"
         >
           <X size={24} />
@@ -72,7 +73,10 @@ const Newsletter = () => {
               </button>
               
               <p className="text-xs text-gray-500 text-center mt-4">
-                By subscribing, you agree to our Privacy Policy and Terms of Service.
+                By subscribing, you agree to our 
+                  <Link to="/privacy-policy" className='pl-1 pr-1 text-black hover:underline'>Privacy Policy</Link>
+                 and 
+                  <Link to="/terms-of-service" className='pl-1 pr-1 text-black hover:underline'>Terms of Service</Link>
               </p>
             </form>
           </div>
