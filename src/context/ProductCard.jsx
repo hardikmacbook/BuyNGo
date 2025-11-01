@@ -395,7 +395,7 @@ const ProductsCarouselBuyNGO = () => {
       {/* View all */}
       <div className="text-center mt-8">
         <div className="mt-8 flex justify-center">
-          {/* <Link
+          <Link
             to="/shop"
             className="group border-2 border-gray-200 py-3 px-4 rounded-lg font-medium inline-flex items-center justify-center space-x-2 cursor-pointer text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300"
           >
@@ -414,10 +414,10 @@ const ProductsCarouselBuyNGO = () => {
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
-          </Link> */}
-        <Link to="/shop">
+          </Link>
+        {/* <Link to="/shop">
           <Button text="All Products" showSvg={true} />
-        </Link>
+        </Link> */}
         </div>
       </div>
     </section>

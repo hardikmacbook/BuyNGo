@@ -144,7 +144,7 @@ export default function ContactLayout() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-600/5 to-slate-900/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-10/5 to-slate-900/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
           <div className="text-center">
             <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-4 sm:mb-6 tracking-tight">
@@ -155,7 +155,7 @@ export default function ContactLayout() {
       </div>
 
       {/* Contact Form */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24 pt-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24 pt-10">
           
           {/* Contact Form */}
           
@@ -181,11 +181,11 @@ export default function ContactLayout() {
                         onChange={handleInputChange}
                         onBlur={handleBlur}
                         required
-                        className={`w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 ${fieldErrors.fullName ? 'border-[#d2af6f]' : 'border-slate-200'} focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none`}
+                        className={`w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 ${fieldErrors.fullName ? 'border-[#d2af6f]' : 'border-slate-200'} focus:ring-0 focus:border-[#000] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none`}
                         placeholder="Your full name"
                       />
                       {fieldErrors.fullName && (
-                        <p className="mt-2 text-sm text-[#8b2727]">{fieldErrors.fullName}</p>
+                        <p className="mt-2 text-sm text-[#000]">{fieldErrors.fullName}</p>
                       )}
                     </div>
                     
@@ -201,11 +201,11 @@ export default function ContactLayout() {
                         onChange={handleInputChange}
                         onBlur={handleBlur}
                         required
-                        className={`w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 ${fieldErrors.email ? 'border-[#d2af6f]' : 'border-slate-200'} focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none`}
+                        className={`w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 ${fieldErrors.email ? 'border-[#d2af6f]' : 'border-slate-200'} focus:ring-0 focus:border-[#000] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 group-hover:border-slate-300 outline-none`}
                         placeholder="your@email.com"
                       />
                       {fieldErrors.email && (
-                        <p className="mt-2 text-sm text-[#8b2727]">{fieldErrors.email}</p>
+                        <p className="mt-2 text-sm text-[#000]">{fieldErrors.email}</p>
                       )}
                     </div>
                   </div>
@@ -224,19 +224,20 @@ export default function ContactLayout() {
                       onBlur={handleBlur}
                       required
                       rows={5}
-                      className={`w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 ${fieldErrors.message ? 'border-[#d2af6f]' : 'border-slate-200'} focus:ring-0 focus:border-[#8b2727] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 resize-none group-hover:border-slate-300 outline-none`}
+                      className={`w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 ${fieldErrors.message ? 'border-[#d2af6f]' : 'border-slate-200'} focus:ring-0 focus:border-[#000] transition-all duration-300 text-base sm:text-lg placeholder-slate-400 resize-none group-hover:border-slate-300 outline-none`}
                       placeholder="Describe your requirements and any specific needs..."
                     />
                     {fieldErrors.message && (
-                      <p className="mt-2 text-sm text-[#8b2727]">{fieldErrors.message}</p>
+                      <p className="mt-2 text-sm text-[#000]">{fieldErrors.message}</p>
                     )}
                   </div>
 
+                  <div className="flex items-center justify-center">
                   <button
                     type="submit"
                     disabled={isSubmitting}
                     onClick={handleSubmit}
-                    className="w-full bg-[#8b2727] text-white py-4 sm:py-5 px-6 sm:px-8 rounded-2xl hover:from-slate-800 hover:to-slate-600 focus:ring-4 focus:ring-slate-300 transition-all duration-300 flex items-center justify-center space-x-3 font-bold text-base sm:text-lg shadow-2xl disabled:opacity-50 group transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer hover:bg-[#d2af6f] hover:text-black"
+                    className="w-[180px] border-2 border-gray-200 py-3 px-4 rounded-lg font-medium flex items-center justify-center space-x-2 group cursor-pointer text-gray-700 hover:border-gray-900 hover:text-gray-900 transition-all duration-300"
                   >
                     {isSubmitting ? (
                       <>
@@ -250,6 +251,9 @@ export default function ContactLayout() {
                       </>
                     )}
                   </button>
+                  </div>
+
+                   
 
                   {/* Success/Error Messages - Now below the button */}
                   {submitStatus && (
