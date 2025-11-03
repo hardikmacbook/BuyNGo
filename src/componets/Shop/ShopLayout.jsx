@@ -23,6 +23,11 @@ const ShopLayout = () => {
   const [imageErrors, setImageErrors] = useState(new Set());
   const { addToCart } = useCart();
 
+  // Scroll to top when page changes
+useEffect(() => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}, [currentPage]);
+
   // Handle image loading errors
   const handleImageError = (productId) => {
     setImageErrors(prev => new Set(prev).add(productId));
@@ -57,7 +62,7 @@ const ShopLayout = () => {
   };
 
   useEffect(() => {
-    fetch("https://68871534071f195ca97f2f9b.mockapi.io/BuyNGO-Products")
+    fetch("http://localhost:3000/products")
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -342,7 +347,7 @@ const ShopLayout = () => {
         </div>
 
         {/* Products Grid/List */}
-        <div className={`${viewMode === 'grid' 
+        <div id="product-list" className={`${viewMode === 'grid' 
           ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' 
           : 'space-y-4'
         } mb-8`}>
